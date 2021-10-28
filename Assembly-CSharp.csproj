@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Usingable\Item Scripts\HealPotion_Item.cs" />
     <Compile Include="Assets\Scripts\Usingable\UsingableNumbered.cs" />
     <Compile Include="Assets\Scripts\Equipment\Equipment.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Mobs\Swordsman.cs" />
     <Compile Include="Assets\Scripts\Inventory\UsingConsumable.cs" />
     <Compile Include="Assets\Scripts\Inventory\DropItem.cs" />
     <Compile Include="Assets\Scripts\Equipment\Ring.cs" />
@@ -84,9 +85,8 @@
     <Compile Include="Assets\Scripts\CheckParameters.cs" />
     <Compile Include="Assets\Scripts\Inventory\InventorySriptableObject.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons\Bomb.cs" />
-    <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Mobs\Swordsman.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Spawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

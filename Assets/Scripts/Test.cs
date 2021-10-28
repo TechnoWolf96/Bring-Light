@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-
+    // Удалить
     private void OnMouseEnter()
     {
         print("Test: Enter");
