@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HealPotion_Item : UsingableNumbered
+{
+    public int heal;
+
+    private CheckParameters checkParameters;
+
+    protected override void Start()
+    {
+        base.Start();
+        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
+    }
+
+    public override bool UseItem()
+    {
+        if (!base.UseItem()) return false;
+
+        Player player = checkParameters.currentPlayer;
+        checkParameters.currentPlayer.health += heal;
+        if (player.health > player.maxHealth)
+            player.health = player.maxHealth;
+        checkParameters.UpdateParameters();
+
+        return true;
+    }
+}

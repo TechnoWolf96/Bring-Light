@@ -1,0 +1,55 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+
+// Класс "Преследователь"
+public abstract class Stalker : Creature
+{
+    [Header("Stalker:")]
+    public float distance; // Дистанция обнаружения объекта для преследования
+    public LayerMask layer; // Слой, который отслеживает преследователь (Слой игроков)
+
+    protected Transform follow; // Текущий объект для преследования
+    protected NavMeshAgent navAgent; // Агент NawMesh, закрепленный на данном объекте
+
+    protected override void Start()
+    {
+        base.Start();
+        navAgent = GetComponent<NavMeshAgent>();
+        navAgent.speed = speed; // Скорость в NawMesh равна скорости существа
+    }
+
+    protected override void Update()
+    {
+        CheckStalk(); // Поиск объекта для преследования
+        if (!stunned && follow != null) Stalk(); // Если объект не оглушен и есть за кем бежать, то начинает преследование
+    }
+
+    protected void CheckStalk() // Проверка, есть ли в зоне обнаружения объекты нужного слоя
+    {
+        if (follow == null) // Если не за кем бежать, то ищем объект для преследования
+            follow = Physics2D.OverlapCircle(transform.position, distance, layer)?.GetComponent<Transform>();
+    }
+
+    protected void Stalk() // Объект получает точку назначения
+    {
+        navAgent.isStopped = false;
+        navAgent.SetDestination(follow.position);
+    }
+
+    protected virtual void OnDrawGizmosSelected() // Рисует область обнаружения
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, distance);
+    }
+
+    public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
+    {
+        base.GetDamage(attack, attacking, bullet);
+        navAgent.isStopped = true; // При оглушении преследователь не может бежать за нападающим
+        follow = attacking; // При получении урона преследователь бежит за нападающим
+    }
+
+}
