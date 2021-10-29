@@ -37,6 +37,7 @@ public abstract class Stalker : Creature
     {
         navAgent.isStopped = false;
         navAgent.SetDestination(follow.position);
+        anim.SetTrigger("Walk");
     }
 
     protected virtual void OnDrawGizmosSelected() // Рисует область обнаружения
