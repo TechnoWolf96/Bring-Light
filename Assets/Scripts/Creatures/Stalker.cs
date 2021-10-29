@@ -13,11 +13,14 @@ public abstract class Stalker : Creature
 
     protected Transform follow; // Текущий объект для преследования
     protected NavMeshAgent navAgent; // Агент NawMesh, закрепленный на данном объекте
+    protected bool right = true;
 
     protected override void Start()
     {
         base.Start();
         navAgent = GetComponent<NavMeshAgent>();
+        navAgent.updateRotation = false;
+        navAgent.updateUpAxis = false;
         navAgent.speed = speed; // Скорость в NawMesh равна скорости существа
     }
 
@@ -35,6 +38,9 @@ public abstract class Stalker : Creature
 
     protected void Stalk() // Объект получает точку назначения
     {
+        if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
+        if (follow.position.x < transform.position.x && right) Flip();
+        if (follow.position.x > transform.position.x && !right) Flip();
         navAgent.isStopped = false;
         navAgent.SetDestination(follow.position);
         anim.SetTrigger("Walk");
@@ -52,5 +58,14 @@ public abstract class Stalker : Creature
         navAgent.isStopped = true; // При оглушении преследователь не может бежать за нападающим
         follow = attacking; // При получении урона преследователь бежит за нападающим
     }
+
+    private void Flip() // Поворот игрока в другую сторону
+    {
+        right = !right;
+        Vector2 scale = new Vector2(transform.localScale.x, transform.localScale.y);
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
 
 }
