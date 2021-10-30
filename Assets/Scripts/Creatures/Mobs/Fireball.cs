@@ -16,7 +16,8 @@ public class Fireball : Stalker
     protected override void Update()
     {
         base.Update();
-        if (CheckExplosion() && !death) Attack();
+        if (death) return;
+        if (CheckExplosion()) Attack();
     }
 
     private bool CheckExplosion() // Проверка, нет ли в радиусе триггера игроков

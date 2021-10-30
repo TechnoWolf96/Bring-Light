@@ -136,8 +136,8 @@ MonoBehaviour:
   attack:
     damage: 5
     typeDamage: 1
-    pushForce: 0
-    timeStunning: 0
+    pushForce: 6
+    timeStunning: 0.2
 --- !u!50 &1081977587
 Rigidbody2D:
   serializedVersion: 4

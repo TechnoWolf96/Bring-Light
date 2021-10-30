@@ -43,7 +43,7 @@ public abstract class Creature : MonoBehaviour
         anim = GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
     }
-    protected virtual void Update() { }
+    protected virtual void Update() {}
 
     protected virtual void FixedUpdate() 
     {
@@ -88,6 +88,9 @@ public abstract class Creature : MonoBehaviour
     public virtual void Death()
     {
         death = true;
+        gameObject.layer = LayerMask.NameToLayer("Corpses");
+        rb.bodyType = RigidbodyType2D.Static;
+        collider.enabled = false;
         anim.SetTrigger("Death");
     }
 

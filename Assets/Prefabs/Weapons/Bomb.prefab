@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recharge: 0.5
   attack:
-    damage: 0
+    damage: 3
     typeDamage: 0
     pushForce: 7
     timeStunning: 0.4

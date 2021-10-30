@@ -26,6 +26,8 @@ public abstract class Stalker : Creature
 
     protected override void Update()
     {
+        base.Update();
+        if (death) return;
         CheckStalk(); // Поиск объекта для преследования
         if (!stunned && follow != null) Stalk(); // Если объект не оглушен и есть за кем бежать, то начинает преследование
     }
@@ -59,12 +61,18 @@ public abstract class Stalker : Creature
         follow = attacking; // При получении урона преследователь бежит за нападающим
     }
 
-    private void Flip() // Поворот игрока в другую сторону
+    private void Flip() // Поворот преследователя в другую сторону
     {
         right = !right;
         Vector2 scale = new Vector2(transform.localScale.x, transform.localScale.y);
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    public override void Death()
+    {
+        base.Death();
+        navAgent.isStopped = true;
     }
 
 

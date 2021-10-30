@@ -55,11 +55,8 @@ public class Player : Creature
     public override void Death()
     {
         base.Death();
-        gameObject.layer = LayerMask.NameToLayer("Corpses");
-        rb.bodyType = RigidbodyType2D.Static;
         Weapon weapon = GetComponentInChildren<Weapon>();
         if (weapon != null) weapon.enabled = false;
-        collider.enabled = false;
         inventory.enabled = false;
         enabled = false;
     }

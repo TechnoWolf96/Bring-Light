@@ -5,12 +5,12 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject mob;
-    public float rechange;
+    public float recharge;
     public float radius;
 
     private void Start()
     {
-        StartCoroutine(spawn(rechange));
+        StartCoroutine(spawn(recharge));
     }
 
     IEnumerator spawn(float rechange)
@@ -22,6 +22,11 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(rechange);
         }
         
+    }
+    protected virtual void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
 }
