@@ -60493,11 +60493,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6324940072335547958, guid: b2906339688a7a4478b67415cdd22d38, type: 3}
       propertyPath: health
-      value: 4
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6324940072335547958, guid: b2906339688a7a4478b67415cdd22d38, type: 3}
       propertyPath: pushMass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324940072335547958, guid: b2906339688a7a4478b67415cdd22d38, type: 3}
+      propertyPath: maxHealth
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6324940072335547958, guid: b2906339688a7a4478b67415cdd22d38, type: 3}
       propertyPath: protection

@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rechargeTime: 4
   darkFill: {fileID: 4064090461278993682}
-  heal: 4
+  heal: 20
 --- !u!1 &1227502567475808145
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +867,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.6
-  m_Text: 4
+  m_Text: 20
 --- !u!1 &8465435608886980458
 GameObject:
   m_ObjectHideFlags: 0

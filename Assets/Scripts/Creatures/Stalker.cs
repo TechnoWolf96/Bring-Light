@@ -21,12 +21,12 @@ public abstract class Stalker : Creature
         navAgent = GetComponent<NavMeshAgent>();
         navAgent.updateRotation = false;
         navAgent.updateUpAxis = false;
-        navAgent.speed = speed; // Скорость в NawMesh равна скорости существа
     }
 
     protected override void Update()
     {
         base.Update();
+        navAgent.speed = speed; // Скорость в NawMesh равна скорости существа
         if (death) return;
         CheckStalk(); // Поиск объекта для преследования
         if (!stunned && follow != null) Stalk(); // Если объект не оглушен и есть за кем бежать, то начинает преследование

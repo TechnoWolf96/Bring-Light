@@ -102,17 +102,20 @@ MonoBehaviour:
   speed: 3
   maxHealth: 4
   health: 4
-  physicalProtect: 1
-  magicProtect: 0
-  xDamageGain: 0
+  protect:
+    physical: 0
+    holy: 0
+    fiery: 0
+    cold: 0
+    dark: 0
+    poison: 0
   xPushMass: 1
   distance: 5
   layer:
     serializedVersion: 2
     m_Bits: 128
   attack:
-    damage: 3
-    typeDamage: 0
+    damages: []
     pushForce: 5
     timeStunning: 0.2
   recharge: 0.5

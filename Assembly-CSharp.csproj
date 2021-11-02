@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Weapons\Weapons\Bomb.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\ProtectDamage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

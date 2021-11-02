@@ -16,14 +16,14 @@ public class MagicShield_Inst : Equipment
     protected override void Start()
     {
         base.Start();
-        checkParameters.currentPlayer.magicProtect += bonusMagicProtect;
-        checkParameters.UpdateParameters();
+       // checkParameters.currentPlayer.magicProtect += bonusMagicProtect;
+       // checkParameters.UpdateParameters();
     }
 
     private void OnDestroy()
     {
-        checkParameters.currentPlayer.magicProtect -= bonusMagicProtect;
-        checkParameters.UpdateParameters();
+        //checkParameters.currentPlayer.magicProtect -= bonusMagicProtect;
+        //checkParameters.UpdateParameters();
     }
 
 

@@ -2,19 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TypeDamage { Physical, Magic }
-
-[System.Serializable]
-
-// Параметры атаки
-public struct AttackParameters 
-{
-    public int damage;                  // Урон
-    public TypeDamage typeDamage;       // Тип урона
-    public float pushForce;             // Мощность толчка
-    public float timeStunning;          // Время оглушения
-}
-
 
 // Универсальный класс - "Существо", является предком любого живого объекта на сцене
 public abstract class Creature : MonoBehaviour
@@ -23,9 +10,7 @@ public abstract class Creature : MonoBehaviour
     public float speed;                 // Скорость существа
     public int maxHealth;               // Максимальный запас здоровья
     public int health;                  // Текущий запас здоровья
-    public int physicalProtect;         // Физическая защита
-    public int magicProtect;            // Магическая защита
-    public float xDamageGain = 0;       // Множитель урона от оружия
+    public ProtectParameters protect;   // Параметры защиты
     public float xPushMass = 1;         // Множитель мощности отталкивания при получении урона
 
     protected bool stunned = false;             // Является ли существо оглушенным
@@ -67,12 +52,8 @@ public abstract class Creature : MonoBehaviour
 
     public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null) // Получение урона с силой отталкивания от позиции атакующего и оглушением
     {
-        // ==== Подсчет реального урона ====
-        int realDamage = attack.damage; 
-        if (attack.typeDamage == TypeDamage.Physical) realDamage -= physicalProtect;
-        else realDamage -= magicProtect;
+        int realDamage = GetRealDamage(attack); // Подсчет реального урона
         if (realDamage < 0) realDamage = 0;
-        // =================================
         health -= realDamage;
 
         if (bullet != null) PushBack(attack.pushForce, bullet, attack.timeStunning); // Если урон от снаряда - толчок от снаряда
@@ -92,6 +73,35 @@ public abstract class Creature : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
         collider.enabled = false;
         anim.SetTrigger("Death");
+    }
+
+    private int GetRealDamage(AttackParameters attack)
+    {
+        int result = 0;
+        foreach (var item in attack.damages)
+        {
+            switch (item.typeDamage)
+            {
+                case TypeDamage.Physical:
+                    result += item.damage - (item.damage * protect.physical / 100);
+                    break;
+                case TypeDamage.Holy:
+                    result += item.damage - (item.damage * protect.holy / 100);
+                    break;
+                case TypeDamage.Fiery:
+                    result += item.damage - (item.damage * protect.fiery / 100);
+                    break;
+                case TypeDamage.Cold:
+                    result += item.damage - (item.damage * protect.cold / 100);
+                    break;
+                case TypeDamage.Dark:
+                    result += item.damage - (item.damage * protect.dark / 100);
+                    break;
+                default:
+                    break;
+            }
+        }
+        return result;
     }
 
 }

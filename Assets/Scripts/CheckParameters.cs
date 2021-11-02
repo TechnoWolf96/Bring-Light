@@ -25,8 +25,8 @@ public class CheckParameters : MonoBehaviour
     {
         healthText.text = currentPlayer.health.ToString() + '/' + currentPlayer.maxHealth.ToString();
         healthSlider.value = (float)currentPlayer.health / currentPlayer.maxHealth;
-        magicProtectText.text = currentPlayer.magicProtect.ToString();
-        physicalProtectText.text = currentPlayer.physicalProtect.ToString();
+        //magicProtectText.text = currentPlayer.magicProtect.ToString();
+        //physicalProtectText.text = currentPlayer.physicalProtect.ToString();
 
     }
 

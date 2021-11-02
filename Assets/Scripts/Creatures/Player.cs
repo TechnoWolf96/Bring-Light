@@ -6,7 +6,6 @@ public class Player : Creature
 {
 
     private bool right = true;                      // Смотрит ли игрок направо
-    private Vector2 moveDirection;                  // Направление движения
     private CheckParameters checkParameters;        // Система контроля параметров
     private Inventory inventory;                    // Инвентарь
 
@@ -33,7 +32,7 @@ public class Player : Creature
         float InputX = Input.GetAxisRaw("Horizontal");
         float InputY = Input.GetAxisRaw("Vertical");
         if (InputX == 0 && InputY == 0) return false;
-        moveDirection = new Vector2(InputX, InputY).normalized;
+        Vector2 moveDirection = new Vector2(InputX, InputY).normalized;
         rb.velocity = moveDirection * speed;
         return true;
     }
