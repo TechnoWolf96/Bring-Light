@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Equipment\Ring.cs" />
     <Compile Include="Assets\Scripts\Usingable\Usingable.cs" />
     <Compile Include="Assets\Scripts\Equipment\Effects\MagicShield_Inst.cs" />
+    <Compile Include="Assets\Scripts\ProtectDamage.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullets\BombBullet.cs" />
     <Compile Include="Assets\Scripts\Creatures\Stalker.cs" />
     <Compile Include="Assets\Scripts\Equipment\Armor.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="Assets\Scripts\Weapons\Weapons\Bomb.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\ProtectDamage.cs" />
+    <Compile Include="Assets\Scripts\Creatures\HealthBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -19,6 +19,7 @@ public abstract class Creature : MonoBehaviour
     protected Rigidbody2D rb;                   // Агент RigitBody существа
     protected Animator anim;                    // Анимация поведения существа
     protected Collider2D collider;              // Коллайдер существа
+    protected HealthBar healthBar;
 
 
 
@@ -27,6 +28,7 @@ public abstract class Creature : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
+        healthBar = GetComponent<HealthBar>();
     }
     protected virtual void Update() {}
 
@@ -53,9 +55,9 @@ public abstract class Creature : MonoBehaviour
     public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null) // Получение урона с силой отталкивания от позиции атакующего и оглушением
     {
         int realDamage = GetRealDamage(attack); // Подсчет реального урона
-        if (realDamage < 0) realDamage = 0;
+        
         health -= realDamage;
-
+        
         if (bullet != null) PushBack(attack.pushForce, bullet, attack.timeStunning); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking, attack.timeStunning);            // Если рукопашный урон - толчок от атакующего
 
@@ -64,6 +66,7 @@ public abstract class Creature : MonoBehaviour
             health = 0;
             Death();
         }
+        healthBar.ShowBar();
         if (!death) anim.SetTrigger("GetDamage"); // Если сушество не мертво, то запускается анимация получения урона
     }
     public virtual void Death()
@@ -75,32 +78,35 @@ public abstract class Creature : MonoBehaviour
         anim.SetTrigger("Death");
     }
 
-    private int GetRealDamage(AttackParameters attack)
+    protected int GetRealDamage(AttackParameters attack)
     {
         int result = 0;
         foreach (var item in attack.damages)
         {
+            int preDamage = item.Damaged();
             switch (item.typeDamage)
             {
                 case TypeDamage.Physical:
-                    result += item.damage - (item.damage * protect.physical / 100);
+                    result += preDamage - (preDamage * protect.physical / 100);
                     break;
                 case TypeDamage.Holy:
-                    result += item.damage - (item.damage * protect.holy / 100);
+                    result += preDamage - (preDamage * protect.holy / 100);
                     break;
                 case TypeDamage.Fiery:
-                    result += item.damage - (item.damage * protect.fiery / 100);
+                    result += preDamage - (preDamage * protect.fiery / 100);
                     break;
                 case TypeDamage.Cold:
-                    result += item.damage - (item.damage * protect.cold / 100);
+                    result += preDamage - (preDamage * protect.cold / 100);
                     break;
                 case TypeDamage.Dark:
-                    result += item.damage - (item.damage * protect.dark / 100);
+                    result += preDamage - (preDamage * protect.dark / 100);
                     break;
-                default:
+                case TypeDamage.Poison:
+                    result += preDamage - (preDamage * protect.poison / 100);
                     break;
             }
         }
+        if (result < 0) result = 0;
         return result;
     }
 

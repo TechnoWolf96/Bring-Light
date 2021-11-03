@@ -62,7 +62,19 @@ public class Player : Creature
 
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
-        base.GetDamage(attack, attacking, bullet);
+        // В классе-предке вызывается метод появления полоски с хп - поэтому переписан тот же код, но без вывода полоски с хп
+        int realDamage = GetRealDamage(attack); // Подсчет реального урона
+        health -= realDamage;
+
+        if (bullet != null) PushBack(attack.pushForce, bullet, attack.timeStunning); // Если урон от снаряда - толчок от снаряда
+        else PushBack(attack.pushForce, attacking, attack.timeStunning);            // Если рукопашный урон - толчок от атакующего
+
+        if (health <= 0 && !death) // Здоровье ниже или равно 0 - существо умирает
+        {
+            health = 0;
+            Death();
+        }
+        if (!death) anim.SetTrigger("GetDamage"); // Если сушество не мертво, то запускается анимация получения урона
         checkParameters.UpdateParameters();     // Обновляем параметры в UI при получении урона
     }
 

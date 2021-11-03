@@ -47,8 +47,17 @@ public class ProtectParameters
 [System.Serializable] // Тип и величина урона
 public struct Damage
 {
-    public TypeDamage typeDamage;
-    public int damage;
+    public TypeDamage typeDamage;                   // Тип урона
+    [Range(0,100)] public int critChance;           // Вероятность в процентах нанесения критического урона
+    public int critGainPercentage;                  // На столько процентов увеличится урон при крите
+    [SerializeField] private int minDamage;         // Минимальный урон
+    [SerializeField] private int maxDamage;         // Максимальный урон
+    public int Damaged()     // Возвращает был ли крит и присваивает урон
+    {
+        int result = Random.Range(minDamage, maxDamage + 1);
+        if (Random.Range(1, 101) <= critChance) result += (result * critGainPercentage)/100;
+        return result;
+    }
 }
 
 
