@@ -83,11 +83,11 @@
     <Compile Include="Assets\Scripts\Inventory\IdSystem.cs" />
     <Compile Include="Assets\Scripts\Equipment\Pendant.cs" />
     <Compile Include="Assets\Scripts\CheckParameters.cs" />
+    <Compile Include="Assets\Scripts\Creatures\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Inventory\InventorySriptableObject.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons\Bomb.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\Creatures\HealthBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
