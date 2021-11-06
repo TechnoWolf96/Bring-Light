@@ -48,14 +48,12 @@ public class ProtectParameters
 public struct Damage
 {
     public TypeDamage typeDamage;                   // Тип урона
-    [Range(0,100)] public int critChance;           // Вероятность в процентах нанесения критического урона
-    public int critGainPercentage;                  // На столько процентов увеличится урон при крите
-    [SerializeField] private int minDamage;         // Минимальный урон
-    [SerializeField] private int maxDamage;         // Максимальный урон
-    public int Damaged()     // Возвращает был ли крит и присваивает урон
+    [SerializeField] private int minDamage;         // Минимальный некритичиский урон
+    [SerializeField] private int maxDamage;         // Максимальный некритический урон
+    public int Damaged(bool isCrit, int critGainPercentage)     // Возвращает был ли крит и присваивает урон
     {
         int result = Random.Range(minDamage, maxDamage + 1);
-        if (Random.Range(1, 101) <= critChance) result += (result * critGainPercentage)/100;
+        if (isCrit) result += (result * critGainPercentage)/100;
         return result;
     }
 }
@@ -64,9 +62,27 @@ public struct Damage
 [System.Serializable] // Параметры атаки
 public struct AttackParameters
 {
-    public Damage[] damages;         // Типы урона
+    public Damage[] damages;            // Типы урона
     public float pushForce;             // Мощность толчка
     public float timeStunning;          // Время оглушения
+    [Range(0, 100)] public int critChance;           // Вероятность в процентах нанесения критического урона
+    public int critGainPercentage;                   // На столько процентов увеличится урон при крите
+    private bool isCrit;            // Есть ли крит у текущей атаки
+
+
+    public bool GetCrit() { return isCrit; }
+
+    // Возвращает и устанавливает на текущую атаку был ли крит. Важно всегда вызывать метод перед атакой, чтобы обновить поле isCrit
+    public bool SetCrit()      
+    {
+        if (critChance >= Random.Range(1, 101))
+        {
+            isCrit = true;
+            return true;
+        }
+        isCrit = false;
+        return false;
+    }
 }
 
 

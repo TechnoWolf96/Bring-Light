@@ -119,7 +119,7 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   protect:
-    physical: 0
+    physical: 20
     holy: 0
     fiery: 0
     cold: 0
@@ -133,12 +133,12 @@ MonoBehaviour:
   attack:
     damages:
     - typeDamage: 0
-      critChance: 0
-      critGainPercentage: 0
       minDamage: 5
-      maxDamage: 10
+      maxDamage: 7
     pushForce: 5
     timeStunning: 0.2
+    critChance: 30
+    critGainPercentage: 50
   recharge: 0.5
   radiusAttack: 0.9
   attackPosition: {fileID: 7470789397804433345}

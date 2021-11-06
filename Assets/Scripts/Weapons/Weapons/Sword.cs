@@ -40,10 +40,12 @@ public class Sword : Weapon
         rechargeTime = recharge;
         anim.SetTrigger("Attack");
         Collider2D[] enemy_col = Physics2D.OverlapCircleAll(point.position, radius, layer);
+        bool crit = attack.SetCrit();
         foreach (var item in enemy_col)
         {
             item.GetComponent<Creature>().GetDamage(attack, transform);
         }
+        if (crit) print("Crit!");
     }
 
     private void OnDrawGizmosSelected()

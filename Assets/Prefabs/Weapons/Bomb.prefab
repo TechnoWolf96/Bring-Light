@@ -48,12 +48,12 @@ MonoBehaviour:
   attack:
     damages:
     - typeDamage: 0
-      critChance: 30
-      critGainPercentage: 100
-      minDamage: 40
-      maxDamage: 70
+      minDamage: 10
+      maxDamage: 30
     pushForce: 7
     timeStunning: 0.4
+    critChance: 20
+    critGainPercentage: 50000
   layer:
     serializedVersion: 2
     m_Bits: 64

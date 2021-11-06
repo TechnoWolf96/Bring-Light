@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rechargeTime: 4
   darkFill: {fileID: 4064090461278993682}
-  heal: 20
+  heal: 50
 --- !u!1 &1227502567475808145
 GameObject:
   m_ObjectHideFlags: 0

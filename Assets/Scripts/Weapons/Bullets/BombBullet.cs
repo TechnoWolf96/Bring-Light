@@ -31,12 +31,14 @@ public class BombBullet : Bullet
     private void Explotion()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layer);
+        bool crit = attack.SetCrit();
         foreach (var item in colliders)
         {
             item.GetComponent<Creature>().GetDamage(attack, carrier.transform, transform);
         }
         Transform size = Instantiate(explotionPrefab, transform.position, Quaternion.identity).GetComponent<Transform>();
         Vector2 vsize = new Vector2(size.localScale.x, size.localScale.y);
+        if (crit) size.GetComponent<SpriteRenderer>().color = Color.red;
         size.localScale = vsize*radius*offset;
         Destroy(gameObject);
     }

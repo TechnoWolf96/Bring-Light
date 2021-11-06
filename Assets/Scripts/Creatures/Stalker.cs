@@ -72,7 +72,7 @@ public abstract class Stalker : Creature
     public override void Death()
     {
         base.Death();
-        navAgent.isStopped = true;
+        navAgent.enabled = false;
     }
 
 

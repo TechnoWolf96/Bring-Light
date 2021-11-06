@@ -46,8 +46,10 @@ public class CloseAttack : Stalker
     {
         currentRecharge = recharge;
         Collider2D damaged = Physics2D.OverlapCircle(attackPosition.position, radiusAttack, layer);
+        bool crit = attack.SetCrit();
         damaged.GetComponent<Creature>().GetDamage(attack, transform);
-        anim.SetTrigger("Attack");
+        if (crit) anim.SetTrigger("Crit");
+        else anim.SetTrigger("Attack");
     }
 
     protected override void OnDrawGizmosSelected()
