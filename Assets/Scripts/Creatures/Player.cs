@@ -57,7 +57,9 @@ public class Player : Creature
         Weapon weapon = GetComponentInChildren<Weapon>();
         if (weapon != null) weapon.enabled = false;
         inventory.enabled = false;
+        rb.velocity = Vector2.zero;
         enabled = false;
+        
     }
 
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
