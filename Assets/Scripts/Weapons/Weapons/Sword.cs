@@ -5,6 +5,8 @@ using UnityEngine;
 public class Sword : Weapon
 {
     [Header("Sword:")]
+    public AttackParameters attack; // Параметры атаки
+    public LayerMask layer;         // Слой объектов, по которому будет проходить атака
     public float offset;            // Смещение меча для регулировки направления
     public float radius;            // Радиус поражения меча
     public Transform point;         // Точка атаки

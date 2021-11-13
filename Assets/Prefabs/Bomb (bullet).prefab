@@ -117,7 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33676701f8993ba4da3c979fa0e48490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explotionPrefab: {fileID: 4659888335282814003, guid: 73460c3ea0eb4fd48989f609b2a8f3fe, type: 3}
+  explotionEffect: {fileID: 4659888335282814003, guid: 73460c3ea0eb4fd48989f609b2a8f3fe, type: 3}
+  critExplotionEffect: {fileID: 0}
   offset: 2
 --- !u!50 &-2574144233724839046
 Rigidbody2D:

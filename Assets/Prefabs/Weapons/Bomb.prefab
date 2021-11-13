@@ -45,21 +45,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recharge: 0.5
-  attack:
-    damages:
-    - typeDamage: 0
-      minDamage: 10
-      maxDamage: 30
-    pushForce: 7
-    timeStunning: 0.4
-    critChance: 20
-    critGainPercentage: 50000
-  layer:
-    serializedVersion: 2
-    m_Bits: 64
   bombBulletPrefab: {fileID: 3076615135357507918, guid: b8035900ed3f15342a2165816ae4fb21, type: 3}
-  speedBullet: 10
-  radiusExplosion: 2
+  bulletParameters:
+    speed: 9
+    attack:
+      damages:
+      - typeDamage: 0
+        minDamage: 40
+        maxDamage: 50
+      pushForce: 5
+      timeStunning: 0.3
+      critChance: 0
+      critGainPercentage: 100
+    carrier: {fileID: 0}
+    layer:
+      serializedVersion: 2
+      m_Bits: 64
+    target: {fileID: 0}
+    radius: 2
 --- !u!1 &7409938798130240614
 GameObject:
   m_ObjectHideFlags: 0

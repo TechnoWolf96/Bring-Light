@@ -6,11 +6,11 @@ public abstract class Weapon : MonoBehaviour
 {
     [Header("Weapon:")]
     public float recharge;              // Перезарядка
-    public AttackParameters attack;     // Параметры атаки
-    public LayerMask layer;             // Слой объектов, по которому будет проходить атака
+    //public AttackParameters attack;   // Параметры атаки
+    //public LayerMask layer;             // Слой объектов, по которому будет проходить атака
 
-    protected Transform playerPos;  // Объект игрока, держащего оружие
-    protected Creature creature;        // Скрипт существа, держащего оружие
+    protected Transform playerPos;      // Позиция игрока, держащего оружие
+    protected Creature creature;        // Скрипт существа игрока, держащего оружие
     protected float rechargeTime;       // Текущее время до перезарядки
 
     protected abstract void Attack(); // Атака

@@ -103,7 +103,10 @@ MonoBehaviour:
   radiusTriggerExplotion: 0.55
   radiusExplotion: 1
   attack:
-    damages: []
+    damages:
+    - typeDamage: 0
+      minDamage: 30
+      maxDamage: 50
     pushForce: 6
     timeStunning: 0.2
     critChance: 0

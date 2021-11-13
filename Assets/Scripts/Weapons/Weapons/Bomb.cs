@@ -5,28 +5,23 @@ using UnityEngine;
 public class Bomb : Weapon
 {
     public GameObject bombBulletPrefab; // Префаб летящей бомбы
-    public float speedBullet; // Скорость полета бомбы
-    public float radiusExplosion; // Радиус взрыва
+    public ExplosingBullet_Parameters bulletParameters;
 
     private void Update()
     {
         if (Input.GetMouseButton(0) && IsRecharged()) Attack();
     }
-
-
-
-
     protected override void Attack()
     {
         rechargeTime = recharge;
-        if (playerPos == null) print("Bad");
         GameObject inst = Instantiate(bombBulletPrefab, playerPos.transform.position, Quaternion.identity);
-        inst.GetComponent<BombBullet>().InstBullet(attack, speedBullet, playerPos, layer, radiusExplosion);
+        UpdateBulletParameters();
+        inst.GetComponent<ExplosingBullet>().InstBullet(bulletParameters);
     }
-
-    private void OnDrawGizmosSelected()
+    private void UpdateBulletParameters()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radiusExplosion);
+        bulletParameters.carrier = playerPos;
+        bulletParameters.target = new GameObject().transform;
+        bulletParameters.target.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 }
