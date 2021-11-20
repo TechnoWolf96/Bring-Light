@@ -126,7 +126,7 @@ MonoBehaviour:
     dark: 0
     poison: 0
   xPushMass: 1
-  distance: 5
+  distanceDetection: 5
   layer:
     serializedVersion: 2
     m_Bits: 128

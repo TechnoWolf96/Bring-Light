@@ -86,7 +86,7 @@
     <Compile Include="Assets\Scripts\Creatures\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Inventory\InventorySriptableObject.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons\Bomb.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Mobs\RangedOneAttack.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Mobs\SmartDistance.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullets\OneBullet.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
   </ItemGroup>

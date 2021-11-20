@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public abstract class Stalker : Creature
 {
     [Header("Stalker:")]
-    public float distance; // Дистанция обнаружения объекта для преследования
+    public float distanceDetection; // Дистанция обнаружения объекта для преследования
     public LayerMask layer; // Слой, который отслеживает преследователь (Слой игроков)
 
     protected Transform follow; // Текущий объект для преследования
@@ -35,14 +35,12 @@ public abstract class Stalker : Creature
     protected void CheckStalk() // Проверка, есть ли в зоне обнаружения объекты нужного слоя
     {
         if (follow == null) // Если не за кем бежать, то ищем объект для преследования
-            follow = Physics2D.OverlapCircle(transform.position, distance, layer)?.GetComponent<Transform>();
+            follow = Physics2D.OverlapCircle(transform.position, distanceDetection, layer)?.GetComponent<Transform>();
     }
 
-    protected void Stalk() // Объект получает точку назначения
+    protected virtual void Stalk() // Объект получает точку назначения и начинает преследование
     {
-        if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
-        if (follow.position.x < transform.position.x && right) Flip();
-        if (follow.position.x > transform.position.x && !right) Flip();
+        FlipAndNullVelocity();
         navAgent.isStopped = false;
         navAgent.SetDestination(follow.position);
         anim.SetTrigger("Walk");
@@ -51,7 +49,7 @@ public abstract class Stalker : Creature
     protected virtual void OnDrawGizmosSelected() // Рисует область обнаружения
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, distance);
+        Gizmos.DrawWireSphere(transform.position, distanceDetection);
     }
 
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
@@ -61,13 +59,21 @@ public abstract class Stalker : Creature
         follow = attacking; // При получении урона преследователь бежит за нападающим
     }
 
-    private void Flip() // Поворот преследователя в другую сторону
+    protected void Flip() // Поворот преследователя в другую сторону
     {
         right = !right;
         Vector2 scale = new Vector2(transform.localScale.x, transform.localScale.y);
         scale.x *= -1;
         transform.localScale = scale;
     }
+    protected void FlipAndNullVelocity()    // Определение поворота и зануление velocity
+    {
+        // Т.к скорость в NavAgent и в velocity накладываются друг на друга, то velocity нужно занулить
+        if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
+        if (follow.position.x < transform.position.x && right) Flip();
+        if (follow.position.x > transform.position.x && !right) Flip();
+    }
+
 
     public override void Death()
     {

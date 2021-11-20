@@ -53,7 +53,7 @@ MonoBehaviour:
       maxDamage: 20
     pushForce: 7
     timeStunning: 0.3
-    critChance: 20
+    critChance: 0
     critGainPercentage: 10000
   layer:
     serializedVersion: 2
