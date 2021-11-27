@@ -178,12 +178,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8810940315994534986}
-  - component: {fileID: 2139653761539204412}
   - component: {fileID: 4464388056974673589}
   - component: {fileID: 7720729593931339868}
-  - component: {fileID: 4127245062117116066}
   - component: {fileID: 2099225368944748049}
-  - component: {fileID: 5911634366467593929}
+  - component: {fileID: -9221153049482632251}
+  - component: {fileID: 836961004}
+  - component: {fileID: 836961006}
   m_Layer: 6
   m_Name: WizardLizard
   m_TagString: Enemy
@@ -208,22 +208,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &2139653761539204412
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3664489055708276768}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.055976495, y: -0.027988195}
-  m_Size: {x: 1.0037882, y: 1.1959176}
-  m_Direction: 0
 --- !u!50 &4464388056974673589
 Rigidbody2D:
   serializedVersion: 4
@@ -259,36 +243,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   valueSlider: {fileID: 4015256007355044247}
   animSlider: {fileID: 2497598706504467004}
---- !u!114 &4127245062117116066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3664489055708276768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53de8723dfede3d4d86c7ef3e4c3fefd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 7
-  maxHealth: 200
-  health: 200
-  protect:
-    physical: 0
-    holy: 0
-    fiery: 0
-    cold: 0
-    dark: 0
-    poison: 0
-  xPushMass: 1
-  distanceDetection: 8
-  layer:
-    serializedVersion: 2
-    m_Bits: 128
-  maxStopDistance: 7
-  minStopDistance: 4.5
-  runFromDistance: 4
 --- !u!195 &2099225368944748049
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -311,7 +265,57 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!95 &5911634366467593929
+--- !u!114 &-9221153049482632251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664489055708276768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee67b447d8c31d41a1364c5a095ee29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  maxHealth: 100
+  health: 100
+  protect:
+    physical: 0
+    holy: 0
+    fiery: 0
+    cold: 0
+    dark: 0
+    poison: 0
+  xPushMass: 1
+  distanceDetection: 8
+  layer:
+    serializedVersion: 2
+    m_Bits: 128
+  maxStopDistance: 7
+  minStopDistance: 3
+  runFromDistance: 2
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  rayThickness: 0.5
+--- !u!70 &836961004
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664489055708276768}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.004011035, y: -0.052145183}
+  m_Size: {x: 0.7005582, y: 1.1042904}
+  m_Direction: 0
+--- !u!95 &836961006
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -321,7 +325,7 @@ Animator:
   m_GameObject: {fileID: 3664489055708276768}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 29276190a446fbd408d4babb62ea9356, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -19,8 +17,9 @@ public class SmartDistance : Stalker
     [Min(0)] public float minStopDistance;           // ћинимальное рассто€ние остановки до цели
     [Min(0)] public float runFromDistance;           // –ассто€ние начала отдалени€
 
-    private float randomStopDistance = 0;    // ѕеременна€ под хранение сгенерировавшейс€ случайной дистанции остановки
-    private bool distanceDefined;            // ѕоказывает, определена ли уже случайна€ дистанци€
+    protected bool canGoBack = true;                  // ћожет ли существо отступать при приближении противника
+    protected float randomStopDistance = 0;    // ѕеременна€ под хранение сгенерировавшейс€ случайной дистанции остановки
+    protected bool distanceDefined;            // ѕоказывает, определена ли уже случайна€ дистанци€
 
 
     protected override void Start()
@@ -34,27 +33,23 @@ public class SmartDistance : Stalker
         distanceDefined = true;
         print(randomStopDistance);
     }
-    protected void RunFromFollow()
+    protected virtual void RunFromFollow()
     {
-        Vector2 direction = (transform.position - follow.position).normalized;
-        direction *= runFromDistance - Vector2.Distance(follow.position, transform.position);
-        Vector2 newPosition = transform.position;
-        newPosition += direction;
+        Vector2 newPosition = SearchPositionForGoBack();
         navAgent.isStopped = false;
         navAgent.SetDestination(newPosition);
         anim.SetTrigger("Walk");
     }
-    protected void RunToFollow()
+    protected virtual void RunToFollow()
     {
         navAgent.isStopped = false;
         navAgent.SetDestination(follow.position);
         anim.SetTrigger("Walk");
     }
-    protected void RunStop()
+    protected virtual void RunStop()
     {
         // “.к цель достигнута, при выходе за runToDistance случайна€ дистанци€ определитс€ заново
         distanceDefined = false;
-        print("distance Defined = false");
         navAgent.isStopped = true;
         anim.SetTrigger("Stop");
     }
@@ -75,7 +70,9 @@ public class SmartDistance : Stalker
         //  ак только покинули максимально допустимую дистанцию - должны обновить случайную дистанцию
         if (!distanceDefined && Vector2.Distance(follow.position, transform.position) > maxStopDistance)
             SetRandomDistance();
-        
+
+            
+
 
     }
     protected override void OnDrawGizmosSelected()
@@ -88,6 +85,10 @@ public class SmartDistance : Stalker
         Gizmos.DrawWireSphere(transform.position, runFromDistance);
     }
 
-    
-
+    private Vector3 SearchPositionForGoBack()
+    {
+        float length = runFromDistance - Vector2.Distance(follow.position, transform.position);
+        Vector2 back = (transform.position - follow.position).normalized * length; 
+        return (Vector2)transform.position + back;
+    }
 }
