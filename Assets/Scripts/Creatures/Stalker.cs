@@ -54,7 +54,8 @@ public abstract class Stalker : Creature
     {
         base.GetDamage(attack, attacking, bullet);
         navAgent.isStopped = true; // ѕри оглушении преследователь не может бежать за нападающим
-        follow = attacking; // ѕри получении урона преследователь бежит за нападающим
+        if (attacking.position != transform.position)   // ≈сли атакующий не он сам, то:
+            follow = attacking; // ѕри получении урона преследователь бежит за нападающим
     }
 
     protected void Flip() // ѕоворот преследовател€ в другую сторону

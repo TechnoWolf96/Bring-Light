@@ -181,9 +181,9 @@ GameObject:
   - component: {fileID: 4464388056974673589}
   - component: {fileID: 7720729593931339868}
   - component: {fileID: 2099225368944748049}
-  - component: {fileID: -9221153049482632251}
   - component: {fileID: 836961004}
   - component: {fileID: 836961006}
+  - component: {fileID: 414229549}
   m_Layer: 6
   m_Name: WizardLizard
   m_TagString: Enemy
@@ -265,40 +265,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-9221153049482632251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3664489055708276768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aee67b447d8c31d41a1364c5a095ee29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  maxHealth: 100
-  health: 100
-  protect:
-    physical: 0
-    holy: 0
-    fiery: 0
-    cold: 0
-    dark: 0
-    poison: 0
-  xPushMass: 1
-  distanceDetection: 8
-  layer:
-    serializedVersion: 2
-    m_Bits: 128
-  maxStopDistance: 7
-  minStopDistance: 3
-  runFromDistance: 2
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  rayThickness: 0.5
 --- !u!70 &836961004
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -334,6 +300,58 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &414229549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664489055708276768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360fb6822b7d32c4b83793c24b114ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7
+  maxHealth: 100
+  health: 100
+  protect:
+    physical: 0
+    holy: 0
+    fiery: 0
+    cold: 0
+    dark: 0
+    poison: 0
+  xPushMass: 1
+  distanceDetection: 8
+  layer:
+    serializedVersion: 2
+    m_Bits: 128
+  maxStopDistance: 7
+  minStopDistance: 3.5
+  runFromDistance: 3
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  rayThickness: 0.3
+  bulletParameters:
+    speed: 10
+    attack:
+      damages:
+      - typeDamage: 2
+        minDamage: 1
+        maxDamage: 2
+      pushForce: 6
+      timeStunning: 0.1
+      critChance: 0
+      critGainPercentage: 0
+    carrier: {fileID: 0}
+    collisionLayer:
+      serializedVersion: 2
+      m_Bits: 640
+    target: {fileID: 0}
+  bulletPrefab: {fileID: 2377815204656044946, guid: a8cd6a6ec6b60c14db229aa8eb77894e, type: 3}
+  recharge: 0.5
 --- !u!1 &3881024766982745858
 GameObject:
   m_ObjectHideFlags: 0

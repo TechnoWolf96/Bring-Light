@@ -6,36 +6,37 @@ public struct OneBullet_Parameters
 {
     public float speed;                         // Скорость пули
     public AttackParameters attack;             // Параметры атаки пули
-    public Transform carrier;                   // Transform носителя оружия, из которого вылетела пуля
-    public LayerMask layer;                     // Слой объектов, по которому будет проходить атака
-    public Transform target;                    // Куда летит пуля
-
+    [HideInInspector] public Transform carrier; // Transform носителя оружия, из которого вылетела пуля
+    public LayerMask collisionLayer;             // Слой объектов, с которыми может сталкиваться пуля
+    [HideInInspector] public Transform target;  // Куда летит пуля
 }
 
 // Пуля, поражающая одну цель
 public class OneBullet : MonoBehaviour
 {
-    public OneBullet_Parameters bulletParameters;
+    private OneBullet_Parameters bulletParameters;
     private Rigidbody2D rb;
     [SerializeField] private GameObject deathEffect;
     [SerializeField] private GameObject critDeathEffect;
     [SerializeField] private float offset;
+    [SerializeField] private float radiusDetect;   // Радиус поставить равным радиусу коллайдера
     public virtual void InstBullet(OneBullet_Parameters bulletParameters)
     {
         rb = GetComponent<Rigidbody2D>();
         this.bulletParameters = bulletParameters;
+        this.bulletParameters.collisionLayer = bulletParameters.collisionLayer;
         // Задание направления и скорости пули
-        Vector2 difference = this.bulletParameters.target.position - this.bulletParameters.carrier.position;
-        rb.velocity = difference.normalized * this.bulletParameters.speed;
+        Vector2 direction = this.bulletParameters.target.position - this.bulletParameters.carrier.position;
+        rb.velocity = direction.normalized * this.bulletParameters.speed;
 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy")) Damage(other);
-        if (other.CompareTag("Wall"))
+        Collider2D collision = Physics2D.OverlapCircle(transform.position, radiusDetect, bulletParameters.collisionLayer);
+        if (collision != null)
         {
-            Instantiate(deathEffect, transform.position, Quaternion.identity).transform.localScale *= offset;
+            Damage(collision);
             Destroy(gameObject);
         }
     }
@@ -44,29 +45,17 @@ public class OneBullet : MonoBehaviour
     protected virtual void Damage(Collider2D collider)
     {
         bool crit = bulletParameters.attack.SetCrit();
-        collider.GetComponent<Creature>().GetDamage(bulletParameters.attack, bulletParameters.carrier, transform);
-        if (!crit) Instantiate(deathEffect, transform.position, Quaternion.identity);
-        else Instantiate(critDeathEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-
+        collider.GetComponent<Creature>()?.GetDamage(bulletParameters.attack, bulletParameters.carrier, transform);
+        if (!crit) Instantiate(deathEffect, transform.position, Quaternion.identity).transform.localScale *= offset;
+        else Instantiate(critDeathEffect, transform.position, Quaternion.identity).transform.localScale *= offset;
     }
-    protected virtual void Explotion()
+
+
+    protected void OnDrawGizmosSelected()
     {
-        /*
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, bp.radius, bp.layer);
-        bool crit = bp.attack.SetCrit();
-        foreach (var item in colliders)
-        {
-            item.GetComponent<Creature>().GetDamage(attack, carrier.transform, transform);
-        }
-        Transform size = Instantiate(explotionPrefab, transform.position, Quaternion.identity).GetComponent<Transform>();
-        Vector2 vsize = new Vector2(size.localScale.x, size.localScale.y);
-        if (crit) size.GetComponent<SpriteRenderer>().color = Color.red;
-        size.localScale = vsize * radius * offset;
-        Destroy(gameObject);*/
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radiusDetect);
     }
-
-
 
 
 

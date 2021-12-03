@@ -47,7 +47,6 @@ public class ExplosingBullet : MonoBehaviour
             item.GetComponent<Creature>().GetDamage(bulletParameters.attack, bulletParameters.carrier.transform, transform);
         }
         if (!crit) Instantiate(explotionEffect, transform.position, Quaternion.identity).transform.localScale *= bulletParameters.radius * offset;
-        //else Instantiate(critExplotionEffect, transform.position, Quaternion.identity).transform.localScale *= bulletParameters.radius * offset;
         Destroy(gameObject);
     }
 
