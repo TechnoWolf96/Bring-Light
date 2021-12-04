@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7004286506061919276}
   - component: {fileID: -1706495519343801784}
   - component: {fileID: 5116811133537925948}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire (Bullet)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2377815204656044946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.47793, y: 0.47793, z: 0.47793}
+  m_LocalScale: {x: 0.35810816, y: 0.35810816, z: 0.35810816}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -119,8 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 4807846544688243230, guid: c04a984dd9fcc1349bcd30c66ce5e8a9, type: 3}
   critDeathEffect: {fileID: 0}
-  offset: 1
-  radiusDetect: 0.25
+  offset: 0.5
 --- !u!50 &-1706495519343801784
 Rigidbody2D:
   serializedVersion: 4

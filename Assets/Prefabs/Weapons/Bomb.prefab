@@ -57,12 +57,10 @@ MonoBehaviour:
       timeStunning: 0.3
       critChance: 0
       critGainPercentage: 100
-    carrier: {fileID: 0}
-    layer:
-      serializedVersion: 2
-      m_Bits: 64
-    target: {fileID: 0}
     radius: 2
+    DamagedExplosionLayers:
+      serializedVersion: 2
+      m_Bits: 192
 --- !u!1 &7409938798130240614
 GameObject:
   m_ObjectHideFlags: 0

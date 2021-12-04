@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 806127587632557463}
   - component: {fileID: 806127587632557457}
   - component: {fileID: 806127587632557456}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pendant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,4 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59d7dba6e934ea4286ff558d9384d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusMagicProtect: 1
+  speedBonus: 0
+  healthBonus: 0
+  protection:
+    physical: 0
+    holy: 0
+    fiery: 0
+    cold: 0
+    dark: 0
+    poison: 0

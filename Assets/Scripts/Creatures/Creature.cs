@@ -76,7 +76,7 @@ public abstract class Creature : MonoBehaviour
         death = true;
         gameObject.layer = LayerMask.NameToLayer("Corpses");
         //rb.bodyType = RigidbodyType2D.Static;
-        collider.enabled = false;
+        //collider.enabled = false;
         anim.SetTrigger("Death");
     }
 

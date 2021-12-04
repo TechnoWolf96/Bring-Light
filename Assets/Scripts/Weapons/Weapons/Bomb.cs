@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bomb : Weapon
 {
     public GameObject bombBulletPrefab; // ֿנופאב כועÿשוי במלבû
-    public ExplosingBullet_Parameters bulletParameters;
+    public Bullet_Parameters bulletParameters;
 
     private void Update()
     {
@@ -15,13 +15,9 @@ public class Bomb : Weapon
     {
         rechargeTime = recharge;
         GameObject inst = Instantiate(bombBulletPrefab, playerPos.transform.position, Quaternion.identity);
-        UpdateBulletParameters();
-        inst.GetComponent<ExplosingBullet>().InstBullet(bulletParameters);
-    }
-    private void UpdateBulletParameters()
-    {
-        bulletParameters.carrier = playerPos;
-        bulletParameters.target = new GameObject().transform;
-        bulletParameters.target.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Transform newTarget = new GameObject().transform;
+        newTarget.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        inst.GetComponent<ExplosingBullet>().InstBullet(bulletParameters, playerPos, newTarget);
     }
 }

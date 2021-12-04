@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5788307754972414678}
   - component: {fileID: 5788307754972414676}
   - component: {fileID: 5788307754972414679}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,4 +95,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062b2e0d977ca3643b74bc753dcfbecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedBonus: 0
+  healthBonus: 0
+  protection:
+    physical: 0
+    holy: 0
+    fiery: 0
+    cold: 0
+    dark: 0
+    poison: 0
   bonusHealth: 5

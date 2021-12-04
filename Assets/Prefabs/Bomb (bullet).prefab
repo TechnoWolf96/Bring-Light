@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3565201636904303450}
   - component: {fileID: -2574144233724839046}
   - component: {fileID: 7260969936384595246}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bomb (bullet)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,8 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33676701f8993ba4da3c979fa0e48490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explotionEffect: {fileID: 4659888335282814003, guid: 73460c3ea0eb4fd48989f609b2a8f3fe, type: 3}
-  critExplotionEffect: {fileID: 0}
+  deathEffect: {fileID: 4659888335282814003, guid: 73460c3ea0eb4fd48989f609b2a8f3fe, type: 3}
+  critDeathEffect: {fileID: 0}
   offset: 2
 --- !u!50 &-2574144233724839046
 Rigidbody2D:

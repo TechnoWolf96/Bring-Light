@@ -9,7 +9,7 @@ public class SmartRangedAttackPosition : SmartDistance
     public LayerMask obstacleLayer;
     public float rayThickness;          // Толщина луча для проверки препятствий
 
-    protected virtual void RangedAttack() { }
+    protected virtual void Attack() { }
 
     protected override void RunFromFollow()
     {
@@ -34,7 +34,7 @@ public class SmartRangedAttackPosition : SmartDistance
         else
         {
             base.Stalk();
-            RangedAttack();     // Видим цель - стреляем по ней
+            Attack();     // Видим цель - стреляем по ней
         }
 
     }

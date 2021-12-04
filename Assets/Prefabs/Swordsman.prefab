@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6324940072335547960}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.11, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1845381279
   m_SortingLayer: 2
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -7027413993682790196, guid: f1029944ce3419a4181a3fd20ed157c9, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 3501319674719614977, guid: f1029944ce3419a4181a3fd20ed157c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 8eefc4a9f4518a541b450dabd9d56480, type: 2}
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -145,13 +145,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d532cc39abff1da4caef0a51b7e3e701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  maxHealth: 10
-  health: 10
-  physicalProtect: 0
-  magicProtect: 0
-  timeStunning: 0.3
-  isControled: 0
+  speed: 8
+  maxHealth: 200
+  health: 100
+  protect:
+    physical: 30
+    holy: 100
+    fiery: 20
+    cold: 30
+    dark: 10
+    poison: 20
+  xPushMass: 1
 --- !u!95 &6324940072335547959
 Animator:
   serializedVersion: 3
