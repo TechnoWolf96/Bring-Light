@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CheckParameters : MonoBehaviour
 {
-    public Player currentPlayer;
+    public Player_NotRelease currentPlayer;
 
     private Slider healthSlider;
     private Text healthText;

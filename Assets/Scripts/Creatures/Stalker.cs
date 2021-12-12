@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 
 // Класс "Преследователь"
-public abstract class Stalker : Creature
+public abstract class Stalker : Creature_NotRelease
 {
     [Header("Stalker:")]
     public float distanceDetection; // Дистанция обнаружения объекта для преследования

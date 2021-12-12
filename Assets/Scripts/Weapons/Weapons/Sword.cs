@@ -45,7 +45,7 @@ public class Sword : Weapon
         bool crit = attack.SetCrit();
         foreach (var item in enemy_col)
         {
-            item.GetComponent<Creature>().GetDamage(attack, transform);
+            item.GetComponent<Creature_NotRelease>().GetDamage(attack, transform);
         }
         if (crit) print("Crit!");
     }

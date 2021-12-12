@@ -10,7 +10,7 @@ public class ExplosingBullet : Bullet
         bool crit = bulletParameters.attack.SetCrit();
         foreach (var item in colliders)
         {
-            item.GetComponent<Creature>().GetDamage(bulletParameters.attack, shooter, transform);
+            item.GetComponent<Creature_NotRelease>().GetDamage(bulletParameters.attack, shooter, transform);
         }
         if (!crit) Instantiate(deathEffect, transform.position, Quaternion.identity).transform.localScale *= bulletParameters.radius * offset;
         else Instantiate(critDeathEffect, transform.position, Quaternion.identity).transform.localScale *= bulletParameters.radius * offset;

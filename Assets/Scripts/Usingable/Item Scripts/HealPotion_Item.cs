@@ -18,7 +18,7 @@ public class HealPotion_Item : UsingableNumbered
     {
         if (!base.UseItem()) return false;
 
-        Player player = checkParameters.currentPlayer;
+        Player_NotRelease player = checkParameters.currentPlayer;
         checkParameters.currentPlayer.health += heal;
         if (player.health > player.maxHealth)
             player.health = player.maxHealth;

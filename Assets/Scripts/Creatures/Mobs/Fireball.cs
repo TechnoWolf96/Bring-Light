@@ -33,7 +33,7 @@ public class Fireball : Stalker
         Collider2D[] all = Physics2D.OverlapCircleAll(transform.position, radiusExplotion, layer);
         foreach (var item in all)
         {
-            item.GetComponent<Creature>().GetDamage(attack, transform);
+            item.GetComponent<Creature_NotRelease>().GetDamage(attack, transform);
         }
         GameObject inst = Instantiate(explotionPrefab, transform.position, Quaternion.identity);
         inst.transform.localScale = new Vector2(radiusExplotion, radiusExplotion) * offset;

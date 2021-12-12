@@ -58,8 +58,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons\Sword.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Player.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Creature.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Player_NotRelease.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Creature_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Creatures\Mobs\Fireball.cs" />
     <Compile Include="Assets\Scripts\ADestroy.cs" />
     <Compile Include="Assets\Scripts\Usingable\Item Scripts\HealPotion_Item.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\Scripts\Equipment\Helmet.cs" />
     <Compile Include="Assets\Scripts\Inventory\IdSystem.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Bullets\Bullet.cs" />
     <Compile Include="Assets\Scripts\Equipment\Pendant.cs" />
     <Compile Include="Assets\Scripts\CheckParameters.cs" />
     <Compile Include="Assets\Scripts\Creatures\HealthBar.cs" />
@@ -91,7 +92,9 @@
     <Compile Include="Assets\Scripts\Creatures\Mobs\RangedAttack.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullets\OneBullet.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\Weapons\Bullets\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Player.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Creature.cs" />
+    <Compile Include="Assets\Scripts\Creatures\AnimatorAgent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +7,12 @@ public class Player : Creature
     private bool right = true;                      // Смотрит ли игрок направо
     private CheckParameters checkParameters;        // Система контроля параметров
     private Inventory inventory;                    // Инвентарь
+    public List<Animator> animat;
 
     protected override void Start()
     {
         base.Start();
-        anim = GetComponent<Animator>();
+        animAgent = GetComponent<AnimatorAgent>();
         rb = GetComponent<Rigidbody2D>();
         checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
         inventory = GameObject.FindWithTag("Script").GetComponent<Inventory>();
@@ -21,19 +21,39 @@ public class Player : Creature
     protected override void Update()
     {
         if (!Move() && !stunned) rb.velocity = Vector2.zero; // Если игрок не двигается и не оглушен, то он останавливается
-        CheckFace();
+        //CheckFace();
     }
 
 
 
     private bool Move()
     {
-        if (currentTimeStunning > 0) return false;
+        if (currentTimeStunning > 0) return false;  
         float InputX = Input.GetAxisRaw("Horizontal");
         float InputY = Input.GetAxisRaw("Vertical");
-        if (InputX == 0 && InputY == 0) return false;
+        
+        
+        if (InputX == 0 && InputY == 0)
+        {
+            foreach (var item in animat)
+            {
+                item.SetBool("Walk", false);
+            }
+            return false;
+        }
+        foreach (var item in animat)
+        {
+            item.SetFloat("HorizontalMovement", InputX);
+            item.SetFloat("VerticalMovement", InputY);
+        }
+
         Vector2 moveDirection = new Vector2(InputX, InputY).normalized;
         rb.velocity = moveDirection * speed;
+        foreach (var item in animat)
+        {
+            item.SetBool("Walk", true);
+        }
+
         return true;
     }
 
@@ -59,7 +79,7 @@ public class Player : Creature
         inventory.enabled = false;
         rb.velocity = Vector2.zero;
         enabled = false;
-        
+
     }
 
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
@@ -76,9 +96,7 @@ public class Player : Creature
             health = 0;
             Death();
         }
-        if (!death) anim.SetTrigger("GetDamage"); // Если сушество не мертво, то запускается анимация получения урона
+        if (!death) animAgent.anim.SetTrigger("GetDamage"); // Если сушество не мертво, то запускается анимация получения урона
         checkParameters.UpdateParameters();     // Обновляем параметры в UI при получении урона
     }
-
-    
 }

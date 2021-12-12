@@ -10,7 +10,7 @@ public abstract class Weapon : MonoBehaviour
     //public LayerMask layer;             // Слой объектов, по которому будет проходить атака
 
     protected Transform playerPos;      // Позиция игрока, держащего оружие
-    protected Creature creature;        // Скрипт существа игрока, держащего оружие
+    protected Creature_NotRelease creature;        // Скрипт существа игрока, держащего оружие
     protected float rechargeTime;       // Текущее время до перезарядки
 
     protected abstract void Attack(); // Атака
@@ -19,7 +19,7 @@ public abstract class Weapon : MonoBehaviour
     {
         rechargeTime = recharge;
         playerPos = transform.parent;
-        creature = GetComponentInParent<Creature>();
+        creature = GetComponentInParent<Creature_NotRelease>();
     }
 
     protected virtual void FixedUpdate() // Уменьшение текущего времени до перезарядки
