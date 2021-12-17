@@ -1,18 +1,14 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Creature
 {
-
-    private bool right = true;                      // Смотрит ли игрок направо
     private CheckParameters checkParameters;        // Система контроля параметров
     private Inventory inventory;                    // Инвентарь
-    public List<Animator> animat;
+
 
     protected override void Start()
     {
         base.Start();
-        animAgent = GetComponent<AnimatorAgent>();
         rb = GetComponent<Rigidbody2D>();
         checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
         inventory = GameObject.FindWithTag("Script").GetComponent<Inventory>();
@@ -20,55 +16,32 @@ public class Player : Creature
 
     protected override void Update()
     {
-        if (!Move() && !stunned) rb.velocity = Vector2.zero; // Если игрок не двигается и не оглушен, то он останавливается
-        //CheckFace();
+        if (!isStunned) Move();
+        if (Input.GetMouseButtonDown(0) && !isStunned)
+        {
+            anim.SetTrigger("Attack");
+        }
     }
 
 
 
-    private bool Move()
+    private void Move()
     {
-        if (currentTimeStunning > 0) return false;  
         float InputX = Input.GetAxisRaw("Horizontal");
         float InputY = Input.GetAxisRaw("Vertical");
         
-        
         if (InputX == 0 && InputY == 0)
         {
-            foreach (var item in animat)
-            {
-                item.SetBool("Walk", false);
-            }
-            return false;
+            anim.SetBool("Walk", false);
+            rb.velocity = Vector2.zero;
+            return;
         }
-        foreach (var item in animat)
-        {
-            item.SetFloat("HorizontalMovement", InputX);
-            item.SetFloat("VerticalMovement", InputY);
-        }
+        anim.SetFloat("HorizontalMovement", InputX);
+        anim.SetFloat("VerticalMovement", InputY);
 
         Vector2 moveDirection = new Vector2(InputX, InputY).normalized;
         rb.velocity = moveDirection * speed;
-        foreach (var item in animat)
-        {
-            item.SetBool("Walk", true);
-        }
-
-        return true;
-    }
-
-
-    private void Flip() // Поворот игрока в другую сторону
-    {
-        right = !right;
-        Vector2 scale = new Vector2(transform.localScale.x, transform.localScale.y);
-        scale.x *= -1;
-        transform.localScale = scale;
-    }
-    private void CheckFace() // Проверка в какую сторону смотрит игрок
-    {
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x < 0 && right) Flip();
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x > 0 && !right) Flip();
+        anim.SetBool("Walk", true);
     }
 
     public override void Death()
@@ -84,19 +57,12 @@ public class Player : Creature
 
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
-        // В классе-предке вызывается метод появления полоски с хп - поэтому переписан тот же код, но без вывода полоски с хп
-        int realDamage = GetRealDamage(attack); // Подсчет реального урона
-        health -= realDamage;
-
-        if (bullet != null) PushBack(attack.pushForce, bullet, attack.timeStunning); // Если урон от снаряда - толчок от снаряда
-        else PushBack(attack.pushForce, attacking, attack.timeStunning);            // Если рукопашный урон - толчок от атакующего
-
-        if (health <= 0 && !death) // Здоровье ниже или равно 0 - существо умирает
-        {
-            health = 0;
-            Death();
-        }
-        if (!death) animAgent.anim.SetTrigger("GetDamage"); // Если сушество не мертво, то запускается анимация получения урона
+        base.GetDamage(attack, attacking, bullet);
         checkParameters.UpdateParameters();     // Обновляем параметры в UI при получении урона
     }
+
+
+
+
+
 }

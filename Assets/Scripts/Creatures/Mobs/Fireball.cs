@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fireball : Stalker
+public class Fireball : Stalker_NotRelease
 {
     [Header("Fireball:")]
     public GameObject explotionPrefab;          // Префаб взрыва

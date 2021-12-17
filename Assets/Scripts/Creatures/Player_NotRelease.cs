@@ -6,7 +6,7 @@ public class Player_NotRelease : Creature_NotRelease
 {
 
     private bool right = true;                      // Смотрит ли игрок направо
-    private CheckParameters checkParameters;        // Система контроля параметров
+    private CheckParameters_NotRelease checkParameters;        // Система контроля параметров
     private Inventory inventory;                    // Инвентарь
 
     protected override void Start()
@@ -14,7 +14,7 @@ public class Player_NotRelease : Creature_NotRelease
         base.Start();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
+        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters_NotRelease>();
         inventory = GameObject.FindWithTag("Script").GetComponent<Inventory>();
     }
 

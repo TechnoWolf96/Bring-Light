@@ -10,7 +10,7 @@ using UnityEngine;
      * Если расстояние до объетка follow меньше чем runFromDistance, то существо пытается отдалиться
      * на ранее случайно определенную дистанцию.
      */
-public class SmartDistance : Stalker
+public class SmartDistance : Stalker_NotRelease
 {
     [Header("Smart Distance:")]
     [Min(0)] public float maxStopDistance;           // Максимальное расстояние остановки до цели

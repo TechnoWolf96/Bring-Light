@@ -28,7 +28,7 @@ public class CloseAttack : Stalker
     protected override void Update()
     {
         base.Update();
-        if (death) return;
+        if (isDeath) return;
         if (CheckAttack() && Recharged()) Attack();
     }
 
@@ -45,9 +45,9 @@ public class CloseAttack : Stalker
     protected virtual void Attack()
     {
         currentRecharge = recharge;
-        Collider2D damaged = Physics2D.OverlapCircle(attackPosition.position, radiusAttack, layer);
+        Collider2D damaged = Physics2D.OverlapCircle(attackPosition.position, radiusAttack, detectionableLayer);
         bool crit = attack.SetCrit();
-        damaged.GetComponent<Creature_NotRelease>().GetDamage(attack, transform);
+        damaged.GetComponent<Creature>().GetDamage(attack, transform);
         if (crit) anim.SetTrigger("Crit");
         else anim.SetTrigger("Attack");
     }

@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Creatures\Player_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Creatures\Creature_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Creatures\Mobs\Fireball.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Creature.cs" />
     <Compile Include="Assets\Scripts\ADestroy.cs" />
     <Compile Include="Assets\Scripts\Usingable\Item Scripts\HealPotion_Item.cs" />
     <Compile Include="Assets\Scripts\Usingable\UsingableNumbered.cs" />
@@ -68,22 +69,24 @@
     <Compile Include="Assets\Scripts\Inventory\UsingConsumable.cs" />
     <Compile Include="Assets\Scripts\Inventory\DropItem.cs" />
     <Compile Include="Assets\Scripts\Equipment\Ring.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Player.cs" />
     <Compile Include="Assets\Scripts\Usingable\Usingable.cs" />
     <Compile Include="Assets\Scripts\Equipment\Effects\MagicShield_Inst.cs" />
     <Compile Include="Assets\Scripts\ProtectDamage.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullets\ExplosingBullet.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Stalker.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Stalker_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Equipment\Armor.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Mobs\CloseAttack.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Mobs\CloseAttack_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Equipment\Backpack.cs" />
     <Compile Include="Assets\Scripts\Usingable\Item Scripts\MagicShield_Item.cs" />
     <Compile Include="Assets\Scripts\Inventory\Icon.cs" />
     <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Creatures\AnimatorAgent.cs" />
     <Compile Include="Assets\Scripts\Equipment\Helmet.cs" />
     <Compile Include="Assets\Scripts\Inventory\IdSystem.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullets\Bullet.cs" />
     <Compile Include="Assets\Scripts\Equipment\Pendant.cs" />
-    <Compile Include="Assets\Scripts\CheckParameters.cs" />
+    <Compile Include="Assets\Scripts\CheckParameters_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Creatures\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Inventory\InventorySriptableObject.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons\Bomb.cs" />
@@ -92,9 +95,9 @@
     <Compile Include="Assets\Scripts\Creatures\Mobs\RangedAttack.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullets\OneBullet.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Player.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Creature.cs" />
-    <Compile Include="Assets\Scripts\Creatures\AnimatorAgent.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Stalker.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Mobs\CloseAttack.cs" />
+    <Compile Include="Assets\Scripts\CheckParameters.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

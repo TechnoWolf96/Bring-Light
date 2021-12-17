@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
 public class CheckParameters : MonoBehaviour
 {
-    public Player_NotRelease currentPlayer;
+    public Player currentPlayer;
 
     private Slider healthSlider;
     private Text healthText;

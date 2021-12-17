@@ -9,12 +9,12 @@ public abstract class Creature : MonoBehaviour
     public int health;                  // Текущий запас здоровья
     public ProtectParameters protect;   // Параметры защиты
     [Min(0f)] public float xPushMass = 1;         // Множитель мощности отталкивания при получении урона
+    public Animator anim;          // Анимация существа
 
-    protected bool stunned = false;             // Является ли существо оглушенным
-    protected bool death = false;               // Является ли существо мертвым
+    protected bool isStunned = false;             // Является ли существо оглушенным
+    protected bool isDeath = false;               // Является ли существо мертвым
     protected float currentTimeStunning = 0f;   // Текущее время оглушения
     protected Rigidbody2D rb;                   // Агент RigitBody существа
-    protected AnimatorAgent animAgent;          // Анимация существа
     protected Collider2D collider;              // Коллайдер существа
     protected HealthBar healthBar;              // Полоска здоровья существа
 
@@ -23,61 +23,59 @@ public abstract class Creature : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animAgent = GetComponent<AnimatorAgent>();
         collider = GetComponent<Collider2D>();
-        healthBar = GetComponent<HealthBar>();
+        healthBar ??= GetComponent<HealthBar>();
     }
-    protected virtual void Update() 
-    {
 
-    
-    }
+    protected virtual void Update() {}
 
     protected virtual void FixedUpdate()
     {
         currentTimeStunning -= Time.deltaTime; //Отсчет оставшегося времени оглушения
-        if (stunned && currentTimeStunning < 0)
+        if (isStunned && currentTimeStunning < 0)
         {
-            stunned = false;
+            isStunned = false;
             rb.velocity = Vector2.zero;
         }
 
     }
 
-
-    public void PushBack(float force, Transform pusher, float timeStunning) // Отталкивание и оглушение при получении урона от позиции толкающего объекта
+    // Отталкивание и оглушение при получении урона от позиции толкающего объекта
+    public void PushBack(float force, Transform pusher, float timeStunning) 
     {
-        stunned = true;
+        isStunned = true;
         currentTimeStunning = timeStunning;
         Vector2 pushDirection = new Vector2(transform.position.x - pusher.position.x, transform.position.y - pusher.position.y).normalized;
         rb.velocity = pushDirection * force * xPushMass;
+        anim.SetFloat("HorizontalMovement", -pushDirection.x);
+        anim.SetFloat("VerticalMovement", -pushDirection.y);
+        if (!isDeath) anim.SetTrigger("GetDamage");
     }
 
     // Получение урона с силой отталкивания от позиции атакующего и оглушением, возвращает был ли крит
     public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
         int realDamage = GetRealDamage(attack);   // Подсчет реального урона
-
         health -= realDamage;
 
         if (bullet != null) PushBack(attack.pushForce, bullet, attack.timeStunning); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking, attack.timeStunning);             // Если рукопашный урон - толчок от атакующего
 
-        if (health <= 0 && !death)   // Здоровье ниже или равно 0 - существо умирает
+        if (health <= 0 && !isDeath)   // Здоровье ниже или равно 0 - существо умирает
         {
             health = 0;
             Death();
         }
-        healthBar.ShowBar();                      // При получении урона показывается полоска здоровья
-        if (!death) animAgent.anim.SetTrigger("GetDamage"); // Если сушество не мертво, то запускается анимация получения урона
+
+        healthBar?.ShowBar();     // При получении урона показывается полоска здоровья
     }
+
+
     public virtual void Death()
     {
-        death = true;
+        isDeath = true;
         gameObject.layer = LayerMask.NameToLayer("Corpses");
-        //rb.bodyType = RigidbodyType2D.Static;
-        //collider.enabled = false;
-        animAgent.anim.SetTrigger("Death");
+        anim.SetTrigger("Death");
     }
 
     protected int GetRealDamage(AttackParameters attack) // Расчет получения реального урона существом с учетом его защиты и крита атаки

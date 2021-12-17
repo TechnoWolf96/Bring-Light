@@ -6,12 +6,12 @@ public class HealPotion_Item : UsingableNumbered
 {
     public int heal;
 
-    private CheckParameters checkParameters;
+    private CheckParameters_NotRelease checkParameters;
 
     protected override void Start()
     {
         base.Start();
-        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
+        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters_NotRelease>();
     }
 
     public override bool UseItem()
