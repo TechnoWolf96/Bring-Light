@@ -1,10 +1,17 @@
 using UnityEngine;
 
-public class Player : Creature
+public class Player : Creature, IAttackWithWeapon
 {
-    private CheckParameters checkParameters;        // Система контроля параметров
-    private Inventory inventory;                    // Инвентарь
+    protected CheckParameters checkParameters;        // Система контроля параметров
+    protected Inventory inventory;                    // Инвентарь
+    protected Weapon weapon;
 
+    public void ChangeWeapon(Weapon newWeapon)
+    {
+        if (weapon != null) Destroy(weapon.gameObject);
+        weapon = newWeapon;
+        anim.runtimeAnimatorController = weapon.animController;
+    }
 
     protected override void Start()
     {
@@ -12,18 +19,23 @@ public class Player : Creature
         rb = GetComponent<Rigidbody2D>();
         checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
         inventory = GameObject.FindWithTag("Script").GetComponent<Inventory>();
+        ChangeWeapon(GetComponentInChildren<Weapon>());
     }
 
     protected override void Update()
     {
         if (!isStunned) Move();
-        if (Input.GetMouseButtonDown(0) && !isStunned)
+        if (Input.GetMouseButtonDown(0) && !isStunned && weapon.IsRecharged())
         {
+            weapon.RechargeAgain();
             anim.SetTrigger("Attack");
         }
     }
 
-
+    public void Attack()
+    {
+        weapon.Attack();
+    }
 
     private void Move()
     {
@@ -47,7 +59,7 @@ public class Player : Creature
     public override void Death()
     {
         base.Death();
-        Weapon weapon = GetComponentInChildren<Weapon>();
+        Weapon_notRelease weapon = GetComponentInChildren<Weapon_notRelease>();
         if (weapon != null) weapon.enabled = false;
         inventory.enabled = false;
         rb.velocity = Vector2.zero;

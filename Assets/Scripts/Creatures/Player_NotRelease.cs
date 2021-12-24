@@ -54,7 +54,7 @@ public class Player_NotRelease : Creature_NotRelease
     public override void Death()
     {
         base.Death();
-        Weapon weapon = GetComponentInChildren<Weapon>();
+        Weapon_notRelease weapon = GetComponentInChildren<Weapon_notRelease>();
         if (weapon != null) weapon.enabled = false;
         inventory.enabled = false;
         rb.velocity = Vector2.zero;

@@ -1,35 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+
+public interface IAttackWithWeapon
+{
+    public void ChangeWeapon(Weapon newWeapon);
+    public void Attack();
+}
+
+
 
 public abstract class Weapon : MonoBehaviour
 {
+    
     [Header("Weapon:")]
-    public float recharge;              // Перезарядка
-    //public AttackParameters attack;   // Параметры атаки
-    //public LayerMask layer;             // Слой объектов, по которому будет проходить атака
+    public float rechargeTime;              // Перезарядка
+    public RuntimeAnimatorController animController;
+    public LayerMask layer;         // Слой объектов, по которому будет проходить атака
 
-    protected Transform playerPos;      // Позиция игрока, держащего оружие
-    protected Creature_NotRelease creature;        // Скрипт существа игрока, держащего оружие
-    protected float rechargeTime;       // Текущее время до перезарядки
+    protected Transform creaturePos;          // Позиция существа, держащего оружие
+    protected Creature creature;            // Скрипт существа игрока, держащего оружие
+    protected float currentRechargeTime;           // Текущее время до перезарядки
 
-    protected abstract void Attack(); // Атака
+    public abstract void Attack(); // Атака
 
     protected virtual void Start()
     {
-        rechargeTime = recharge;
-        playerPos = transform.parent;
-        creature = GetComponentInParent<Creature_NotRelease>();
+        currentRechargeTime = rechargeTime;
+        creaturePos = transform.parent;
+        creature = GetComponentInParent<Creature>();
     }
 
     protected virtual void FixedUpdate() // Уменьшение текущего времени до перезарядки
     {
-        rechargeTime -= Time.deltaTime;
+        currentRechargeTime -= Time.deltaTime;
     }
 
-    protected bool IsRecharged()
+    public bool IsRecharged()
     {
-        return rechargeTime < 0;
+        return currentRechargeTime < 0;
+    }
+
+    public void RechargeAgain()
+    {
+        currentRechargeTime = rechargeTime;
     }
 
 }

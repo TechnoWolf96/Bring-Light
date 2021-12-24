@@ -56,13 +56,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
-    <Compile Include="Assets\Scripts\Weapons\Weapons\Sword.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Weapon_notRelease.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Weapons\Sword_notRelease.cs" />
     <Compile Include="Assets\Scripts\Creatures\Player_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Creatures\Creature_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Creatures\Mobs\Fireball.cs" />
     <Compile Include="Assets\Scripts\Creatures\Creature.cs" />
-    <Compile Include="Assets\Scripts\ADestroy.cs" />
+    <Compile Include="Assets\Scripts\AnimatorPack.cs" />
     <Compile Include="Assets\Scripts\Usingable\Item Scripts\HealPotion_Item.cs" />
     <Compile Include="Assets\Scripts\Usingable\UsingableNumbered.cs" />
     <Compile Include="Assets\Scripts\Equipment\Equipment.cs" />
@@ -78,26 +78,29 @@
     <Compile Include="Assets\Scripts\Equipment\Armor.cs" />
     <Compile Include="Assets\Scripts\Creatures\Mobs\CloseAttack_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Equipment\Backpack.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Mobs\CloseAttack.cs" />
     <Compile Include="Assets\Scripts\Usingable\Item Scripts\MagicShield_Item.cs" />
     <Compile Include="Assets\Scripts\Inventory\Icon.cs" />
     <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\Scripts\Creatures\AnimatorAgent.cs" />
+    <Compile Include="Assets\Scripts\Weapons\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\Equipment\Helmet.cs" />
+    <Compile Include="Assets\Scripts\CheckParameters.cs" />
     <Compile Include="Assets\Scripts\Inventory\IdSystem.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullets\Bullet.cs" />
     <Compile Include="Assets\Scripts\Equipment\Pendant.cs" />
     <Compile Include="Assets\Scripts\CheckParameters_NotRelease.cs" />
     <Compile Include="Assets\Scripts\Creatures\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Inventory\InventorySriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons\Bomb.cs" />
     <Compile Include="Assets\Scripts\Creatures\Mobs\SmartRangedAttackPosition.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Stalker.cs" />
     <Compile Include="Assets\Scripts\Creatures\Mobs\SmartDistance.cs" />
     <Compile Include="Assets\Scripts\Creatures\Mobs\RangedAttack.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullets\OneBullet.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponAnimatorField.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Stalker.cs" />
-    <Compile Include="Assets\Scripts\Creatures\Mobs\CloseAttack.cs" />
-    <Compile Include="Assets\Scripts\CheckParameters.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

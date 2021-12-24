@@ -8,6 +8,7 @@ public abstract class Stalker : Creature
     [Header("Stalker:")]
     public float distanceDetection; // Дистанция обнаружения объекта для преследования
     public LayerMask detectionableLayer; // Слой, который отслеживает преследователь (Слой игроков)
+    public Transform standPosition;     // Позиция, которая считается центром существа
 
     protected Transform follow; // Текущий объект для преследования
     protected NavMeshAgent navAgent; // Агент NawMesh, закрепленный на данном объекте
@@ -33,7 +34,7 @@ public abstract class Stalker : Creature
     protected void CheckStalk() // Проверка, есть ли в зоне обнаружения объекты нужного слоя
     {
         if (follow == null) // Если не за кем бежать, то ищем объект для преследования
-            follow = Physics2D.OverlapCircle(transform.position, distanceDetection, detectionableLayer)?.GetComponent<Transform>();
+            follow = Physics2D.OverlapCircle(standPosition.position, distanceDetection, detectionableLayer)?.GetComponent<Transform>();
     }
 
     protected virtual void Stalk() // Объект получает точку назначения и начинает преследование
@@ -45,14 +46,14 @@ public abstract class Stalker : Creature
         navAgent.SetDestination(follow.position);
         Vector2 directionMovement = (follow.position - transform.position).normalized;
         anim.SetFloat("HorizontalMovement", directionMovement.x);
-        anim.SetFloat("HorizontalMovement", directionMovement.y);
+        anim.SetFloat("VerticalMovement", directionMovement.y);
         anim.SetBool("Walk", true);
     }
 
     protected virtual void OnDrawGizmosSelected() // Рисует область обнаружения
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, distanceDetection);
+        Gizmos.DrawWireSphere(standPosition.position, distanceDetection);
     }
 
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)

@@ -1,35 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseAttack : Stalker
+public class CloseAttack : Stalker, IAttackWithWeapon
 {
-
     [Header("Close Attack:")]
-    public AttackParameters attack;
-    public float recharge;
-    public float radiusAttack;
-    public Transform attackPosition;
-
-    protected float currentRecharge;
+    public float radiusTriggerAttack;
+    protected Weapon weapon;
 
     protected override void Start()
     {
         base.Start();
-        currentRecharge = recharge;
+        ChangeWeapon(GetComponentInChildren<Weapon>());
     }
 
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-        currentRecharge -= Time.deltaTime;
-    }
 
     protected override void Update()
     {
         base.Update();
         if (isDeath) return;
-        if (CheckAttack() && Recharged()) Attack();
+        if (CheckAttack() && weapon.IsRecharged())
+        {
+            weapon.RechargeAgain();
+            anim.SetTrigger("Attack");
+        }
+            
     }
 
 
@@ -37,31 +30,36 @@ public class CloseAttack : Stalker
     protected virtual bool CheckAttack()
     {
         if (follow == null) return false;
-        if (Vector2.Distance(follow.position, attackPosition.position) < radiusAttack)
-            return true;
+        Collider2D coll = Physics2D.OverlapCircle(standPosition.position, radiusTriggerAttack, detectionableLayer);
+        if (coll != null) return true;
         return false;
     }
 
-    protected virtual void Attack()
+
+    public void Test()
     {
-        currentRecharge = recharge;
-        Collider2D damaged = Physics2D.OverlapCircle(attackPosition.position, radiusAttack, detectionableLayer);
-        bool crit = attack.SetCrit();
-        damaged.GetComponent<Creature>().GetDamage(attack, transform);
-        if (crit) anim.SetTrigger("Crit");
-        else anim.SetTrigger("Attack");
+        print("Work Test");
+    }
+
+    public virtual void Attack()
+    {
+        print("Work Attack");
+        weapon.Attack();
     }
 
     protected override void OnDrawGizmosSelected()
     {
         base.OnDrawGizmosSelected();
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(attackPosition.position, radiusAttack);
+        Gizmos.DrawWireSphere(standPosition.position, radiusTriggerAttack);
     }
 
-    protected bool Recharged()
+    public void ChangeWeapon(Weapon newWeapon)
     {
-        return currentRecharge < 0;
+        if (weapon != null) Destroy(weapon.gameObject);
+        weapon = newWeapon;
+        anim.runtimeAnimatorController = weapon.animController;
     }
+
 
 }

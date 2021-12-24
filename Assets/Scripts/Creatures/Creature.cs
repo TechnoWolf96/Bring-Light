@@ -9,8 +9,8 @@ public abstract class Creature : MonoBehaviour
     public int health;                  // Текущий запас здоровья
     public ProtectParameters protect;   // Параметры защиты
     [Min(0f)] public float xPushMass = 1;         // Множитель мощности отталкивания при получении урона
-    public Animator anim;          // Анимация существа
 
+    protected Animator anim;          // Анимация существа
     protected bool isStunned = false;             // Является ли существо оглушенным
     protected bool isDeath = false;               // Является ли существо мертвым
     protected float currentTimeStunning = 0f;   // Текущее время оглушения
@@ -25,6 +25,7 @@ public abstract class Creature : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         healthBar ??= GetComponent<HealthBar>();
+        anim = GetComponent<Animator>();
     }
 
     protected virtual void Update() {}
@@ -49,7 +50,6 @@ public abstract class Creature : MonoBehaviour
         rb.velocity = pushDirection * force * xPushMass;
         anim.SetFloat("HorizontalMovement", -pushDirection.x);
         anim.SetFloat("VerticalMovement", -pushDirection.y);
-        if (!isDeath) anim.SetTrigger("GetDamage");
     }
 
     // Получение урона с силой отталкивания от позиции атакующего и оглушением, возвращает был ли крит
@@ -57,7 +57,7 @@ public abstract class Creature : MonoBehaviour
     {
         int realDamage = GetRealDamage(attack);   // Подсчет реального урона
         health -= realDamage;
-
+        print(realDamage);
         if (bullet != null) PushBack(attack.pushForce, bullet, attack.timeStunning); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking, attack.timeStunning);             // Если рукопашный урон - толчок от атакующего
 
@@ -66,7 +66,7 @@ public abstract class Creature : MonoBehaviour
             health = 0;
             Death();
         }
-
+        if (!isDeath) anim.SetTrigger("GetDamage");
         healthBar?.ShowBar();     // При получении урона показывается полоска здоровья
     }
 

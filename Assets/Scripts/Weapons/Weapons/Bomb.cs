@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : Weapon
+public class Bomb : Weapon_notRelease
 {
     public GameObject bombBulletPrefab; // ֿנופאב כועÿשוי במלבû
     public Bullet_Parameters bulletParameters;

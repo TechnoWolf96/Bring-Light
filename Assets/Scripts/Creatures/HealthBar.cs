@@ -6,12 +6,12 @@ public class HealthBar : MonoBehaviour
 {
     public Transform valueSlider;
     public Animator animSlider;
-    private Creature_NotRelease creature;
+    private Creature creature;
 
 
     private void Start()
     {
-        creature = GetComponent<Creature_NotRelease>();
+        creature = GetComponent<Creature>();
     }
 
 
