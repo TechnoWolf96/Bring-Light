@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\Weapons\Bullets\OneBullet.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponAnimatorField.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\LightFlicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
