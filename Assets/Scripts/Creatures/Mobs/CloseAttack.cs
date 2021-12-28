@@ -30,7 +30,7 @@ public class CloseAttack : Stalker, IAttackWithWeapon
     protected virtual bool CheckAttack()
     {
         if (follow == null) return false;
-        Collider2D coll = Physics2D.OverlapCircle(standPosition.position, radiusTriggerAttack, detectionableLayer);
+        Collider2D coll = Physics2D.OverlapCircle(transform.position, radiusTriggerAttack, detectionableLayer);
         if (coll != null) return true;
         return false;
     }
@@ -51,7 +51,7 @@ public class CloseAttack : Stalker, IAttackWithWeapon
     {
         base.OnDrawGizmosSelected();
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(standPosition.position, radiusTriggerAttack);
+        Gizmos.DrawWireSphere(transform.position, radiusTriggerAttack);
     }
 
     public void ChangeWeapon(Weapon newWeapon)

@@ -110,4 +110,12 @@ public abstract class Creature : MonoBehaviour
         return result;
     }
 
+    public virtual void LookAt(Transform target)
+    {
+        Vector2 directionMovement = (target.position - transform.position).normalized;
+        anim.SetFloat("HorizontalMovement", directionMovement.x);
+        anim.SetFloat("VerticalMovement", directionMovement.y);
+    }
+
+
 }

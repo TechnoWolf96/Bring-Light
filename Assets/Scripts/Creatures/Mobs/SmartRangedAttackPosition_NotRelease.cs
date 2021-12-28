@@ -1,21 +1,23 @@
 using UnityEngine;
 
-public class SmartRangedAttackPosition : SmartDistance
+
+public class SmartRangedAttackPosition_NotRelease : SmartDistance_NotRelease
 {
     [Header("Smart Ranged Attack Position:")]
     public LayerMask obstacleLayer;
     public float rayThickness;          // Толщина луча для проверки препятствий
-    protected bool targetIsVisible = false;     // Видна ли цель
+
+    protected virtual void Attack() { }
 
     protected override void RunFromFollow()
     {
         // Если существо оказалось слишком близко к цели, то оно должно отдалиться на расстояние minStopDistance
         // Но если препятствие заслонит цель, то оно не отступает
-        RaycastHit2D info = Physics2D.CircleCast(transform.position, rayThickness / 2, follow.position - transform.position,
+        RaycastHit2D info = Physics2D.CircleCast(transform.position, rayThickness/2, follow.position - transform.position,
             Vector2.Distance(follow.position, transform.position), obstacleLayer);
         if (info.collider == null)
             base.RunFromFollow();
-
+            
     }
 
     protected override void Stalk()
@@ -25,16 +27,12 @@ public class SmartRangedAttackPosition : SmartDistance
             Vector2.Distance(follow.position, transform.position), obstacleLayer);
 
         if (info.collider != null)
-        {
             RunToFollow();
-            targetIsVisible = false;
-        }
-            
 
         else
         {
             base.Stalk();
-            targetIsVisible = true;
+            Attack();     // Видим цель - стреляем по ней
         }
 
     }

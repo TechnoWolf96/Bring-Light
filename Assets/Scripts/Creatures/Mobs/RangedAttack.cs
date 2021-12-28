@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedAttack : SmartRangedAttackPosition
+public class RangedAttack : SmartRangedAttackPosition_NotRelease
 {
     [Header("Ranged Attact: One Bullet")]
     public Bullet_Parameters bulletParameters;

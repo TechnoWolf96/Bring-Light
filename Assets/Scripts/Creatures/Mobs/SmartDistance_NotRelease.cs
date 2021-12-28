@@ -10,7 +10,7 @@ using UnityEngine;
      * Если расстояние до объетка follow меньше чем runFromDistance, то существо пытается отдалиться
      * на ранее случайно определенную дистанцию.
      */
-public class SmartDistance : Stalker
+public class SmartDistance_NotRelease : Stalker_NotRelease
 {
     [Header("Smart Distance:")]
     [Min(0)] public float maxStopDistance;           // Максимальное расстояние остановки до цели
@@ -38,55 +38,40 @@ public class SmartDistance : Stalker
         Vector2 newPosition = SearchPositionForGoBack();
         navAgent.isStopped = false;
         navAgent.SetDestination(newPosition);
-        LookAt(follow);
-        anim.SetBool("Walk", true);
+        anim.SetTrigger("Walk");
     }
     protected virtual void RunToFollow()
     {
         navAgent.isStopped = false;
         navAgent.SetDestination(follow.position);
-        LookAt(follow);
-        anim.SetBool("Walk", true);
+        anim.SetTrigger("Walk");
     }
     protected virtual void RunStop()
     {
         // Т.к цель достигнута, при выходе за runToDistance случайная дистанция определится заново
         distanceDefined = false;
         navAgent.isStopped = true;
-        LookAt(follow);
-        anim.SetBool("Walk", false);
+        anim.SetTrigger("Stop");
     }
 
     protected override void Stalk()
     {
-        // Т.к скорость в NavAgent и в velocity накладываются друг на друга, то velocity нужно занулить
-        if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
+        FlipAndNullVelocity();
+        // Если не достигли нужной дистанции - преследуем
+        if (distanceDefined && Vector2.Distance(follow.position, transform.position) > randomStopDistance)
+            RunToFollow();
+        // Если достигли случайно установленной дистанции, но не оказались ближе runFromDistance - останавливаемся
+        if (Vector2.Distance(follow.position, transform.position) < randomStopDistance &&
+            Vector2.Distance(follow.position, transform.position) > runFromDistance)
+            RunStop();
+        // Если существо оказалось слишком близко к цели, то оно должно отдалиться на расстояние minStopDistance
+        if (Vector2.Distance(follow.position, transform.position) < runFromDistance)
+            RunFromFollow();
         // Как только покинули максимально допустимую дистанцию - должны обновить случайную дистанцию
         if (!distanceDefined && Vector2.Distance(follow.position, transform.position) > maxStopDistance)
             SetRandomDistance();
 
-        // Если не достигли нужной дистанции - преследуем
-        if (distanceDefined && Vector2.Distance(follow.position, transform.position) > randomStopDistance)
-        {
-            RunToFollow();
-            return;
-        }
-        // Если достигли случайно установленной дистанции, но не оказались ближе runFromDistance - останавливаемся
-        if (Vector2.Distance(follow.position, transform.position) > runFromDistance-0.1f)
-        {
-            RunStop();
-            return;
-        } 
-        // Если существо оказалось слишком близко к цели, то оно должно отдалиться на расстояние minStopDistance
-        if (Vector2.Distance(follow.position, transform.position) < runFromDistance)
-        {
-            RunFromFollow();
-            return;
-        }
             
-        
-
-
 
 
     }
@@ -103,7 +88,7 @@ public class SmartDistance : Stalker
     private Vector3 SearchPositionForGoBack()
     {
         float length = runFromDistance - Vector2.Distance(follow.position, transform.position);
-        Vector2 back = (transform.position - follow.position).normalized * length;
+        Vector2 back = (transform.position - follow.position).normalized * length; 
         return (Vector2)transform.position + back;
     }
 }
