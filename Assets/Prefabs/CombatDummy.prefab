@@ -57,7 +57,7 @@ MonoBehaviour:
     timeStunning: 0.15
     critChance: 0
     critGainPercentage: 0
-  radiusAttack: 1.2
+  radiusAttack: 1
 --- !u!1 &1182674020939907348
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +165,8 @@ MonoBehaviour:
   detectionableLayer:
     serializedVersion: 2
     m_Bits: 128
-  radiusTriggerAttack: 1.2
+  follow: {fileID: 0}
+  radiusTriggerAttack: 1
 --- !u!195 &1182674020939907355
 NavMeshAgent:
   m_ObjectHideFlags: 0
