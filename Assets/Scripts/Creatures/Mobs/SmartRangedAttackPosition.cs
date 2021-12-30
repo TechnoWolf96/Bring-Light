@@ -7,6 +7,8 @@ public class SmartRangedAttackPosition : SmartDistance
     public float rayThickness;          // Толщина луча для проверки препятствий
     protected bool targetIsVisible = false;     // Видна ли цель
 
+    public bool TargetIsVisible => targetIsVisible;
+
     protected override void RunFromFollow()
     {
         // Если существо оказалось слишком близко к цели, то оно должно отдалиться на расстояние minStopDistance
@@ -29,7 +31,7 @@ public class SmartRangedAttackPosition : SmartDistance
             RunToFollow();
             targetIsVisible = false;
         }
-            
+
 
         else
         {

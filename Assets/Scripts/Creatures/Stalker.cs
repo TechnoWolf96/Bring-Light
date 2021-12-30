@@ -10,7 +10,7 @@ public abstract class Stalker : Creature
     public LayerMask detectionableLayer; // Слой, который отслеживает преследователь (Слой игроков)
     //public Transform standPosition;     // Позиция, которая считается центром существа
 
-    protected Transform follow; // Текущий объект для преследования
+    [HideInInspector] public Transform follow; // Текущий объект для преследования
     protected NavMeshAgent navAgent; // Агент NawMesh, закрепленный на данном объекте
     protected bool right = true;
 
@@ -18,6 +18,7 @@ public abstract class Stalker : Creature
     {
         base.Start();
         navAgent = GetComponent<NavMeshAgent>();
+        navAgent.speed = speed; // Скорость в NawMesh равна скорости существа
         navAgent.updateRotation = false;
         navAgent.updateUpAxis = false;
     }
@@ -25,7 +26,6 @@ public abstract class Stalker : Creature
     protected override void Update()
     {
         base.Update();
-        navAgent.speed = speed; // Скорость в NawMesh равна скорости существа
         if (isDeath) return;
         CheckStalk(); // Поиск объекта для преследования
         if (!isStunned && follow != null)

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -38,6 +36,10 @@ public abstract class Bullet : MonoBehaviour
         // Задание направления и скорости пули
         Vector2 direction = this.target.position - this.shooter.position;
         rb.velocity = direction.normalized * this.bulletParameters.speed;
+        // Поворот пули в сторону цели
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y,
+            Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg -180);
+
 
     }
 
@@ -48,7 +50,8 @@ public abstract class Bullet : MonoBehaviour
         Collision(other);
     }
 
-    protected virtual void Collision(Collider2D other) { }
+    protected abstract void Collision(Collider2D other);
+    protected abstract void CritEffect();
 
 
 

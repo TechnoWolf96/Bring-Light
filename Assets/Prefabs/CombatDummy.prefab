@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  maxHealth: 200
-  health: 200
+  maxHealth: 50
+  health: 50
   protect:
     physical: 0
     holy: 0

@@ -173,6 +173,7 @@ Transform:
   - {fileID: 6456692642405643694}
   - {fileID: 53120527103992107}
   - {fileID: 5391937706957075138}
+  - {fileID: 2571874727365013115}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -281,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles:
-  - {fileID: 5492067198193023253, guid: 5b9f3d774197b6d46af921851ae269c7, type: 3}
+  - {fileID: 4720118557692117457, guid: d4b72da8e2c501a4b9b107f47cbeeb8c, type: 3}
   posParticles:
   - {fileID: 2944152204158710625}
 --- !u!210 &1864342780324845357
@@ -309,7 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   maxHealth: 100
-  health: 10
+  health: 100
   protect:
     physical: 0
     holy: 0
@@ -322,6 +323,7 @@ MonoBehaviour:
   detectionableLayer:
     serializedVersion: 2
     m_Bits: 128
+  follow: {fileID: 0}
   maxStopDistance: 5
   minStopDistance: 3
   runFromDistance: 2
@@ -331,6 +333,7 @@ MonoBehaviour:
   rayThickness: 0.5
   spells:
   - {fileID: 5391937706957075139}
+  - {fileID: 8196056806167179759}
 --- !u!1 &4510801163550843294
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,10 +461,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 1
   speedCast: 0.5
-  timeUntilActivate: 0.5
-  currentTimeUntilActivate: 0
   heal: 25
   particles: {fileID: 8889867131755650115, guid: 217dd3f607b2dd24b8dd62f43782d3ac, type: 3}
+  maxPriority: 6
 --- !u!1 &5393579063181510377
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +551,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5702300942936189157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2571874727365013115}
+  - component: {fileID: 8196056806167179759}
+  m_Layer: 6
+  m_Name: 'Spell: ArrowOfDeath'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2571874727365013115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5702300942936189157}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.27, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2944152205274575993}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8196056806167179759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5702300942936189157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df67d7253dd43df4c9e0cb7abcd0ebe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 3
+  speedCast: 1
+  priorityIfTargetIsVisible: 3
+  bulletParameters:
+    speed: 10
+    attack:
+      damages:
+      - typeDamage: 0
+        minDamage: 10
+        maxDamage: 15
+      pushForce: 6
+      timeStunning: 0.2
+      critChance: 0
+      critGainPercentage: 0
+    radius: 0
+    DamagedExplosionLayers:
+      serializedVersion: 2
+      m_Bits: 0
+  bullet: {fileID: 1846568080611197498, guid: 38698d3823675c048a33ba0217aa8269, type: 3}
 --- !u!1 &6359654414960432589
 GameObject:
   m_ObjectHideFlags: 0

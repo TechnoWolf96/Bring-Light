@@ -18,4 +18,8 @@ public class ExplosingBullet : Bullet
         Destroy(gameObject);
     }
 
+    protected override void CritEffect()
+    {
+        throw new System.NotImplementedException();
+    }
 }

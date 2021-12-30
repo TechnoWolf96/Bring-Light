@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 // Универсальный класс - "Существо", является предком любого живого объекта на сцене
 public abstract class Creature : MonoBehaviour
 {
@@ -48,8 +49,7 @@ public abstract class Creature : MonoBehaviour
         currentTimeStunning = timeStunning;
         Vector2 pushDirection = new Vector2(transform.position.x - pusher.position.x, transform.position.y - pusher.position.y).normalized;
         rb.velocity = pushDirection * force * xPushMass;
-        anim.SetFloat("HorizontalMovement", -pushDirection.x);
-        anim.SetFloat("VerticalMovement", -pushDirection.y);
+        LookAt(pusher);
     }
 
     // Получение урона с силой отталкивания от позиции атакующего и оглушением, возвращает был ли крит
@@ -110,12 +110,55 @@ public abstract class Creature : MonoBehaviour
         return result;
     }
 
-    public virtual void LookAt(Transform target)
+    public void LookAt(Transform target)
     {
-        Vector2 directionMovement = (target.position - transform.position).normalized;
+        Vector2 directionMovement = VectorFunction.ToAxisAndNormalize(target.position - transform.position);
         anim.SetFloat("HorizontalMovement", directionMovement.x);
         anim.SetFloat("VerticalMovement", directionMovement.y);
     }
 
+    public void LookAway(Transform target)
+    {
+        Vector2 directionMovement = VectorFunction.ToAxisAndNormalize(target.position - transform.position);
+        anim.SetFloat("HorizontalMovement", -directionMovement.x);
+        anim.SetFloat("VerticalMovement", -directionMovement.y);
+    }
+    
 
+}
+
+
+// Полезные функции для 2D векторов
+public class VectorFunction
+{
+    // Перевести вектор в одно подходящее направление по оси
+    public static Vector2 ToAxisAndNormalize(Vector2 vector)
+    {
+        vector.Normalize();
+        // Первый квадрант
+        if (vector.x > 0 && vector.y > 0)
+        {
+            if (vector.x >= vector.y) return Vector2.right;
+            else return Vector2.up;
+        }
+        // Второй квадрант
+        if (vector.x < 0 && vector.y > 0)
+        {
+            if (Mathf.Abs(vector.x) >= vector.y) return Vector2.left;
+            else return Vector2.up;
+        }
+        // Третий квадрант
+        if (vector.x < 0 && vector.y < 0)
+        {
+            if (Mathf.Abs(vector.x) >= Mathf.Abs(vector.y)) return Vector2.left;
+            else return Vector2.down;
+        }
+        // Четвертый квадрант
+        if (vector.x > 0 && vector.y < 0)
+        {
+            if (vector.x >= Mathf.Abs(vector.y)) return Vector2.right;
+            else return Vector2.down;
+        }
+        return Vector2.zero;
+    }
 }

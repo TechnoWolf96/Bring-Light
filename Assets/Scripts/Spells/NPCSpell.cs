@@ -5,39 +5,20 @@ using UnityEngine;
 public abstract class NPCSpell : MonoBehaviour
 {
     [Header("NPC spell:")]
-    public int priority;                // Шанс выполнения именно этого заклинания (рекомендуется приоритет от 1 до 10)
-    public float speedCast;             // Скорость анимации исполнения заклинания
-    public float timeUntilActivate;     // Время до получения полезного эффекта
+    public int priority;  // Шанс выполнения именно этого заклинания (рекомендуется приоритет от 1 до 10)
+    public float speedCast;                 // Скорость анимации исполнения заклинания
 
-    [SerializeField] protected float currentTimeUntilActivate;
-    protected bool casting = false;
 
-    protected virtual void Start()
-    {
-        currentTimeUntilActivate = timeUntilActivate; 
-    }
-    protected virtual void FixedUpdate()
-    {
-        if (casting) currentTimeUntilActivate -= Time.deltaTime;
-    }
+    // Вызывается при начале произношения заклинания
+    public abstract void BeginCast();
 
-    protected virtual void Update()
-    {
-        if (currentTimeUntilActivate < 0) Cast();
-    }
+    // Вызывается в случае остановки произношения заклинания (При получении урона)
+    public abstract void StopCast();
 
-    public virtual void BeginCast()
-    {
-        currentTimeUntilActivate = timeUntilActivate;
-        casting = true;
-        ApplyVisualEffects();
-    }
+    // Получить полезный эффект от заклинания (спустя время вызывается в анимации Spellcast)
+    public abstract void Activate();
 
-    protected virtual void ApplyVisualEffects() { }
+    // Задает правило, по которому вычисляется приоритет заклинания
+    public abstract void CalculatePriority();
 
-    protected virtual void Cast()
-    {
-        casting = false;
-        currentTimeUntilActivate = timeUntilActivate;
-    }
 }
