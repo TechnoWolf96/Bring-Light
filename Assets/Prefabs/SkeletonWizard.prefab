@@ -211,8 +211,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004915595, y: 0.09369123}
-  m_Size: {x: 0.8453648, y: 0.8453648}
+  m_Offset: {x: 0.004915595, y: 0.151353}
+  m_Size: {x: 0.8453648, y: 0.96068835}
   m_Direction: 0
 --- !u!95 &2944152205274575997
 Animator:
@@ -283,8 +283,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles:
   - {fileID: 4720118557692117457, guid: d4b72da8e2c501a4b9b107f47cbeeb8c, type: 3}
+  - {fileID: 5826850619790626005, guid: 41aa818997cc156479422c0eb41f983f, type: 3}
   posParticles:
   - {fileID: 2944152204158710625}
+  - {fileID: 2944152205274575993}
 --- !u!210 &1864342780324845357
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -319,14 +321,14 @@ MonoBehaviour:
     dark: 0
     poison: 0
   xPushMass: 1
-  distanceDetection: 6
+  distanceDetection: 8
   detectionableLayer:
     serializedVersion: 2
     m_Bits: 128
   follow: {fileID: 0}
-  maxStopDistance: 5
-  minStopDistance: 3
-  runFromDistance: 2
+  maxStopDistance: 7
+  minStopDistance: 4
+  runFromDistance: 3
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -576,7 +578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5702300942936189157}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.27, z: 0}
+  m_LocalPosition: {x: 0, y: 0.368, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2944152205274575993}
@@ -595,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 3
-  speedCast: 1
+  speedCast: 0.7
   priorityIfTargetIsVisible: 3
   bulletParameters:
     speed: 10
@@ -604,8 +606,8 @@ MonoBehaviour:
       - typeDamage: 0
         minDamage: 10
         maxDamage: 15
-      pushForce: 6
-      timeStunning: 0.2
+      pushForce: 5
+      timeStunning: 0.15
       critChance: 0
       critGainPercentage: 0
     radius: 0

@@ -18,7 +18,7 @@ public class SelfHealingSpell : NPCSpell
     }
     public override void StopCast()
     {
-        instParticles.Stop();
+        //instParticles?.Stop();
     }
 
     protected virtual void Start()

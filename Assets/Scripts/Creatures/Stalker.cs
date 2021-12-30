@@ -30,6 +30,7 @@ public abstract class Stalker : Creature
         CheckStalk(); // Поиск объекта для преследования
         if (!isStunned && follow != null)
         {
+            anim.speed = 1f;
             Stalk(); // Если объект не оглушен и есть за кем бежать, то начинает преследование
             LookAt(follow);
         }

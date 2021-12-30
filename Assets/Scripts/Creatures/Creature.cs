@@ -55,19 +55,24 @@ public abstract class Creature : MonoBehaviour
     // Получение урона с силой отталкивания от позиции атакующего и оглушением, возвращает был ли крит
     public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
+        anim.speed = 1f;
         int realDamage = GetRealDamage(attack);   // Подсчет реального урона
         health -= realDamage;
         print(realDamage);
         if (bullet != null) PushBack(attack.pushForce, bullet, attack.timeStunning); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking, attack.timeStunning);             // Если рукопашный урон - толчок от атакующего
+        
 
         if (health <= 0 && !isDeath)   // Здоровье ниже или равно 0 - существо умирает
         {
             health = 0;
             Death();
+            healthBar?.ShowBar();
+            return;
         }
-        if (!isDeath) anim.SetTrigger("GetDamage");
-        healthBar?.ShowBar();     // При получении урона показывается полоска здоровья
+        healthBar?.ShowBar();
+        anim.SetTrigger("GetDamage");
+        
     }
 
 

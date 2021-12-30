@@ -13,7 +13,7 @@ public class Spellcaster : SmartRangedAttackPosition
 
     protected override void Update()
     {
-        base.Update();
+        base.Update(); if (isDeath) return;
         if (!isStunned && !anim.GetBool("Walk"))
             TryCastSpell();
     }
