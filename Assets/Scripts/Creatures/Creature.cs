@@ -1,15 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
 // Универсальный класс - "Существо", является предком любого живого объекта на сцене
-public abstract class Creature : MonoBehaviour
+public abstract class Creature : MonoBehaviour, IObservable
 {
     [Header("Creature:")]
     public float speed;                 // Скорость существа
     public int maxHealth;               // Максимальный запас здоровья
     public int health;                  // Текущий запас здоровья
     public ProtectParameters protect;   // Параметры защиты
-    [Min(0f)] public float xPushMass = 1;         // Множитель мощности отталкивания при получении урона
+    [Min(0f)] public float xPushMass = 1;         // Множитель мощности  и времени отталкивания при получении урона
 
     protected Animator anim;          // Анимация существа
     protected bool isStunned = false;             // Является ли существо оглушенным
@@ -19,6 +20,11 @@ public abstract class Creature : MonoBehaviour
     protected Collider2D collider;              // Коллайдер существа
     protected HealthBar healthBar;              // Полоска здоровья существа
 
+    [SerializeField] protected GameObject physicalSupport;       // Физическая опора существа
+
+    [HideInInspector] public List<IObserver> stalkers;       // Список преследователей данного существа
+
+
 
 
     protected virtual void Start()
@@ -27,6 +33,7 @@ public abstract class Creature : MonoBehaviour
         collider = GetComponent<Collider2D>();
         healthBar ??= GetComponent<HealthBar>();
         anim = GetComponent<Animator>();
+        stalkers = new List<IObserver>();
     }
 
     protected virtual void Update() {}
@@ -37,6 +44,7 @@ public abstract class Creature : MonoBehaviour
         if (isStunned && currentTimeStunning < 0)
         {
             isStunned = false;
+            rb.drag = 100000f;
             rb.velocity = Vector2.zero;
         }
 
@@ -46,8 +54,9 @@ public abstract class Creature : MonoBehaviour
     public void PushBack(float force, Transform pusher, float timeStunning) 
     {
         isStunned = true;
-        currentTimeStunning = timeStunning;
+        currentTimeStunning = timeStunning*xPushMass;
         Vector2 pushDirection = new Vector2(transform.position.x - pusher.position.x, transform.position.y - pusher.position.y).normalized;
+        rb.drag = 0f;
         rb.velocity = pushDirection * force * xPushMass;
         LookAt(pusher);
     }
@@ -79,8 +88,11 @@ public abstract class Creature : MonoBehaviour
     public virtual void Death()
     {
         isDeath = true;
+        physicalSupport.SetActive(false);
         gameObject.layer = LayerMask.NameToLayer("Corpses");
         anim.SetTrigger("Death");
+        NotifyObservers(); // Оповещение преследователей о том, что существо погибло
+            
     }
 
     protected int GetRealDamage(AttackParameters attack) // Расчет получения реального урона существом с учетом его защиты и крита атаки
@@ -128,7 +140,24 @@ public abstract class Creature : MonoBehaviour
         anim.SetFloat("HorizontalMovement", -directionMovement.x);
         anim.SetFloat("VerticalMovement", -directionMovement.y);
     }
-    
+
+    public void AddObserver(IObserver newObserver)
+    {
+        stalkers.Add(newObserver);
+    }
+
+    public void RemoveObserver(IObserver removableObserver)
+    {
+        stalkers.Remove(removableObserver);
+    }
+
+    public void NotifyObservers()
+    {
+        foreach (var observer in stalkers)
+        {
+            observer.UpdateData();
+        }
+    }
 
 }
 

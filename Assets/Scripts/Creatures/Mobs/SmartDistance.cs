@@ -17,7 +17,7 @@ public class SmartDistance : Stalker
     [Min(0)] public float minStopDistance;           // Минимальное расстояние остановки до цели
     [Min(0)] public float runFromDistance;           // Расстояние начала отдаления
 
-    protected bool canGoBack = true;                  // Может ли существо отступать при приближении противника
+    //protected bool canGoBack;                  // Может ли существо отступать при приближении противника
     protected float randomStopDistance = 0;    // Переменная под хранение сгенерировавшейся случайной дистанции остановки
     protected bool distanceDefined;            // Показывает, определена ли уже случайная дистанция
 
@@ -27,6 +27,10 @@ public class SmartDistance : Stalker
         base.Start();
         SetRandomDistance();
     }
+
+    
+
+
     protected void SetRandomDistance()
     {
         randomStopDistance = Random.Range(minStopDistance, maxStopDistance);
@@ -35,17 +39,22 @@ public class SmartDistance : Stalker
     }
     protected virtual void RunFromFollow()
     {
-        Vector2 newPosition = SearchPositionForGoBack();
+        Vector2 newPosition = transform.position + (transform.position - follow.transform.position).normalized;
+        Collider2D collider = Physics2D.OverlapCircle(newPosition, 0.7f);
+        if (collider != null)
+        {
+            print("Stop");
+            RunStop();
+            return;
+        }
         navAgent.isStopped = false;
         navAgent.SetDestination(newPosition);
-        LookAt(follow);
         anim.SetBool("Walk", true);
     }
     protected virtual void RunToFollow()
     {
         navAgent.isStopped = false;
-        navAgent.SetDestination(follow.position);
-        LookAt(follow);
+        navAgent.SetDestination(follow.transform.position);
         anim.SetBool("Walk", true);
     }
     protected virtual void RunStop()
@@ -53,7 +62,6 @@ public class SmartDistance : Stalker
         // Т.к цель достигнута, при выходе за runToDistance случайная дистанция определится заново
         distanceDefined = false;
         navAgent.isStopped = true;
-        LookAt(follow);
         anim.SetBool("Walk", false);
     }
 
@@ -62,23 +70,23 @@ public class SmartDistance : Stalker
         // Т.к скорость в NavAgent и в velocity накладываются друг на друга, то velocity нужно занулить
         if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
         // Как только покинули максимально допустимую дистанцию - должны обновить случайную дистанцию
-        if (!distanceDefined && Vector2.Distance(follow.position, transform.position) > maxStopDistance)
+        if (!distanceDefined && Vector2.Distance(follow.transform.position, transform.position) > maxStopDistance)
             SetRandomDistance();
 
         // Если не достигли нужной дистанции - преследуем
-        if (distanceDefined && Vector2.Distance(follow.position, transform.position) > randomStopDistance)
+        if (distanceDefined && Vector2.Distance(follow.transform.position, transform.position) > randomStopDistance)
         {
             RunToFollow();
             return;
         }
         // Если достигли случайно установленной дистанции, но не оказались ближе runFromDistance - останавливаемся
-        if (Vector2.Distance(follow.position, transform.position) > runFromDistance-0.1f)
+        if (Vector2.Distance(follow.transform.position, transform.position) > runFromDistance-0.1f)
         {
             RunStop();
             return;
         } 
         // Если существо оказалось слишком близко к цели, то оно должно отдалиться на расстояние minStopDistance
-        if (Vector2.Distance(follow.position, transform.position) < runFromDistance)
+        if (Vector2.Distance(follow.transform.position, transform.position) < runFromDistance)
         {
             RunFromFollow();
             return;
@@ -100,10 +108,5 @@ public class SmartDistance : Stalker
         Gizmos.DrawWireSphere(transform.position, runFromDistance);
     }
 
-    private Vector3 SearchPositionForGoBack()
-    {
-        float length = runFromDistance - Vector2.Distance(follow.position, transform.position);
-        Vector2 back = (transform.position - follow.position).normalized * length;
-        return (Vector2)transform.position + back;
-    }
+   
 }

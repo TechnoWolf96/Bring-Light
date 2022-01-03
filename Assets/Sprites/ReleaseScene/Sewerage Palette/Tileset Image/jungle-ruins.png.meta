@@ -1496,6 +1496,12 @@ TextureImporter:
   - first:
       213: 6374131768570324177
     second: jungle-ruins_497
+  - first:
+      213: -8252405074065101924
+    second: jungle-ruins_498
+  - first:
+      213: 1602519208944698219
+    second: jungle-ruins_499
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -10114,7 +10120,7 @@ TextureImporter:
       name: jungle-ruins_406
       rect:
         serializedVersion: 2
-        x: 960
+        x: 928
         y: 192
         width: 32
         height: 32
@@ -10135,8 +10141,8 @@ TextureImporter:
       name: jungle-ruins_407
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
+        x: 960
+        y: 192
         width: 32
         height: 32
       alignment: 0
@@ -10156,7 +10162,7 @@ TextureImporter:
       name: jungle-ruins_408
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 160
         width: 32
         height: 32
@@ -10177,7 +10183,7 @@ TextureImporter:
       name: jungle-ruins_409
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 160
         width: 32
         height: 32
@@ -10198,7 +10204,7 @@ TextureImporter:
       name: jungle-ruins_410
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 160
         width: 32
         height: 32
@@ -10219,7 +10225,7 @@ TextureImporter:
       name: jungle-ruins_411
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 160
         width: 32
         height: 32
@@ -10240,7 +10246,7 @@ TextureImporter:
       name: jungle-ruins_412
       rect:
         serializedVersion: 2
-        x: 160
+        x: 128
         y: 160
         width: 32
         height: 32
@@ -10261,7 +10267,7 @@ TextureImporter:
       name: jungle-ruins_413
       rect:
         serializedVersion: 2
-        x: 192
+        x: 160
         y: 160
         width: 32
         height: 32
@@ -10282,7 +10288,7 @@ TextureImporter:
       name: jungle-ruins_414
       rect:
         serializedVersion: 2
-        x: 224
+        x: 192
         y: 160
         width: 32
         height: 32
@@ -10303,7 +10309,7 @@ TextureImporter:
       name: jungle-ruins_415
       rect:
         serializedVersion: 2
-        x: 256
+        x: 224
         y: 160
         width: 32
         height: 32
@@ -10324,7 +10330,7 @@ TextureImporter:
       name: jungle-ruins_416
       rect:
         serializedVersion: 2
-        x: 416
+        x: 256
         y: 160
         width: 32
         height: 32
@@ -10345,7 +10351,7 @@ TextureImporter:
       name: jungle-ruins_417
       rect:
         serializedVersion: 2
-        x: 448
+        x: 416
         y: 160
         width: 32
         height: 32
@@ -10366,7 +10372,7 @@ TextureImporter:
       name: jungle-ruins_418
       rect:
         serializedVersion: 2
-        x: 480
+        x: 448
         y: 160
         width: 32
         height: 32
@@ -10387,7 +10393,7 @@ TextureImporter:
       name: jungle-ruins_419
       rect:
         serializedVersion: 2
-        x: 512
+        x: 480
         y: 160
         width: 32
         height: 32
@@ -10408,7 +10414,7 @@ TextureImporter:
       name: jungle-ruins_420
       rect:
         serializedVersion: 2
-        x: 544
+        x: 512
         y: 160
         width: 32
         height: 32
@@ -10429,7 +10435,7 @@ TextureImporter:
       name: jungle-ruins_421
       rect:
         serializedVersion: 2
-        x: 576
+        x: 544
         y: 160
         width: 32
         height: 32
@@ -10450,7 +10456,7 @@ TextureImporter:
       name: jungle-ruins_422
       rect:
         serializedVersion: 2
-        x: 608
+        x: 576
         y: 160
         width: 32
         height: 32
@@ -10471,7 +10477,7 @@ TextureImporter:
       name: jungle-ruins_423
       rect:
         serializedVersion: 2
-        x: 640
+        x: 608
         y: 160
         width: 32
         height: 32
@@ -10492,7 +10498,7 @@ TextureImporter:
       name: jungle-ruins_424
       rect:
         serializedVersion: 2
-        x: 704
+        x: 640
         y: 160
         width: 32
         height: 32
@@ -10513,7 +10519,7 @@ TextureImporter:
       name: jungle-ruins_425
       rect:
         serializedVersion: 2
-        x: 736
+        x: 704
         y: 160
         width: 32
         height: 32
@@ -10534,7 +10540,7 @@ TextureImporter:
       name: jungle-ruins_426
       rect:
         serializedVersion: 2
-        x: 896
+        x: 736
         y: 160
         width: 32
         height: 32
@@ -10555,7 +10561,7 @@ TextureImporter:
       name: jungle-ruins_427
       rect:
         serializedVersion: 2
-        x: 928
+        x: 896
         y: 160
         width: 32
         height: 32
@@ -10576,7 +10582,7 @@ TextureImporter:
       name: jungle-ruins_428
       rect:
         serializedVersion: 2
-        x: 960
+        x: 928
         y: 160
         width: 32
         height: 32
@@ -10597,8 +10603,8 @@ TextureImporter:
       name: jungle-ruins_429
       rect:
         serializedVersion: 2
-        x: 96
-        y: 128
+        x: 960
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -10618,7 +10624,7 @@ TextureImporter:
       name: jungle-ruins_430
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 128
         width: 32
         height: 32
@@ -10639,7 +10645,7 @@ TextureImporter:
       name: jungle-ruins_431
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 128
         width: 32
         height: 32
@@ -10660,7 +10666,7 @@ TextureImporter:
       name: jungle-ruins_432
       rect:
         serializedVersion: 2
-        x: 224
+        x: 192
         y: 128
         width: 32
         height: 32
@@ -10681,7 +10687,7 @@ TextureImporter:
       name: jungle-ruins_433
       rect:
         serializedVersion: 2
-        x: 256
+        x: 224
         y: 128
         width: 32
         height: 32
@@ -10702,7 +10708,7 @@ TextureImporter:
       name: jungle-ruins_434
       rect:
         serializedVersion: 2
-        x: 288
+        x: 256
         y: 128
         width: 32
         height: 32
@@ -10723,7 +10729,7 @@ TextureImporter:
       name: jungle-ruins_435
       rect:
         serializedVersion: 2
-        x: 320
+        x: 288
         y: 128
         width: 32
         height: 32
@@ -10744,7 +10750,7 @@ TextureImporter:
       name: jungle-ruins_436
       rect:
         serializedVersion: 2
-        x: 416
+        x: 320
         y: 128
         width: 32
         height: 32
@@ -10765,7 +10771,7 @@ TextureImporter:
       name: jungle-ruins_437
       rect:
         serializedVersion: 2
-        x: 448
+        x: 416
         y: 128
         width: 32
         height: 32
@@ -10786,7 +10792,7 @@ TextureImporter:
       name: jungle-ruins_438
       rect:
         serializedVersion: 2
-        x: 480
+        x: 448
         y: 128
         width: 32
         height: 32
@@ -10807,7 +10813,7 @@ TextureImporter:
       name: jungle-ruins_439
       rect:
         serializedVersion: 2
-        x: 512
+        x: 480
         y: 128
         width: 32
         height: 32
@@ -10828,7 +10834,7 @@ TextureImporter:
       name: jungle-ruins_440
       rect:
         serializedVersion: 2
-        x: 544
+        x: 512
         y: 128
         width: 32
         height: 32
@@ -10849,7 +10855,7 @@ TextureImporter:
       name: jungle-ruins_441
       rect:
         serializedVersion: 2
-        x: 576
+        x: 544
         y: 128
         width: 32
         height: 32
@@ -10870,7 +10876,7 @@ TextureImporter:
       name: jungle-ruins_442
       rect:
         serializedVersion: 2
-        x: 608
+        x: 576
         y: 128
         width: 32
         height: 32
@@ -10891,7 +10897,7 @@ TextureImporter:
       name: jungle-ruins_443
       rect:
         serializedVersion: 2
-        x: 640
+        x: 608
         y: 128
         width: 32
         height: 32
@@ -10912,7 +10918,7 @@ TextureImporter:
       name: jungle-ruins_444
       rect:
         serializedVersion: 2
-        x: 672
+        x: 640
         y: 128
         width: 32
         height: 32
@@ -10933,7 +10939,7 @@ TextureImporter:
       name: jungle-ruins_445
       rect:
         serializedVersion: 2
-        x: 704
+        x: 672
         y: 128
         width: 32
         height: 32
@@ -10954,7 +10960,7 @@ TextureImporter:
       name: jungle-ruins_446
       rect:
         serializedVersion: 2
-        x: 736
+        x: 704
         y: 128
         width: 32
         height: 32
@@ -10975,8 +10981,8 @@ TextureImporter:
       name: jungle-ruins_447
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 736
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -10996,7 +11002,7 @@ TextureImporter:
       name: jungle-ruins_448
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 96
         width: 32
         height: 32
@@ -11017,7 +11023,7 @@ TextureImporter:
       name: jungle-ruins_449
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 96
         width: 32
         height: 32
@@ -11038,7 +11044,7 @@ TextureImporter:
       name: jungle-ruins_450
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 96
         width: 32
         height: 32
@@ -11059,7 +11065,7 @@ TextureImporter:
       name: jungle-ruins_451
       rect:
         serializedVersion: 2
-        x: 192
+        x: 96
         y: 96
         width: 32
         height: 32
@@ -11080,7 +11086,7 @@ TextureImporter:
       name: jungle-ruins_452
       rect:
         serializedVersion: 2
-        x: 224
+        x: 192
         y: 96
         width: 32
         height: 32
@@ -11101,7 +11107,7 @@ TextureImporter:
       name: jungle-ruins_453
       rect:
         serializedVersion: 2
-        x: 256
+        x: 224
         y: 96
         width: 32
         height: 32
@@ -11122,7 +11128,7 @@ TextureImporter:
       name: jungle-ruins_454
       rect:
         serializedVersion: 2
-        x: 288
+        x: 256
         y: 96
         width: 32
         height: 32
@@ -11143,7 +11149,7 @@ TextureImporter:
       name: jungle-ruins_455
       rect:
         serializedVersion: 2
-        x: 320
+        x: 288
         y: 96
         width: 32
         height: 32
@@ -11164,7 +11170,7 @@ TextureImporter:
       name: jungle-ruins_456
       rect:
         serializedVersion: 2
-        x: 416
+        x: 320
         y: 96
         width: 32
         height: 32
@@ -11185,7 +11191,7 @@ TextureImporter:
       name: jungle-ruins_457
       rect:
         serializedVersion: 2
-        x: 448
+        x: 416
         y: 96
         width: 32
         height: 32
@@ -11206,7 +11212,7 @@ TextureImporter:
       name: jungle-ruins_458
       rect:
         serializedVersion: 2
-        x: 480
+        x: 448
         y: 96
         width: 32
         height: 32
@@ -11227,7 +11233,7 @@ TextureImporter:
       name: jungle-ruins_459
       rect:
         serializedVersion: 2
-        x: 512
+        x: 480
         y: 96
         width: 32
         height: 32
@@ -11248,7 +11254,7 @@ TextureImporter:
       name: jungle-ruins_460
       rect:
         serializedVersion: 2
-        x: 544
+        x: 512
         y: 96
         width: 32
         height: 32
@@ -11269,7 +11275,7 @@ TextureImporter:
       name: jungle-ruins_461
       rect:
         serializedVersion: 2
-        x: 576
+        x: 544
         y: 96
         width: 32
         height: 32
@@ -11290,8 +11296,8 @@ TextureImporter:
       name: jungle-ruins_462
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 576
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -11311,7 +11317,7 @@ TextureImporter:
       name: jungle-ruins_463
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 64
         width: 32
         height: 32
@@ -11332,7 +11338,7 @@ TextureImporter:
       name: jungle-ruins_464
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -11353,7 +11359,7 @@ TextureImporter:
       name: jungle-ruins_465
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 64
         width: 32
         height: 32
@@ -11374,7 +11380,7 @@ TextureImporter:
       name: jungle-ruins_466
       rect:
         serializedVersion: 2
-        x: 224
+        x: 96
         y: 64
         width: 32
         height: 32
@@ -11395,7 +11401,7 @@ TextureImporter:
       name: jungle-ruins_467
       rect:
         serializedVersion: 2
-        x: 288
+        x: 224
         y: 64
         width: 32
         height: 32
@@ -11416,7 +11422,7 @@ TextureImporter:
       name: jungle-ruins_468
       rect:
         serializedVersion: 2
-        x: 320
+        x: 288
         y: 64
         width: 32
         height: 32
@@ -11437,7 +11443,7 @@ TextureImporter:
       name: jungle-ruins_469
       rect:
         serializedVersion: 2
-        x: 352
+        x: 320
         y: 64
         width: 32
         height: 32
@@ -11458,7 +11464,7 @@ TextureImporter:
       name: jungle-ruins_470
       rect:
         serializedVersion: 2
-        x: 384
+        x: 352
         y: 64
         width: 32
         height: 32
@@ -11479,7 +11485,7 @@ TextureImporter:
       name: jungle-ruins_471
       rect:
         serializedVersion: 2
-        x: 416
+        x: 384
         y: 64
         width: 32
         height: 32
@@ -11500,7 +11506,7 @@ TextureImporter:
       name: jungle-ruins_472
       rect:
         serializedVersion: 2
-        x: 448
+        x: 416
         y: 64
         width: 32
         height: 32
@@ -11521,7 +11527,7 @@ TextureImporter:
       name: jungle-ruins_473
       rect:
         serializedVersion: 2
-        x: 480
+        x: 448
         y: 64
         width: 32
         height: 32
@@ -11542,7 +11548,7 @@ TextureImporter:
       name: jungle-ruins_474
       rect:
         serializedVersion: 2
-        x: 512
+        x: 480
         y: 64
         width: 32
         height: 32
@@ -11563,7 +11569,7 @@ TextureImporter:
       name: jungle-ruins_475
       rect:
         serializedVersion: 2
-        x: 544
+        x: 512
         y: 64
         width: 32
         height: 32
@@ -11584,7 +11590,7 @@ TextureImporter:
       name: jungle-ruins_476
       rect:
         serializedVersion: 2
-        x: 576
+        x: 544
         y: 64
         width: 32
         height: 32
@@ -11605,8 +11611,8 @@ TextureImporter:
       name: jungle-ruins_477
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 576
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -11626,7 +11632,7 @@ TextureImporter:
       name: jungle-ruins_478
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -11647,7 +11653,7 @@ TextureImporter:
       name: jungle-ruins_479
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 32
         width: 32
         height: 32
@@ -11668,7 +11674,7 @@ TextureImporter:
       name: jungle-ruins_480
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 32
         width: 32
         height: 32
@@ -11689,7 +11695,7 @@ TextureImporter:
       name: jungle-ruins_481
       rect:
         serializedVersion: 2
-        x: 224
+        x: 96
         y: 32
         width: 32
         height: 32
@@ -11710,7 +11716,7 @@ TextureImporter:
       name: jungle-ruins_482
       rect:
         serializedVersion: 2
-        x: 256
+        x: 224
         y: 32
         width: 32
         height: 32
@@ -11731,7 +11737,7 @@ TextureImporter:
       name: jungle-ruins_483
       rect:
         serializedVersion: 2
-        x: 288
+        x: 256
         y: 32
         width: 32
         height: 32
@@ -11752,7 +11758,7 @@ TextureImporter:
       name: jungle-ruins_484
       rect:
         serializedVersion: 2
-        x: 320
+        x: 288
         y: 32
         width: 32
         height: 32
@@ -11773,7 +11779,7 @@ TextureImporter:
       name: jungle-ruins_485
       rect:
         serializedVersion: 2
-        x: 352
+        x: 320
         y: 32
         width: 32
         height: 32
@@ -11794,7 +11800,7 @@ TextureImporter:
       name: jungle-ruins_486
       rect:
         serializedVersion: 2
-        x: 384
+        x: 352
         y: 32
         width: 32
         height: 32
@@ -11815,8 +11821,8 @@ TextureImporter:
       name: jungle-ruins_487
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 384
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -11836,7 +11842,7 @@ TextureImporter:
       name: jungle-ruins_488
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 0
         width: 32
         height: 32
@@ -11857,7 +11863,7 @@ TextureImporter:
       name: jungle-ruins_489
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 0
         width: 32
         height: 32
@@ -11878,7 +11884,7 @@ TextureImporter:
       name: jungle-ruins_490
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 0
         width: 32
         height: 32
@@ -11899,7 +11905,7 @@ TextureImporter:
       name: jungle-ruins_491
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 0
         width: 32
         height: 32
@@ -11920,7 +11926,7 @@ TextureImporter:
       name: jungle-ruins_492
       rect:
         serializedVersion: 2
-        x: 224
+        x: 128
         y: 0
         width: 32
         height: 32
@@ -11941,7 +11947,7 @@ TextureImporter:
       name: jungle-ruins_493
       rect:
         serializedVersion: 2
-        x: 256
+        x: 224
         y: 0
         width: 32
         height: 32
@@ -11962,7 +11968,7 @@ TextureImporter:
       name: jungle-ruins_494
       rect:
         serializedVersion: 2
-        x: 288
+        x: 256
         y: 0
         width: 32
         height: 32
@@ -11983,7 +11989,7 @@ TextureImporter:
       name: jungle-ruins_495
       rect:
         serializedVersion: 2
-        x: 320
+        x: 288
         y: 0
         width: 32
         height: 32
@@ -12004,7 +12010,7 @@ TextureImporter:
       name: jungle-ruins_496
       rect:
         serializedVersion: 2
-        x: 352
+        x: 320
         y: 0
         width: 32
         height: 32
@@ -12025,7 +12031,7 @@ TextureImporter:
       name: jungle-ruins_497
       rect:
         serializedVersion: 2
-        x: 384
+        x: 352
         y: 0
         width: 32
         height: 32
@@ -12038,6 +12044,48 @@ TextureImporter:
       bones: []
       spriteID: 1d4aa296217757850800000000000000
       internalID: 6374131768570324177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jungle-ruins_498
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9be7b9ee41997d80800000000000000
+      internalID: -8252405074065101924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jungle-ruins_499
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6383e2eaba4d3610800000000000000
+      internalID: 1602519208944698219
       vertices: []
       indices: 
       edges: []

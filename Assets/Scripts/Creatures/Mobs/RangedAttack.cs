@@ -1,40 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedAttack : SmartRangedAttackPosition_NotRelease
+public class RangedAttack : SmartRangedAttackPosition, IAttackWithWeapon
 {
-    [Header("Ranged Attact: One Bullet")]
-    public Bullet_Parameters bulletParameters;
-    public GameObject bulletPrefab;
-    public float recharge;
-
-    private float currentRecharge;
+    protected Weapon weapon;
 
     protected override void Start()
     {
         base.Start();
-        currentRecharge = recharge;
-    }
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-        currentRecharge -= Time.deltaTime;
-    }
-    protected bool Recharged()
-    {
-        return currentRecharge < 0;
+        ChangeWeapon(GetComponentInChildren<Weapon>());
     }
 
-    protected override void Attack()
+    protected override void Update()
     {
-        if (Recharged())
+        base.Update();
+        if (isDeath) return;
+        if (CheckAttack() && weapon.IsRecharged())
         {
-            currentRecharge = recharge;
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity).
-                GetComponent<Bullet>().InstBullet(bulletParameters, transform, follow);
+            weapon.RechargeAgain();
+            anim.SetTrigger("Attack");
         }
+
     }
 
+    protected virtual bool CheckAttack()
+    {
+        if (follow == null) return false;
+        if (TargetIsVisible) return true;
+        return false;
+    }
+
+    public virtual void Attack()
+    {
+        weapon.Attack();
+    }
+
+    public void ChangeWeapon(Weapon newWeapon)
+    {
+        if (weapon != null) Destroy(weapon.gameObject);
+        weapon = newWeapon;
+        anim.runtimeAnimatorController = weapon.animController;
+    }
 
 }

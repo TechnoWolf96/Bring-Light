@@ -20,13 +20,14 @@ public class OneBulletSpell : NPCSpell
 
     public override void Activate()
     {
+        if (stalker.follow == null) return;
         Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Bullet>().
-            InstBullet(bulletParameters, transform.parent, stalker.follow);
+            InstBullet(bulletParameters, transform.parent, stalker.follow.transform);
     }
 
     public override void CalculatePriority()
     {
-        if (stalker.TargetIsVisible) priority = priorityIfTargetIsVisible;
+        if (stalker.TargetIsVisible && stalker.follow != null) priority = priorityIfTargetIsVisible;
         else priority = 0;
     }
 

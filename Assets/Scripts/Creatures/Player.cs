@@ -32,6 +32,16 @@ public class Player : Creature, IAttackWithWeapon
         }
     }
 
+    protected override void FixedUpdate()
+    {
+        currentTimeStunning -= Time.deltaTime; //Отсчет оставшегося времени оглушения
+        if (isStunned && currentTimeStunning < 0)
+        {
+            isStunned = false;
+            rb.velocity = Vector2.zero;
+        }
+    }
+
     public void Attack()
     {
         weapon.Attack();

@@ -17,13 +17,13 @@ TagManager:
   - Water
   - UI
   - Enemies
-  - Players
+  - Allies
   - Corpses
   - Obstacles
   - Bullets
   - Items
   - SmallObstacles
-  - 
+  - PhysicalSupport
   - 
   - 
   - 

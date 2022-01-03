@@ -3,15 +3,14 @@ using UnityEngine.AI;
 
 
 // Класс "Преследователь"
-public abstract class Stalker : Creature
+public class Stalker : Creature, IObserver
 {
     [Header("Stalker:")]
     public float distanceDetection; // Дистанция обнаружения объекта для преследования
     public LayerMask detectionableLayer; // Слой, который отслеживает преследователь (Слой игроков)
-    //public Transform standPosition;     // Позиция, которая считается центром существа
 
-    [HideInInspector] public Transform follow; // Текущий объект для преследования
-    protected NavMeshAgent navAgent; // Агент NawMesh, закрепленный на данном объекте
+    [HideInInspector] public Creature follow; // Текущий объект для преследования
+    [HideInInspector] public NavMeshAgent navAgent; // Агент NawMesh, закрепленный на данном объекте
     protected bool right = true;
 
     protected override void Start()
@@ -32,14 +31,24 @@ public abstract class Stalker : Creature
         {
             anim.speed = 1f;
             Stalk(); // Если объект не оглушен и есть за кем бежать, то начинает преследование
-            LookAt(follow);
+            LookAt(follow.transform);
         }
     }
 
     protected void CheckStalk() // Проверка, есть ли в зоне обнаружения объекты нужного слоя
     {
         if (follow == null) // Если не за кем бежать, то ищем объект для преследования
-            follow = Physics2D.OverlapCircle(transform.position, distanceDetection, detectionableLayer)?.GetComponent<Transform>();
+        {
+            Creature newFollow = Physics2D.OverlapCircle(transform.position, distanceDetection, detectionableLayer)?.GetComponent<Creature>();
+            if (newFollow != null) SetFollow(newFollow);
+        }
+            
+    }
+    protected void SetFollow(Creature newTarget)
+    {
+        follow?.RemoveObserver(this);
+        follow = newTarget;
+        newTarget.AddObserver(this);
     }
 
     protected virtual void Stalk() // Объект получает точку назначения и начинает преследование
@@ -48,7 +57,7 @@ public abstract class Stalker : Creature
         if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
         anim.SetBool("Walk", true);
         navAgent.isStopped = false;
-        navAgent.SetDestination(follow.position);
+        navAgent.SetDestination(follow.transform.position);
     }
 
     protected virtual void OnDrawGizmosSelected() // Рисует область обнаружения
@@ -60,20 +69,26 @@ public abstract class Stalker : Creature
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
         base.GetDamage(attack, attacking, bullet);
+        if (isDeath) return;
         navAgent.isStopped = true; // При оглушении преследователь не может бежать за нападающим
         if (attacking.position != transform.position)   // Если атакующий не он сам, то:
-            follow = attacking; // При получении урона преследователь бежит за нападающим
+            SetFollow(attacking.GetComponent<Creature>()); // При получении урона преследователь бежит за нападающим
     }
-
-    
-
 
 
     public override void Death()
     {
         base.Death();
         navAgent.enabled = false;
+        if (follow != null)
+            follow.stalkers.Remove(this);
     }
 
+    public void UpdateData()
+    {
+        follow = null;
+        navAgent.isStopped = true;
+        anim.SetBool("Walk", false);
 
+    }
 }
