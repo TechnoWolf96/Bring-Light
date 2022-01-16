@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 3387891377288804287}
   - component: {fileID: 1864342780324845357}
   - component: {fileID: 2944152205274575984}
+  - component: {fileID: 1503519012816702954}
   m_Layer: 6
   m_Name: SkeletonWizard
   m_TagString: Enemy
@@ -436,10 +437,29 @@ MonoBehaviour:
   obstacleBulletLayer:
     serializedVersion: 2
     m_Bits: 512
-  rayThickness: 0.2
+  rayThickness: 0.001
   spells:
   - {fileID: 5391937706957075139}
   - {fileID: 8196056806167179759}
+--- !u!114 &1503519012816702954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2944152205274575987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b1b2b7ffade2d468b7f964ef5bd1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - Guid:
+      Data1: -1636401354
+      Data2: 1132577541
+      Data3: 586512517
+      Data4: 124789838
+    Path: event:/SkeletonFootsteps
 --- !u!1 &5391937706957075141
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,6 +657,13 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
   bullet: {fileID: 1846568080611197498, guid: 38698d3823675c048a33ba0217aa8269, type: 3}
+  sound:
+    Guid:
+      Data1: -1797572123
+      Data2: 1118365808
+      Data3: -1877671522
+      Data4: 1753422403
+    Path: event:/ArrowOfDeath (Creating)
 --- !u!1 &6359654414960432589
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class Stalker : Creature, IObserver
         {
             anim.speed = 1f;
             Stalk(); // Если объект не оглушен и есть за кем бежать, то начинает преследование
-            LookAt(follow.transform);
+            LookAt(follow.transform.position);
         }
     }
 

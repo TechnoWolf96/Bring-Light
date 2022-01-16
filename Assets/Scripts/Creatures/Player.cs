@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class Player : Creature, IAttackWithWeapon
 {
@@ -6,6 +7,8 @@ public class Player : Creature, IAttackWithWeapon
     protected Inventory inventory;                    // Инвентарь
     protected Weapon weapon;
 
+    [SerializeField]
+    protected EventReference sound;
     public void ChangeWeapon(Weapon newWeapon)
     {
         if (weapon != null) Destroy(weapon.gameObject);
@@ -16,6 +19,7 @@ public class Player : Creature, IAttackWithWeapon
     protected override void Start()
     {
         base.Start();
+
         rb = GetComponent<Rigidbody2D>();
         checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
         inventory = GameObject.FindWithTag("Script").GetComponent<Inventory>();
@@ -27,6 +31,7 @@ public class Player : Creature, IAttackWithWeapon
         if (!isStunned) Move();
         if (Input.GetMouseButtonDown(0) && !isStunned && weapon.IsRecharged())
         {
+            Library.Play3DSound(sound, transform);
             weapon.RechargeAgain();
             anim.SetTrigger("Attack");
         }
@@ -44,25 +49,31 @@ public class Player : Creature, IAttackWithWeapon
 
     public void Attack()
     {
+        
         weapon.Attack();
     }
 
     private void Move()
     {
-        float InputX = Input.GetAxisRaw("Horizontal");
-        float InputY = Input.GetAxisRaw("Vertical");
+        Vector2 moveDirection = new Vector2();
+        moveDirection.x = Input.GetAxisRaw("Horizontal");
+        moveDirection.y = Input.GetAxisRaw("Vertical");
         
-        if (InputX == 0 && InputY == 0)
+        if (moveDirection.x == 0 && moveDirection.y == 0)
         {
             anim.SetBool("Walk", false);
             rb.velocity = Vector2.zero;
+            LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             return;
         }
-        anim.SetFloat("HorizontalMovement", InputX);
-        anim.SetFloat("VerticalMovement", InputY);
-
-        Vector2 moveDirection = new Vector2(InputX, InputY).normalized;
-        rb.velocity = moveDirection * speed;
+        LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        /*
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 faceDirection = mousePosition - (Vector2)transform.position;
+        anim.SetFloat("HorizontalMovement", faceDirection.x);
+        anim.SetFloat("VerticalMovement", faceDirection.y);
+        */
+        rb.velocity = moveDirection.normalized * speed;
         anim.SetBool("Walk", true);
     }
 

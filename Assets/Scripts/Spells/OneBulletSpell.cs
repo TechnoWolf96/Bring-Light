@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class OneBulletSpell : NPCSpell
 {
@@ -7,7 +8,8 @@ public class OneBulletSpell : NPCSpell
 
     [SerializeField] protected Bullet_Parameters bulletParameters;
     [SerializeField] protected GameObject bullet;
-    
+    [SerializeField] protected EventReference sound;
+
 
     protected SmartRangedAttackPosition stalker;
 
@@ -20,6 +22,9 @@ public class OneBulletSpell : NPCSpell
 
     public override void Activate()
     {
+        FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance(sound);
+        instance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+        instance.start();
         if (stalker.follow == null) return;
         Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Bullet>().
             InstBullet(bulletParameters, transform.parent, stalker.follow.transform);

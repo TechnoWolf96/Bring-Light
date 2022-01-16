@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class MeleeWeapon : Weapon
 {
@@ -6,6 +7,7 @@ public class MeleeWeapon : Weapon
     public AttackParameters attack; // Параметры атаки
     public float radiusAttack;
 
+    
 
     public override void Attack()
     {
@@ -22,6 +24,7 @@ public class MeleeWeapon : Weapon
     {
         Gizmos.color = Color.gray;
         Gizmos.DrawWireSphere(transform.position, radiusAttack);
+        
     }
 
 

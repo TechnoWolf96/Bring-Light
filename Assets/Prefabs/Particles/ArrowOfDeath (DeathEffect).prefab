@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 356596601285239183}
   - component: {fileID: 1809129272}
   - component: {fileID: 3742550343644248776}
+  - component: {fileID: 7675349423176305909}
   m_Layer: 0
   m_Name: ArrowOfDeath (DeathEffect)
   m_TagString: Untagged
@@ -4941,3 +4942,33 @@ MonoBehaviour:
     - {x: -0.4999999, y: -0.86602545}
   drawingEnabled: 1
   drawingTranslucencyEnabled: 0
+--- !u!114 &7675349423176305909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022658796610372179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1590332863
+      Data2: 1248067995
+      Data3: -657748825
+      Data4: -1180700863
+    Path: event:/ArrowOfDeath (DeathEffect)
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

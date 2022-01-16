@@ -58,7 +58,7 @@ public abstract class Creature : MonoBehaviour, IObservable
         Vector2 pushDirection = new Vector2(transform.position.x - pusher.position.x, transform.position.y - pusher.position.y).normalized;
         rb.drag = 0f;
         rb.velocity = pushDirection * force * xPushMass;
-        LookAt(pusher);
+        LookAt(pusher.position);
     }
 
     // ѕолучение урона с силой отталкивани€ от позиции атакующего и оглушением, возвращает был ли крит
@@ -127,9 +127,9 @@ public abstract class Creature : MonoBehaviour, IObservable
         return result;
     }
 
-    public void LookAt(Transform target)
+    public void LookAt(Vector2 target)
     {
-        Vector2 directionMovement = VectorFunction.ToAxisAndNormalize(target.position - transform.position);
+        Vector2 directionMovement = VectorFunction.ToAxisAndNormalize(target - (Vector2)transform.position);
         anim.SetFloat("HorizontalMovement", directionMovement.x);
         anim.SetFloat("VerticalMovement", directionMovement.y);
     }

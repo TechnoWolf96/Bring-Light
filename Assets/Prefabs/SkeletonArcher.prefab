@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 2993137258337507691}
   - component: {fileID: 2257023429935528441}
   - component: {fileID: 3338941852430310056}
+  - component: {fileID: -4406018328533419538}
   m_Layer: 6
   m_Name: SkeletonArcher
   m_TagString: Player
@@ -300,6 +301,31 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   rayThickness: 0.2
+--- !u!114 &-4406018328533419538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3338941852430310055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b1b2b7ffade2d468b7f964ef5bd1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - Guid:
+      Data1: -1636401354
+      Data2: 1132577541
+      Data3: 586512517
+      Data4: 124789838
+    Path: event:/SkeletonFootsteps
+  - Guid:
+      Data1: -795420481
+      Data2: 1245177149
+      Data3: -345395817
+      Data4: -2119061263
+    Path: event:/StrechingBow
 --- !u!1 &3338941853277478324
 GameObject:
   m_ObjectHideFlags: 0

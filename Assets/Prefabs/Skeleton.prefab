@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 7066068728849598350}
   - component: {fileID: 7336424836373742666}
   - component: {fileID: 5984011938623055064}
+  - component: {fileID: 1431135314381751606}
   m_Layer: 6
   m_Name: Skeleton
   m_TagString: Player
@@ -526,6 +527,25 @@ SortingGroup:
   m_SortingLayerID: 1845381279
   m_SortingLayer: 2
   m_SortingOrder: 0
+--- !u!114 &1431135314381751606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066068728849598342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b1b2b7ffade2d468b7f964ef5bd1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - Guid:
+      Data1: -1636401354
+      Data2: 1132577541
+      Data3: 586512517
+      Data4: 124789838
+    Path: event:/SkeletonFootsteps
 --- !u!1 &7066068729696698517
 GameObject:
   m_ObjectHideFlags: 0
