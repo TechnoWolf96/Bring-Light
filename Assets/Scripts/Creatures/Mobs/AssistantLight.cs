@@ -5,11 +5,11 @@ using UnityEngine;
 public class AssistantLight : SmartDistance
 {
     [Header("Assistant Light:")]
-    public Transform positionLight;
+    public Creature positionLight;
 
     protected override void Start()
     {
         base.Start();
-        //follow = positionLight;
+        follow = positionLight;
     }
 }

@@ -105,7 +105,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4876,7 +4876,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1362716282820112617, guid: a6bcb9712c4a192449b56167972372c6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.77254903}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6509804}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4898,9 +4898,10 @@ GameObject:
   - component: {fileID: 1625587952395883447}
   - component: {fileID: 1625587952395883464}
   - component: {fileID: 1625587952395883465}
-  - component: {fileID: -1635812302682933702}
   - component: {fileID: 7381916059979012925}
   - component: {fileID: -4832537940934438392}
+  - component: {fileID: -2397012915800746523}
+  - component: {fileID: -4023677289916779439}
   m_Layer: 0
   m_Name: Flame
   m_TagString: Untagged
@@ -4962,8 +4963,8 @@ MonoBehaviour:
   occlusionLayer: 0
   translucentLayer: 0
   translucentPresetId: 0
-  color: {r: 0.6037736, g: 0.45448226, b: 0, a: 1}
-  size: 2.2
+  color: {r: 0.6603774, g: 0.5460818, b: 0, a: 1}
+  size: 3.5
   spotAngleInner: 360
   spotAngleOuter: 360
   coreSize: 0.5
@@ -5020,39 +5021,6 @@ MonoBehaviour:
   startIntensity: 0
   speedChanging: 0.3
   startWithRandomIntensity: 1
---- !u!114 &-1635812302682933702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625587952395883466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53de8723dfede3d4d86c7ef3e4c3fefd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  maxHealth: 1
-  health: 1
-  protect:
-    physical: 0
-    holy: 0
-    fiery: 0
-    cold: 0
-    dark: 0
-    poison: 0
-  xPushMass: 0
-  physicalSupport: {fileID: 0}
-  distanceDetection: 5
-  detectionableLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  follow: {fileID: 0}
-  navAgent: {fileID: 0}
-  maxStopDistance: 2
-  minStopDistance: 1
-  runFromDistance: 0
 --- !u!50 &7381916059979012925
 Rigidbody2D:
   serializedVersion: 4
@@ -5085,7 +5053,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 12
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -5096,3 +5064,48 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-2397012915800746523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625587952395883466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89aa8d7632cc5d54a923ae52138d36ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  maxHealth: 1
+  health: 1
+  protect:
+    physical: 0
+    holy: 0
+    fiery: 0
+    cold: 0
+    dark: 0
+    poison: 0
+  xPushMass: 1
+  physicalSupport: {fileID: 0}
+  distanceDetection: 0
+  detectionableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  follow: {fileID: 0}
+  navAgent: {fileID: 0}
+  maxStopDistance: 1
+  minStopDistance: 0.1
+  runFromDistance: 0
+  positionLight: {fileID: 0}
+--- !u!210 &-4023677289916779439
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625587952395883466}
+  m_Enabled: 1
+  m_SortingLayerID: 1845381279
+  m_SortingLayer: 2
+  m_SortingOrder: 1
