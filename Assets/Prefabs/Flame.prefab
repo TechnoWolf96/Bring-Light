@@ -4964,7 +4964,7 @@ MonoBehaviour:
   translucentLayer: 0
   translucentPresetId: 0
   color: {r: 0.6603774, g: 0.5460818, b: 0, a: 1}
-  size: 3.5
+  size: 3
   spotAngleInner: 360
   spotAngleOuter: 360
   coreSize: 0.5
@@ -5108,4 +5108,4 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 1845381279
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 0
