@@ -7,11 +7,11 @@ public class Equipment : MonoBehaviour
     public int speedBonus;
     public int healthBonus;
     public ProtectParameters protection;
-    protected CheckParameters_NotRelease checkParameters;
+    protected CheckParameters checkParameters;
 
     protected virtual void Start()
     {
-        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters_NotRelease>();
+        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
         checkParameters.currentPlayer.protect += protection;
         checkParameters.currentPlayer.maxHealth += healthBonus;
         checkParameters.currentPlayer.health += healthBonus;

@@ -6,19 +6,19 @@ public class HealPotion_Item : UsingableNumbered
 {
     public int heal;
 
-    private CheckParameters_NotRelease checkParameters;
+    private CheckParameters checkParameters;
 
     protected override void Start()
     {
         base.Start();
-        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters_NotRelease>();
+        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
     }
 
     public override bool UseItem()
     {
         if (!base.UseItem()) return false;
 
-        Player_NotRelease player = checkParameters.currentPlayer;
+        Player player = checkParameters.currentPlayer;
         checkParameters.currentPlayer.health += heal;
         if (player.health > player.maxHealth)
             player.health = player.maxHealth;

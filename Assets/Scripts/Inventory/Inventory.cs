@@ -285,7 +285,7 @@ public class Inventory : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Weapon:
-                equippedItem = playerPosition.GetComponentInChildren<Weapon_notRelease>()?.gameObject;
+                equippedItem = playerPosition.GetComponentInChildren<Weapon>()?.gameObject;
                 break;
             case ItemType.Ring:
                 equippedItem = playerPosition.GetComponentInChildren<Ring>()?.gameObject;

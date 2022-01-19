@@ -36,14 +36,9 @@ public class CloseAttack : Stalker, IAttackWithWeapon
     }
 
 
-    public void Test()
-    {
-        print("Work Test");
-    }
 
     public virtual void Attack()
     {
-        print("Work Attack");
         weapon.Attack();
     }
 

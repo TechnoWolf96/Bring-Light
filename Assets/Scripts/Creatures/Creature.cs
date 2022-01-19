@@ -67,7 +67,7 @@ public abstract class Creature : MonoBehaviour, IObservable
         anim.speed = 1f;
         int realDamage = GetRealDamage(attack);   // Подсчет реального урона
         health -= realDamage;
-        print(realDamage);
+        //print(realDamage);
         if (bullet != null) PushBack(attack.pushForce, bullet, attack.timeStunning); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking, attack.timeStunning);             // Если рукопашный урон - толчок от атакующего
         

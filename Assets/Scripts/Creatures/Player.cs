@@ -80,8 +80,6 @@ public class Player : Creature, IAttackWithWeapon
     public override void Death()
     {
         base.Death();
-        Weapon_notRelease weapon = GetComponentInChildren<Weapon_notRelease>();
-        if (weapon != null) weapon.enabled = false;
         inventory.enabled = false;
         rb.velocity = Vector2.zero;
         enabled = false;

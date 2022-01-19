@@ -35,7 +35,7 @@ public class SmartDistance : Stalker
     {
         randomStopDistance = Random.Range(minStopDistance, maxStopDistance);
         distanceDefined = true;
-        print(randomStopDistance);
+        //print(randomStopDistance);
     }
     protected virtual void RunFromFollow()
     {
@@ -43,7 +43,6 @@ public class SmartDistance : Stalker
         Collider2D collider = Physics2D.OverlapCircle(newPosition, 0.7f);
         if (collider != null)
         {
-            print("Stop");
             RunStop();
             return;
         }
