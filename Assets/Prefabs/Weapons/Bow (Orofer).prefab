@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5039367632838523144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5039367632838523159}
+  - component: {fileID: -217471825552855900}
+  m_Layer: 7
+  m_Name: Bow (Orofer)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5039367632838523159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039367632838523144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-217471825552855900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039367632838523144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb440b59bcc42e4f9d03df21cefadeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rechargeTime: 0.5
+  animController: {fileID: 9100000, guid: b0888adbbb0ed7f4a965bb8f53c63aa0, type: 2}
+  layer:
+    serializedVersion: 2
+    m_Bits: 576
+  attackSound:
+    Guid:
+      Data1: -795420481
+      Data2: 1245177149
+      Data3: -345395817
+      Data4: -2119061263
+    Path: event:/StrechingBow
+  timeOriginalAttackAnimation: 0.66
+  bulletParameters:
+    speed: 20
+    attack:
+      damages:
+      - typeDamage: 0
+        minDamage: 30
+        maxDamage: 40
+      pushForce: 1500
+      critChance: 0
+  bullet: {fileID: 4070809926872651012, guid: fb4b00762257cd9468616ace7d3403fa, type: 3}

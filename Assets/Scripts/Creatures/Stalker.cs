@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 
 // Класс "Преследователь"
-public class Stalker : Creature, IObserver
+public class Stalker : Creature
 {
     [Header("Stalker:")]
     public float distanceDetection; // Дистанция обнаружения объекта для преследования
@@ -11,7 +11,6 @@ public class Stalker : Creature, IObserver
 
     [HideInInspector] public Creature follow; // Текущий объект для преследования
     [HideInInspector] public NavMeshAgent navAgent; // Агент NawMesh, закрепленный на данном объекте
-    protected bool right = true;
 
     protected override void Start()
     {
@@ -25,11 +24,9 @@ public class Stalker : Creature, IObserver
     protected override void Update()
     {
         base.Update();
-        if (isDeath) return;
         CheckStalk(); // Поиск объекта для преследования
-        if (!isStunned && follow != null)
+        if (follow != null)
         {
-            anim.speed = 1f;
             Stalk(); // Если объект не оглушен и есть за кем бежать, то начинает преследование
             LookAt(follow.transform.position);
         }
@@ -41,20 +38,19 @@ public class Stalker : Creature, IObserver
         {
             Creature newFollow = Physics2D.OverlapCircle(transform.position, distanceDetection, detectionableLayer)?.GetComponent<Creature>();
             if (newFollow != null) SetFollow(newFollow);
+            else follow = null;
         }
             
     }
     protected void SetFollow(Creature newTarget)
     {
-        follow?.RemoveObserver(this);
         follow = newTarget;
-        newTarget.AddObserver(this);
     }
 
     protected virtual void Stalk() // Объект получает точку назначения и начинает преследование
     {
         // Т.к скорость в NavAgent и в velocity накладываются друг на друга, то velocity нужно занулить
-        if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
+        //if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
         anim.SetBool("Walk", true);
         navAgent.isStopped = false;
         navAgent.SetDestination(follow.transform.position);
@@ -69,8 +65,6 @@ public class Stalker : Creature, IObserver
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
         base.GetDamage(attack, attacking, bullet);
-        if (isDeath) return;
-        navAgent.isStopped = true; // При оглушении преследователь не может бежать за нападающим
         if (attacking.position != transform.position)   // Если атакующий не он сам, то:
             SetFollow(attacking.GetComponent<Creature>()); // При получении урона преследователь бежит за нападающим
     }
@@ -78,17 +72,7 @@ public class Stalker : Creature, IObserver
 
     public override void Death()
     {
-        base.Death();
         navAgent.enabled = false;
-        if (follow != null)
-            follow.stalkers.Remove(this);
-    }
-
-    public void UpdateData()
-    {
-        follow = null;
-        navAgent.isStopped = true;
-        anim.SetBool("Walk", false);
-
+        base.Death();
     }
 }

@@ -66,8 +66,6 @@ public class SmartDistance : Stalker
 
     protected override void Stalk()
     {
-        // Т.к скорость в NavAgent и в velocity накладываются друг на друга, то velocity нужно занулить
-        if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
         // Как только покинули максимально допустимую дистанцию - должны обновить случайную дистанцию
         if (!distanceDefined && Vector2.Distance(follow.transform.position, transform.position) > maxStopDistance)
             SetRandomDistance();

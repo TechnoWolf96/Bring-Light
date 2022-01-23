@@ -7,16 +7,16 @@ public class RangedAttack : SmartRangedAttackPosition, IAttackWithWeapon
     protected override void Start()
     {
         base.Start();
-        ChangeWeapon(GetComponentInChildren<Weapon>());
+        weapon = GetComponentInChildren<Weapon>();
+        anim.runtimeAnimatorController = weapon.animController;
     }
 
     protected override void Update()
     {
         base.Update();
-        if (isDeath) return;
         if (CheckAttack() && weapon.IsRecharged())
         {
-            weapon.RechargeAgain();
+            weapon.BeginAttack();
             anim.SetTrigger("Attack");
         }
 
@@ -32,13 +32,6 @@ public class RangedAttack : SmartRangedAttackPosition, IAttackWithWeapon
     public virtual void Attack()
     {
         weapon.Attack();
-    }
-
-    public void ChangeWeapon(Weapon newWeapon)
-    {
-        if (weapon != null) Destroy(weapon.gameObject);
-        weapon = newWeapon;
-        anim.runtimeAnimatorController = weapon.animController;
     }
 
 }

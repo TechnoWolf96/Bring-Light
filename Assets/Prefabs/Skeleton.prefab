@@ -203,7 +203,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7066068728849598348}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &6613287438332650268
 CapsuleCollider2D:
@@ -221,6 +221,37 @@ CapsuleCollider2D:
   m_Offset: {x: 0.003559534, y: 0.032037947}
   m_Size: {x: 0.7081148, y: 0.3094384}
   m_Direction: 1
+--- !u!1 &6522030059267570693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7524417759118998494}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7524417759118998494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6522030059267570693}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7066068728137797513}
+  m_Father: {fileID: 7066068728849598348}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6594022528340181148
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +283,7 @@ Transform:
   - {fileID: 1334365736029907397}
   - {fileID: 173652692012567433}
   m_Father: {fileID: 7066068728849598348}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1691311592739248162
 Animator:
@@ -298,11 +329,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7066068728137797510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9109998, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7066068728849598348}
-  m_RootOrder: 1
+  m_Father: {fileID: 7524417759118998494}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7066068728137797512
 MonoBehaviour:
@@ -321,15 +352,21 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 128
+  attackSound:
+    Guid:
+      Data1: -1599129012
+      Data2: 1077786795
+      Data3: 557067172
+      Data4: -1650646905
+    Path: event:/SlashRapier
+  timeOriginalAttackAnimation: 0
   attack:
     damages:
     - typeDamage: 0
-      minDamage: 20
-      maxDamage: 25
+      minDamage: 25
+      maxDamage: 35
     pushForce: 8
-    timeStunning: 0.2
     critChance: 0
-    critGainPercentage: 0
   radiusAttack: 0.7
 --- !u!1 &7066068728849598342
 GameObject:
@@ -368,10 +405,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7066068729696698516}
-  - {fileID: 7066068728137797513}
   - {fileID: 7066068729871072269}
   - {fileID: 5361739935371088606}
   - {fileID: 964220404201024327}
+  - {fileID: 7524417759118998494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -388,7 +425,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 3
-  m_LinearDrag: 100000
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -409,8 +446,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.013683438, y: 0.5289068}
-  m_Size: {x: 0.7486503, y: 1.3140583}
+  m_Offset: {x: -0.013683438, y: 0.65929794}
+  m_Size: {x: 0.7486503, y: 1.5748405}
   m_Direction: 0
 --- !u!95 &7066068728849598344
 Animator:
@@ -444,8 +481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  maxHealth: 50
-  health: 50
+  maxHealth: 150
+  health: 150
   protect:
     physical: 0
     holy: 0
@@ -453,7 +490,6 @@ MonoBehaviour:
     cold: 0
     dark: 0
     poison: 0
-  xPushMass: 1.2
   physicalSupport: {fileID: 5087124431796381790}
   distanceDetection: 4
   detectionableLayer:
@@ -648,7 +684,7 @@ MonoBehaviour:
   shadowDistanceMin: 0.5
   shadowDistanceMax: 1
   shadowTranslucency: 0.7
-  maskType: 0
+  maskType: 1
   maskLit: 0
   maskPivot: 0
   maskLayer: 0
@@ -664,7 +700,7 @@ MonoBehaviour:
     spriteRenderer: {fileID: 7066068729696698519}
   mainShape:
     shadowType: 3
-    maskType: 0
+    maskType: 1
     maskPivot: 0
     transform: {fileID: 7066068729696698516}
 --- !u!70 &2721938287093553345
@@ -693,7 +729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7066068729871072269}
   m_Layer: 6
-  m_Name: Body Position
+  m_Name: BodyCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -711,5 +747,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7066068728849598348}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

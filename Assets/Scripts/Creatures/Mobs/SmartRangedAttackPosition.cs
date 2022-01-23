@@ -17,7 +17,6 @@ public class SmartRangedAttackPosition : SmartDistance
             Vector2.Distance(follow.transform.position, transform.position), obstacleBulletLayer);
         if (info.collider == null)
             base.RunFromFollow();
-
     }
 
     protected override void Stalk()

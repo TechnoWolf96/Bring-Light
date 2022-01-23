@@ -9,17 +9,17 @@ public class CloseAttack : Stalker, IAttackWithWeapon
     protected override void Start()
     {
         base.Start();
-        ChangeWeapon(GetComponentInChildren<Weapon>());
+        weapon = GetComponentInChildren<Weapon>();
+        anim.runtimeAnimatorController = weapon.animController;
     }
 
 
     protected override void Update()
     {
         base.Update();
-        if (isDeath) return;
         if (CheckAttack() && weapon.IsRecharged())
         {
-            weapon.RechargeAgain();
+            weapon.BeginAttack();
             anim.SetTrigger("Attack");
         }
             
@@ -47,13 +47,6 @@ public class CloseAttack : Stalker, IAttackWithWeapon
         base.OnDrawGizmosSelected();
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radiusTriggerAttack);
-    }
-
-    public void ChangeWeapon(Weapon newWeapon)
-    {
-        if (weapon != null) Destroy(weapon.gameObject);
-        weapon = newWeapon;
-        anim.runtimeAnimatorController = weapon.animController;
     }
 
 

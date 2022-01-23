@@ -9,12 +9,17 @@ public class Spellcaster : SmartRangedAttackPosition
     [Header("Spellcaster")]
     public List<NPCSpell> spells;
     protected NPCSpell selectedSpell;
+    protected bool canCastSpell = true;
 
+    public void CanCastSpell()
+    {
+        canCastSpell = true;
+    }
 
     protected override void Update()
     {
-        base.Update(); if (isDeath) return;
-        if (!isStunned && !anim.GetBool("Walk"))
+        base.Update();
+        if (selectedSpell == null && canCastSpell)
             TryCastSpell();
     }
 
@@ -25,19 +30,15 @@ public class Spellcaster : SmartRangedAttackPosition
     protected virtual void TryCastSpell()
     {
         SelectRandomSpell();
-        // Если у всех имеющихся заклинаний приоритет 0 - ничего не делаем
-        if (selectedSpell == null) return;
+        if (selectedSpell == null) return; // Если у всех имеющихся заклинаний приоритет 0 - ничего не делаем
         selectedSpell.BeginCast();
-        anim.speed = selectedSpell.speedCast;
+        anim.SetFloat("SpeedCast", selectedSpell.speedCast);
         anim.SetTrigger("Spellcast");
-        
-        isStunned = true;
-        currentTimeStunning = 10000f;
     }
 
     public void EndSpellcasting()
     {
-        isStunned = false;
+        selectedSpell?.StopCast();
         selectedSpell = null;
     }
 
@@ -67,7 +68,8 @@ public class Spellcaster : SmartRangedAttackPosition
 
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
-        selectedSpell?.StopCast();
+        EndSpellcasting();  // Заклинание прерывается
+        canCastSpell = false;   // Воспроизводится анимация получения урона
         base.GetDamage(attack, attacking, bullet);
     }
 

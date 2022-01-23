@@ -6,8 +6,6 @@ public class SelfHealingSpell : NPCSpell
     public int heal;
     public GameObject particles;
     public int maxPriority;
-
-    protected Creature creature;
     protected HealthBar HealthBar;
 
     protected ParticleSystem instParticles;
@@ -21,9 +19,9 @@ public class SelfHealingSpell : NPCSpell
         //instParticles?.Stop();
     }
 
-    protected virtual void Start()
+    protected override void Start()
     {
-        creature = GetComponentInParent<Creature>();
+        base.Start();
         HealthBar = GetComponentInParent<HealthBar>();
     }
 

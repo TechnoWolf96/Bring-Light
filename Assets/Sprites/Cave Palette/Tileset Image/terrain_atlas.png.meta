@@ -3079,7 +3079,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -17705,9 +17705,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 992
-        y: 320
+        y: 288
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -18368,27 +18368,6 @@ TextureImporter:
       bones: []
       spriteID: 0a03b776f5dd08fd0800000000000000
       internalID: -2341628404404899680
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: terrain_atlas_726
-      rect:
-        serializedVersion: 2
-        x: 992
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 665278a071e139fa0800000000000000
-      internalID: -5795255211185986202
       vertices: []
       indices: 
       edges: []

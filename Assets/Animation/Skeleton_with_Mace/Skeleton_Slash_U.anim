@@ -29,7 +29,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.36666667
-        value: {x: 0.13, y: 0.31, z: 0}
+        value: {x: 0.131, y: 0.945, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -39,7 +39,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Mace (Skeleton)
+    path: Weapon
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves:
@@ -70,7 +70,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 100988193
+      path: 1855955664
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -126,7 +126,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.36666667
-        value: 0.13
+        value: 0.131
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -137,7 +137,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Mace (Skeleton)
+    path: Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -154,7 +154,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.36666667
-        value: 0.31
+        value: 0.945
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -165,7 +165,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Mace (Skeleton)
+    path: Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -193,7 +193,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Mace (Skeleton)
+    path: Weapon
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves: []

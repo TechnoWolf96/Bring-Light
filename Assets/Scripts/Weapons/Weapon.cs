@@ -1,14 +1,13 @@
 using UnityEngine;
-
+using FMODUnity;
 
 public interface IAttackWithWeapon
 {
-    public void ChangeWeapon(Weapon newWeapon);
     public void Attack();
 }
 
 
-
+// Объект со скриптом Weapon должен быть дочерним в иерархии к объекту Weapon
 public abstract class Weapon : MonoBehaviour
 {
     
@@ -16,17 +15,25 @@ public abstract class Weapon : MonoBehaviour
     public float rechargeTime;              // Перезарядка
     public RuntimeAnimatorController animController;
     public LayerMask layer;         // Слой объектов, по которому будет проходить атака
+    [SerializeField] protected EventReference attackSound;
+    [SerializeField] protected float timeOriginalAttackAnimation;   // Время оригинальной анимации атаки (Выставляется вручную)
 
-    protected Transform creaturePos;          // Позиция существа, держащего оружие
+    public float GetTimeOriginalAttackAnimation() {return timeOriginalAttackAnimation;}
+
     protected Creature creature;            // Скрипт существа игрока, держащего оружие
     protected float currentRechargeTime;           // Текущее время до перезарядки
 
     public abstract void Attack(); // Атака
 
+    public void BeginAttack()
+    { 
+        Library.Play3DSound(attackSound, creature.transform);
+        RechargeAgain();
+    }
+
     protected virtual void Start()
     {
         currentRechargeTime = rechargeTime;
-        creaturePos = transform.parent;
         creature = GetComponentInParent<Creature>();
     }
 

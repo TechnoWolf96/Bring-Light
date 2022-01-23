@@ -1,82 +1,58 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 
 // Универсальный класс - "Существо", является предком любого живого объекта на сцене
-public abstract class Creature : MonoBehaviour, IObservable
+public abstract class Creature : MonoBehaviour, IDestructable
 {
     [Header("Creature:")]
     public float speed;                 // Скорость существа
     public int maxHealth;               // Максимальный запас здоровья
     public int health;                  // Текущий запас здоровья
     public ProtectParameters protect;   // Параметры защиты
-    [Min(0f)] public float xPushMass = 1;         // Множитель мощности  и времени отталкивания при получении урона
 
-    protected Animator anim;          // Анимация существа
-    protected bool isStunned = false;             // Является ли существо оглушенным
-    protected bool isDeath = false;               // Является ли существо мертвым
-    protected float currentTimeStunning = 0f;   // Текущее время оглушения
-    protected Rigidbody2D rb;                   // Агент RigitBody существа
-    protected Collider2D collider;              // Коллайдер существа
-    protected HealthBar healthBar;              // Полоска здоровья существа
-
+    protected Animator anim;            // Анимация существа
+    protected Rigidbody2D rb;           // Агент RigitBody существа
+    protected HealthBar healthBar;      // Полоска здоровья существа
+    protected Transform bodyCenter;    // Центр тела существа (необходимо для верного расчета отталкивания при получении урона)
     [SerializeField] protected GameObject physicalSupport;       // Физическая опора существа
 
-    [HideInInspector] public List<IObserver> stalkers;       // Список преследователей данного существа
-
+    public Transform GetBodyCenter() { return bodyCenter; }
 
 
 
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
         healthBar ??= GetComponent<HealthBar>();
         anim = GetComponent<Animator>();
-        stalkers = new List<IObserver>();
+        bodyCenter = gameObject.transform.Find("BodyCenter");
     }
 
     protected virtual void Update() {}
 
-    protected virtual void FixedUpdate()
-    {
-        currentTimeStunning -= Time.deltaTime; //Отсчет оставшегося времени оглушения
-        if (isStunned && currentTimeStunning < 0)
-        {
-            isStunned = false;
-            rb.drag = 100000f;
-            rb.velocity = Vector2.zero;
-        }
 
-    }
 
     // Отталкивание и оглушение при получении урона от позиции толкающего объекта
-    public void PushBack(float force, Transform pusher, float timeStunning) 
+    public void PushBack(float force, Transform pusher) 
     {
-        isStunned = true;
-        currentTimeStunning = timeStunning*xPushMass;
-        Vector2 pushDirection = new Vector2(transform.position.x - pusher.position.x, transform.position.y - pusher.position.y).normalized;
-        rb.drag = 0f;
-        rb.velocity = pushDirection * force * xPushMass;
+        Vector2 pushDirection = new Vector2(bodyCenter.position.x - pusher.position.x, bodyCenter.position.y - pusher.position.y).normalized;
+        rb.AddForce(pushDirection * force);
         LookAt(pusher.position);
     }
 
     // Получение урона с силой отталкивания от позиции атакующего и оглушением, возвращает был ли крит
     public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
-        anim.speed = 1f;
-        int realDamage = GetRealDamage(attack);   // Подсчет реального урона
-        health -= realDamage;
-        //print(realDamage);
-        if (bullet != null) PushBack(attack.pushForce, bullet, attack.timeStunning); // Если урон от снаряда - толчок от снаряда
-        else PushBack(attack.pushForce, attacking, attack.timeStunning);             // Если рукопашный урон - толчок от атакующего
+        health -= GetRealDamage(attack); // Подсчет реального урона
+        if (bullet != null) PushBack(attack.pushForce, bullet); // Если урон от снаряда - толчок от снаряда
+        else PushBack(attack.pushForce, attacking);             // Если рукопашный урон - толчок от атакующего
         
 
-        if (health <= 0 && !isDeath)   // Здоровье ниже или равно 0 - существо умирает
+        if (health <= 0)   // Здоровье ниже или равно 0 - существо умирает
         {
             health = 0;
-            Death();
             healthBar?.ShowBar();
+            Death();
             return;
         }
         healthBar?.ShowBar();
@@ -87,11 +63,10 @@ public abstract class Creature : MonoBehaviour, IObservable
 
     public virtual void Death()
     {
-        isDeath = true;
         physicalSupport.SetActive(false);
         gameObject.layer = LayerMask.NameToLayer("Corpses");
         anim.SetTrigger("Death");
-        NotifyObservers(); // Оповещение преследователей о том, что существо погибло
+        Destroy(this);
             
     }
 
@@ -100,7 +75,7 @@ public abstract class Creature : MonoBehaviour, IObservable
         int result = 0;
         foreach (var item in attack.damages)
         {
-            int preDamage = item.Damaged(attack.GetCrit(), attack.critGainPercentage);
+            int preDamage = item.Damaged();
             switch (item.typeDamage)
             {
                 case TypeDamage.Physical:
@@ -141,23 +116,6 @@ public abstract class Creature : MonoBehaviour, IObservable
         anim.SetFloat("VerticalMovement", -directionMovement.y);
     }
 
-    public void AddObserver(IObserver newObserver)
-    {
-        stalkers.Add(newObserver);
-    }
-
-    public void RemoveObserver(IObserver removableObserver)
-    {
-        stalkers.Remove(removableObserver);
-    }
-
-    public void NotifyObservers()
-    {
-        foreach (var observer in stalkers)
-        {
-            observer.UpdateData();
-        }
-    }
 
 }
 

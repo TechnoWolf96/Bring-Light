@@ -201,7 +201,7 @@ MonoBehaviour:
   shadowDistanceMin: 0.5
   shadowDistanceMax: 1
   shadowTranslucency: 0.7
-  maskType: 0
+  maskType: 1
   maskLit: 0
   maskPivot: 0
   maskLayer: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
     spriteRenderer: {fileID: 2944152204158710626}
   mainShape:
     shadowType: 3
-    maskType: 0
+    maskType: 1
     maskPivot: 0
     transform: {fileID: 2944152204158710625}
 --- !u!70 &3691745418171266440
@@ -269,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2944152205274575987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.21, y: -4.72, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2944152204158710625}
@@ -277,6 +277,7 @@ Transform:
   - {fileID: 5391937706957075138}
   - {fileID: 2571874727365013115}
   - {fileID: 3109019243701620894}
+  - {fileID: 8426403298947303955}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -293,7 +294,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 2.5
-  m_LinearDrag: 100000
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -314,8 +315,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005421877, y: 0.47372437}
-  m_Size: {x: 0.70063925, y: 1.217453}
+  m_Offset: {x: -0.005421877, y: 0.62041473}
+  m_Size: {x: 0.70063925, y: 1.5108337}
   m_Direction: 0
 --- !u!95 &2944152205274575997
 Animator:
@@ -414,8 +415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3.5
-  maxHealth: 100
-  health: 100
+  maxHealth: 200
+  health: 200
   protect:
     physical: 0
     holy: 0
@@ -423,9 +424,8 @@ MonoBehaviour:
     cold: 0
     dark: 0
     poison: 0
-  xPushMass: 1
   physicalSupport: {fileID: 2792481416819703690}
-  distanceDetection: 8
+  distanceDetection: 7
   detectionableLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -505,7 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 1
   speedCast: 0.5
-  heal: 25
+  heal: 30
   particles: {fileID: 8889867131755650115, guid: 217dd3f607b2dd24b8dd62f43782d3ac, type: 3}
   maxPriority: 6
 --- !u!1 &5393579063181510377
@@ -646,16 +646,10 @@ MonoBehaviour:
     attack:
       damages:
       - typeDamage: 0
-        minDamage: 10
-        maxDamage: 15
+        minDamage: 25
+        maxDamage: 40
       pushForce: 5
-      timeStunning: 0.15
       critChance: 0
-      critGainPercentage: 0
-    radius: 0
-    DamagedExplosionLayers:
-      serializedVersion: 2
-      m_Bits: 0
   bullet: {fileID: 1846568080611197498, guid: 38698d3823675c048a33ba0217aa8269, type: 3}
   sound:
     Guid:
@@ -751,3 +745,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6630208242780314730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8426403298947303955}
+  m_Layer: 6
+  m_Name: BodyCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8426403298947303955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630208242780314730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.585, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2944152205274575993}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,25 +1,11 @@
 using UnityEngine;
 
-[System.Serializable]
-public struct Bullet_Parameters
-{
-    [Header("Universal bullet:")]
-    public float speed;                         // Скорость пули
-    public AttackParameters attack;             // Параметры атаки пули
-
-    [Header("Explosing bullet:")]
-    public float radius;                        // Радиус взрыва
-    public LayerMask DamagedExplosionLayers;    // Слои, которые будут получать урон от взрыва
-}
-
-
+public interface IBullet_Parameters{}
 
 public abstract class Bullet : MonoBehaviour
 {
-    protected Bullet_Parameters bulletParameters;
     protected Rigidbody2D rb;
-    protected Transform target;    // Куда летит пуля
-    protected Transform shooter;   // Transform стрелка
+    protected Transform shotPoint;   // Точка выстрела
 
     [SerializeField] protected GameObject deathEffect;        // Эффект взрыва
     [SerializeField] protected GameObject critDeathEffect;    // Эффект взрыва при крите
@@ -27,31 +13,32 @@ public abstract class Bullet : MonoBehaviour
 
 
     // Задание параметров пули при ее создании
-    public virtual void InstBullet(Bullet_Parameters bulletParameters, Transform shooter, Transform target)
+    public virtual void InstBullet(IBullet_Parameters bulletParameters, Transform shotPoint, Transform target)
     {
         rb = GetComponent<Rigidbody2D>();
-        this.bulletParameters = bulletParameters;
-        this.shooter = shooter;
-        this.target = target;
+        this.shotPoint = shotPoint;
+    }
+
+    protected void SetDirectionAndSpeed(Transform targetPosition, float speed)
+    {
         // Задание направления и скорости пули
-        Vector2 direction = this.target.position - this.shooter.position;
-        rb.velocity = direction.normalized * this.bulletParameters.speed;
+        Vector2 direction = targetPosition.position - shotPoint.position;
+        rb.velocity = direction.normalized * speed;
         // Поворот пули в сторону цели
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y,
-            Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg -180);
-
-
+            Mathf.Atan2(targetPosition.position.y - transform.position.y, targetPosition.position.x - transform.position.x) * Mathf.Rad2Deg - 180);
     }
+
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == shooter.gameObject.layer)
+        if (other.gameObject.layer == shotPoint.GetComponentInParent<Transform>().gameObject.layer)
             return; // Дружественный огонь запрещен
         Collision(other);
     }
 
     protected abstract void Collision(Collider2D other);
-    protected abstract void CritEffect();
+    protected virtual void CritEffect() { }
 
 
 

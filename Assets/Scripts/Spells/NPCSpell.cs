@@ -8,6 +8,13 @@ public abstract class NPCSpell : MonoBehaviour
     public int priority;  // Ўанс выполнени€ именно этого заклинани€ (рекомендуетс€ приоритет от 1 до 10)
     public float speedCast;                 // —корость анимации исполнени€ заклинани€
 
+    protected Creature creature;
+
+    protected virtual void Start()
+    {
+        creature = GetComponentInParent<Creature>();
+    }
+
 
     // ¬ызываетс€ при начале произношени€ заклинани€
     public abstract void BeginCast();
