@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8133830177301177193}
   - component: {fileID: 1262725485484718580}
   - component: {fileID: 5242309162594873770}
+  - component: {fileID: 7999069449697635456}
   m_Layer: 0
   m_Name: Arrow (DeathEffect)
   m_TagString: Untagged
@@ -4893,3 +4894,14 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!210 &7999069449697635456
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359110183907629608}
+  m_Enabled: 1
+  m_SortingLayerID: 1845381279
+  m_SortingLayer: 2
+  m_SortingOrder: 1

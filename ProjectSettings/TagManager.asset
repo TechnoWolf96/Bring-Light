@@ -10,6 +10,8 @@ TagManager:
   - Weapon
   - Ally
   - VirtualCamera
+  - Bullet
+  - IgnoreCollisionBullet
   layers:
   - Default
   - TransparentFX
@@ -20,10 +22,10 @@ TagManager:
   - Enemies
   - Allies
   - Corpses
-  - Obstacles
+  - HighObstacles
   - Bullets
   - Items
-  - LowObstacles
+  - GroundObstacles
   - PhysicalSupport
   - Trigger
   - 

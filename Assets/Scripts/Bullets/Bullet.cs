@@ -32,7 +32,7 @@ public abstract class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == shotPoint.GetComponentInParent<Transform>().gameObject.layer)
+        if (other.gameObject.layer == shotPoint.GetComponentInParent<Transform>().gameObject.layer || other.CompareTag("IgnoreCollisionBullet"))
             return; // Дружественный огонь запрещен
         Collision(other);
     }

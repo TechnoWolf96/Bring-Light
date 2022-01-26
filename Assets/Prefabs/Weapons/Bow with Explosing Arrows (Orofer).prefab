@@ -68,5 +68,5 @@ MonoBehaviour:
     radius: 1.5
     DamagedExplosionLayers:
       serializedVersion: 2
-      m_Bits: 704
+      m_Bits: 576
   bullet: {fileID: 7875449769001485805, guid: 99b47b9670cad6f4085c1aecebe3cd56, type: 3}
