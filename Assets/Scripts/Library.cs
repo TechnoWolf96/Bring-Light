@@ -9,6 +9,12 @@ public static class Library
         instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
         instance.start();
     }
+    public static void Play2DSound(EventReference sound)
+    {
+        FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance(sound);
+        instance.start();
+    }
+
     public static Vector2 ToAxisAndNormalize(Vector2 vector)
     {
         vector.Normalize();
@@ -37,6 +43,14 @@ public static class Library
             else return Vector2.down;
         }
         return Vector2.zero;
+    }
+
+    public static void SetSlotPosition(Icon icon, Transform newPosition, bool forEquipment)
+    {
+        icon.transform.SetParent(newPosition);
+        icon.transform.position = newPosition.position;
+        if (forEquipment && !icon.equipped) icon.PutOn();
+        if (!forEquipment && icon.equipped) icon.PutOff();
     }
 
 }

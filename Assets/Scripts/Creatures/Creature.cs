@@ -6,14 +6,35 @@ public abstract class Creature : MonoBehaviour, IDestructable
 {
     [Header("Creature:")]
     public float speed;                 // Скорость существа
-    public int maxHealth;               // Максимальный запас здоровья
-    public int health;                  // Текущий запас здоровья
+
+    [SerializeField] protected int _maxHealth;
+    [SerializeField] protected int _health;
+    public virtual int health
+    {
+        get { return _health; }
+        set 
+        {
+            if (0 <= value && value <= maxHealth) _health = value;
+            if (value > maxHealth) _health = maxHealth;
+            if (value < 0) _health = 0;
+            
+        }
+    }
+    public virtual int maxHealth { 
+        get { return _maxHealth; } 
+        set 
+        {
+            _maxHealth = value;
+            if (health > _maxHealth) health = _maxHealth;
+        }
+    }
+
     public ProtectParameters protect;   // Параметры защиты
 
     protected Animator anim;            // Анимация существа
     protected Rigidbody2D rb;           // Агент RigitBody существа
     protected HealthBar healthBar;      // Полоска здоровья существа
-    protected Transform bodyCenter;    // Центр тела существа (необходимо для верного расчета отталкивания при получении урона)
+    public Transform bodyCenter { get; protected set; }   // Центр тела существа (необходимо для верного расчета отталкивания при получении урона)
     [SerializeField] protected GameObject physicalSupport;       // Физическая опора существа
 
     public Transform GetBodyCenter() { return bodyCenter; }

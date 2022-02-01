@@ -4,14 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Wall
   - Script
   - Weapon
   - Ally
   - VirtualCamera
-  - Bullet
   - IgnoreCollisionBullet
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -27,7 +26,7 @@ TagManager:
   - Items
   - GroundObstacles
   - PhysicalSupport
-  - Trigger
+  - 
   - 
   - 
   - 

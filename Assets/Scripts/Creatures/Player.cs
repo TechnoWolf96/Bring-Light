@@ -3,10 +3,27 @@ using FMODUnity;
 
 public class Player : Creature, IAttackWithWeapon
 {
-    protected CheckParameters checkParameters;        // Система контроля параметров
-    protected Inventory inventory;                    // Инвентарь
+    public PlayerStatus status { get; protected set; }        // Система контроля параметров
     protected Weapon weapon;
     protected Transform weaponSlot;    // Слот под текущее оружие в иерархии
+
+    public override int health
+    { 
+        get => base.health;
+        set
+        {
+            base.health = value;
+            status.UpdateParameters();
+        }
+    }
+    public override int maxHealth {
+        get => base.maxHealth;
+        set
+        {
+            base.maxHealth = value;
+            status.UpdateParameters();
+        }
+    }
 
     [SerializeField]
     protected EventReference sound;
@@ -17,12 +34,16 @@ public class Player : Creature, IAttackWithWeapon
         anim.runtimeAnimatorController = weapon.animController;
     }
 
+    protected virtual void OnEnable()
+    {
+        status = GameObject.Find("Tools/PlayerScripts").GetComponent<PlayerStatus>();
+    }
+
+
     protected override void Start()
     {
         base.Start();
         rb = GetComponent<Rigidbody2D>();
-        checkParameters = GameObject.FindWithTag("Script").GetComponent<CheckParameters>();
-        inventory = GameObject.FindWithTag("Script").GetComponent<Inventory>();
         weaponSlot = gameObject.transform.Find("Weapon");
         weapon = GetComponentInChildren<Weapon>();
         anim.runtimeAnimatorController = weapon.animController;
@@ -66,8 +87,6 @@ public class Player : Creature, IAttackWithWeapon
 
     public override void Death()
     {
-        Application.Quit();
-        inventory.enabled = false;
         rb.velocity = Vector2.zero;
         enabled = false;
         base.Death();
@@ -79,7 +98,7 @@ public class Player : Creature, IAttackWithWeapon
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
         base.GetDamage(attack, attacking, bullet);
-        checkParameters.UpdateParameters();     // Обновляем параметры в UI при получении урона
+        status.UpdateParameters();     // Обновляем параметры в UI при получении урона
     }
 
 
