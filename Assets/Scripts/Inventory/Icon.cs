@@ -10,18 +10,35 @@ public enum ItemType { MeleeWeapon, RangedWeapon, Usingable, Arrow, Artefact, Ot
 
 public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    [SerializeField] protected ItemType _itemType;
-    public ItemType itemType { get { return _itemType; } }
-    [SerializeField] protected float _weight;
-    public float weight { get { return _weight*quantity; } protected set { _weight = value; } }
+    [SerializeField] protected int _id;
+    public int id { get; }
+
+    [SerializeField] protected ItemType _itemType; 
+    public ItemType itemType { get => _itemType;  }
+
+    [SerializeField] protected float _weight; 
+    public float weight { get => _weight * quantity;}
 
     [SerializeField] protected int _quantity;
-    public int quantity { get { return _quantity; } protected set { _quantity = value; quantityText.text = _quantity.ToString(); } }
+    public int quantity { 
+        get => _quantity; 
+        protected set 
+        {
+            float otherWeight = Weight.singleton.totalWeight - weight;
+            _quantity = value;
+            Weight.singleton.totalWeight = otherWeight + weight;
+            if (quantityText != null)
+                quantityText.text = _quantity.ToString();
+        } 
+    }
+
+    [SerializeField] protected GameObject _droppedItem;
+    public GameObject droppedItem { get => _droppedItem; }
+    public bool questItem;
 
     [SerializeField] protected EventReference takeUpSound;
     [SerializeField] protected EventReference takeDownSound;
     public Transform beforePosition { get; protected set; }
-    protected Transform canvas;
     protected EquipmentItem equipmentEffect;
     protected UsingableItem usingEffect;
     protected Text quantityText;
@@ -33,18 +50,17 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     protected virtual void Start()
     {
-        canvas = GameObject.Find("Canvas").transform;
         TryGetComponent(out equipmentEffect);
         TryGetComponent(out usingEffect);
         if (transform.parent.GetComponent<Slot>().slotForEquipment) PutOn();
-        quantityText = transform.Find("Text").GetComponent<Text>();
-        quantityText.text = quantity.ToString();
+        transform.Find("Text")?.TryGetComponent(out quantityText);
+        if (quantityText != null) quantityText.text = _quantity.ToString();
     }
 
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         beforePosition = transform.parent;
-        transform.SetParent(canvas);
+        transform.SetParent(Canvas.singleton.transform);
         Library.Play2DSound(takeUpSound);
     }
 
@@ -55,17 +71,25 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
-        PutSlot();
+        PutToSlot();
         Library.Play2DSound(takeDownSound);
     }
 
 
-    protected void PutSlot()
+    protected void PutToSlot()
     {
         Collider2D newSlot = Physics2D.OverlapCircle(transform.position, checkRadius);
         if (newSlot == null) Library.SetSlotPosition(this, beforePosition, beforePosition.GetComponent<Slot>().slotForEquipment);
-        else newSlot.GetComponent<Slot>().Put(this);
-        
+        else
+        {
+            if (newSlot.TryGetComponent(out Bucket bucket))
+            {
+                if (!questItem) bucket.Drop(this);
+                else Library.SetSlotPosition(this, beforePosition, beforePosition.GetComponent<Slot>().slotForEquipment);
+                return;
+            }
+            newSlot.GetComponent<Slot>().Put(this);
+        }
     }
 
     public void PutOn()
@@ -85,11 +109,12 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         if (usingEffect.IsRecharged())
         {
             usingEffect.Use();
-            quantity--;
+            if (quantityText != null) quantity--;
         }
         if (quantity == 0) Destroy(gameObject);
             
     }
+
 
 
     private void OnDrawGizmosSelected()

@@ -141,9 +141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156372eb98c19574fb68ce0a58a9d3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
   _itemType: 2
   _weight: 0.5
   _quantity: 50
+  _droppedItem: {fileID: 0}
+  questItem: 0
   takeUpSound:
     Guid:
       Data1: -1885327013
@@ -171,7 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rechargeTime: 2
-  darkFill: {fileID: 1737032154539823111}
   usingSoundEffect:
     Guid:
       Data1: 987480257
@@ -180,7 +182,7 @@ MonoBehaviour:
       Data4: -281992920
     Path: event:/HealPotion
   heal: 100
-  healEffect: {fileID: 8735166841951315160, guid: d02f8932f5c994340b75c4bf323842e8, type: 3}
+  particles: {fileID: 0}
 --- !u!1 &1737032154539823353
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +195,7 @@ GameObject:
   - component: {fileID: 1737032154539823108}
   - component: {fileID: 1737032154539823111}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: DarkFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

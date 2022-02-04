@@ -25,6 +25,7 @@ public class PlayerStatus : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        player.updateHealth += UpdateParameters;
         nameText = GameObject.Find("Canvas/Status/Name/Text").GetComponent<Text>();
         levelText = GameObject.Find("Canvas/Status/Level/Text").GetComponent<Text>();
         healthText = GameObject.Find("Canvas/Status/Health/Text").GetComponent<Text>();

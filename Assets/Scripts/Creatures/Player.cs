@@ -3,7 +3,12 @@ using FMODUnity;
 
 public class Player : Creature, IAttackWithWeapon
 {
-    public PlayerStatus status { get; protected set; }        // Система контроля параметров
+    private static Player _singleton;
+    public static Player singleton { get => _singleton; }
+
+    public delegate void OnUpdateHealth();
+    public event OnUpdateHealth updateHealth;
+
     protected Weapon weapon;
     protected Transform weaponSlot;    // Слот под текущее оружие в иерархии
 
@@ -13,7 +18,7 @@ public class Player : Creature, IAttackWithWeapon
         set
         {
             base.health = value;
-            status.UpdateParameters();
+            updateHealth.Invoke();
         }
     }
     public override int maxHealth {
@@ -21,7 +26,7 @@ public class Player : Creature, IAttackWithWeapon
         set
         {
             base.maxHealth = value;
-            status.UpdateParameters();
+            updateHealth.Invoke();
         }
     }
 
@@ -33,12 +38,10 @@ public class Player : Creature, IAttackWithWeapon
         weapon = Instantiate(newWeapon, weaponSlot).GetComponent<Weapon>();
         anim.runtimeAnimatorController = weapon.animController;
     }
-
-    protected virtual void OnEnable()
+    private void Awake()
     {
-        status = GameObject.Find("Tools/PlayerScripts").GetComponent<PlayerStatus>();
+        _singleton = this;
     }
-
 
     protected override void Start()
     {
@@ -93,12 +96,6 @@ public class Player : Creature, IAttackWithWeapon
         
         
 
-    }
-
-    public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
-    {
-        base.GetDamage(attack, attacking, bullet);
-        status.UpdateParameters();     // Обновляем параметры в UI при получении урона
     }
 
 

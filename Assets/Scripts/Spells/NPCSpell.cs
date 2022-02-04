@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class NPCSpell : MonoBehaviour
 {
     [Header("NPC spell:")]
-    public int priority;  // Шанс выполнения именно этого заклинания (рекомендуется приоритет от 1 до 10)
-    public float speedCast;                 // Скорость анимации исполнения заклинания
+    public int priority;  // (рекомендуется приоритет от 1 до 10)
+    public float speedCast;
 
     protected Creature creature;
 

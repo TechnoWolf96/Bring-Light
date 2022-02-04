@@ -1,16 +1,12 @@
 using FMODUnity;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class UsingableItem : MonoBehaviour, IUsingable
 {
-    public float rechargeTime;
-    public Image darkFill;
+    [SerializeField] protected float rechargeTime;
     [SerializeField] protected EventReference usingSoundEffect;
-
-    protected Player player;
+    protected Image darkFill;
     protected float currentRechargeTime;
     
     public bool IsRecharged()
@@ -24,9 +20,9 @@ public abstract class UsingableItem : MonoBehaviour, IUsingable
         Library.Play2DSound(usingSoundEffect);
     }
 
-    protected virtual void OnEnable()
+    protected virtual void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        darkFill = transform.Find("DarkFill").GetComponent<Image>();
         currentRechargeTime = 0f;
     }
 
