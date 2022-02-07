@@ -11,11 +11,13 @@ public class LightFlicker : MonoBehaviour
 
     private Light2D light;
     private bool increase = true;
+    private float maxIntensity;
 
     private void Start()
     {
         light = GetComponent<Light2D>();
-        if (startWithRandomIntensity) light.color.a = Random.Range(minIntensity, 1f);
+        maxIntensity = light.color.a;
+        if (startWithRandomIntensity) light.color.a = Random.Range(minIntensity, maxIntensity);
         else light.color.a = startIntensity;
     }
     private void FixedUpdate()
@@ -23,7 +25,7 @@ public class LightFlicker : MonoBehaviour
         if (increase)
         {
             light.color.a += Time.deltaTime * speedChanging;
-            if (light.color.a >= 1) increase = false;
+            if (light.color.a >= maxIntensity) increase = false;
         }
         else
         {

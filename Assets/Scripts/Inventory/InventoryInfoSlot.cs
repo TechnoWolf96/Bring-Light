@@ -60,6 +60,57 @@ public class InventoryInfoSlot : MonoBehaviour
         return result;
     }
 
+    public Slot GetEmptySlot()
+    {
+        foreach (var item in _backpackSlots)
+        {
+            if (item.transform.childCount == 0)
+                return item;
+        }
+        return null;
+    }
+
+    public bool SearchNumberedIcon(int id, out Icon resultIcon)
+    {
+        foreach (var item in _consumableSlots)
+        {
+            if (item.transform.childCount != 0)
+            {
+                Icon icon = item.transform.GetChild(0).GetComponent<Icon>();
+                if (icon.id == id)
+                {
+                    resultIcon = icon;
+                    return true;
+                }
+            }
+        }
+        foreach (var item in _backpackSlots)
+        {
+            if (item.transform.childCount != 0)
+            {
+                Icon icon = item.transform.GetChild(0).GetComponent<Icon>();
+                if (icon.id == id && icon.numbered)
+                {
+                    resultIcon = icon;
+                    return true;
+                }
+            }
+        }
+        foreach (var item in _arrowSlots)
+        {
+            if (item.transform.childCount != 0)
+            {
+                Icon icon = item.transform.GetChild(0).GetComponent<Icon>();
+                if (icon.id == id && icon.numbered)
+                {
+                    resultIcon = icon;
+                    return true;
+                }
+            }
+        }
+        resultIcon = null;
+        return false;
+    }
 
 
 

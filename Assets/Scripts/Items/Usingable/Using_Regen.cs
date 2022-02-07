@@ -1,27 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Using_Regen : UsingableEffectItem
 {
-    [SerializeField] protected int regeneration;
+    [SerializeField] protected int healPerCicle;
     [SerializeField] protected float cicleTime;
 
 
     public override void Use()
     {
         base.Use();
-        StartCoroutine("Regeneration");
+        Effect_Regeneration effect = currentCreatureEffect.GetComponent<Effect_Regeneration>();
+        effect.healPerCicle = healPerCicle;
+        effect.cicleTime = cicleTime;
+
     }
 
-    IEnumerator Regeneration()
-    {
-        while (active)
-        {
-            Player.singleton.health += regeneration;
-            yield return new WaitForSeconds(cicleTime);
-        }
-    }
 
 
 

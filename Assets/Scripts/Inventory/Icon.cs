@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using FMODUnity;
 using UnityEngine.UI;
@@ -8,10 +7,10 @@ public enum ItemType { MeleeWeapon, RangedWeapon, Usingable, Arrow, Artefact, Ot
 
 
 
-public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] protected int _id;
-    public int id { get; }
+    public int id { get => _id; }
 
     [SerializeField] protected ItemType _itemType; 
     public ItemType itemType { get => _itemType;  }
@@ -22,15 +21,17 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     [SerializeField] protected int _quantity;
     public int quantity { 
         get => _quantity; 
-        protected set 
+        set 
         {
-            float otherWeight = Weight.singleton.totalWeight - weight;
+            Weight.singleton.totalWeight -= weight;
             _quantity = value;
-            Weight.singleton.totalWeight = otherWeight + weight;
-            if (quantityText != null)
+            Weight.singleton.totalWeight += weight;
+            if (numbered)
                 quantityText.text = _quantity.ToString();
         } 
     }
+    [SerializeField] protected int _price;
+    public int price { get => _price*quantity; }
 
     [SerializeField] protected GameObject _droppedItem;
     public GameObject droppedItem { get => _droppedItem; }
@@ -38,11 +39,14 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     [SerializeField] protected EventReference takeUpSound;
     [SerializeField] protected EventReference takeDownSound;
+    [SerializeField] protected GameObject descriptionPanel;
     public Transform beforePosition { get; protected set; }
     protected EquipmentItem equipmentEffect;
     protected UsingableItem usingEffect;
     protected Text quantityText;
+    protected GameObject currentDescriptionPanel;
     public bool equipped { get; protected set; }
+    public bool numbered { get => quantityText != null; }
 
     protected const float checkRadius = 40f;
 
@@ -115,13 +119,25 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             
     }
 
-
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, checkRadius);
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        currentDescriptionPanel = Instantiate(descriptionPanel, DescriptionPanel.singleton.transform); 
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Destroy(currentDescriptionPanel);
+    }
+
+    private void OnDestroy()
+    {
+        if (currentDescriptionPanel != null) Destroy(currentDescriptionPanel);
+    }
 
 }

@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class Equip_Regeneration : EquipmentItem
 {
-    [SerializeField] protected int regeneration;
+    [SerializeField] protected int healPerCicle;
     [SerializeField] protected float cicleTime;
+    [SerializeField] protected GameObject creatureEffect;
+
+    protected GameObject currentCreatureEffect;
 
     public override void PutOff()
     {
-        StopCoroutine("Regeneration");
+        Destroy(currentCreatureEffect);
     }
 
     public override void PutOn()
     {
-        StartCoroutine("Regeneration");
-    }
-
-    IEnumerator Regeneration()
-    {
-        while(true)
-        {
-            player.health += regeneration;
-            yield return new WaitForSeconds(cicleTime);
-        }
-        
+        currentCreatureEffect = Instantiate(creatureEffect, Player.singleton.transform);
+        Effect_Regeneration regeneration = currentCreatureEffect.GetComponent<Effect_Regeneration>();
+        regeneration.cicleTime = cicleTime;
+        regeneration.healPerCicle = healPerCicle;
     }
 
 
