@@ -19,21 +19,22 @@ public abstract class Bullet : MonoBehaviour
         this.shotPoint = shotPoint;
     }
 
-    protected void SetDirectionAndSpeed(Transform targetPosition, float speed)
+    protected void SetDirectionAndSpeed(Transform target, float speed)
     {
         // Задание направления и скорости пули
-        Vector2 direction = targetPosition.position - shotPoint.position;
+        Vector2 direction = target.position - shotPoint.position;
         rb.velocity = direction.normalized * speed;
         // Поворот пули в сторону цели
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y,
-            Mathf.Atan2(targetPosition.position.y - transform.position.y, targetPosition.position.x - transform.position.x) * Mathf.Rad2Deg - 180);
+            Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg - 180);
     }
 
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == shotPoint.GetComponentInParent<Transform>().gameObject.layer || other.CompareTag("IgnoreCollisionBullet"))
-            return; // Дружественный огонь запрещен
+            return;
+        
         Collision(other);
     }
 

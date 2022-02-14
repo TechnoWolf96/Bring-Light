@@ -28,7 +28,6 @@ public class OneTargetBullet : Bullet
         other.GetComponent<IDestructable>()?.GetDamage(bulletParameters.attack, shotPoint.parent, transform);
         if (!crit) Instantiate(deathEffect, transform.position, Quaternion.identity).transform.localScale *= offset;
         else CritEffect();
-
         Destroy(gameObject);
     }
 

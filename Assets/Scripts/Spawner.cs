@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < quantity; i++)
         {
             Vector2 randomPos = new Vector2(transform.position.x + Random.Range(-radius, radius), transform.position.y + Random.Range(-radius, radius));
-            Instantiate(mob, randomPos, Quaternion.identity).GetComponent<Stalker>().follow = player;
+            Instantiate(mob, randomPos, Quaternion.identity).GetComponent<Stalker>().SetFollow(player.transform);
             yield return new WaitForSeconds(rechange);
         }
     }

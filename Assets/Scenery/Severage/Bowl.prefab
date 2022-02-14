@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 7793165159177008559}
   - component: {fileID: 6021174900141807936}
   - component: {fileID: 4369239137159949198}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: SortingChanger
   m_TagString: IgnoreCollisionBullet
   m_Icon: {fileID: 0}

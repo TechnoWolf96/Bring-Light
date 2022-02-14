@@ -3,7 +3,7 @@ using FMODUnity;
 
 public interface IAttackWithWeapon
 {
-    public void Attack();
+    public void AttackMoment();
 }
 
 
@@ -12,7 +12,7 @@ public abstract class Weapon : MonoBehaviour
 {
     
     [Header("Weapon:")]
-    public float rechargeTime;              // Перезарядка
+    public float rechargeTime;
     public RuntimeAnimatorController animController;
     public LayerMask layer;         // Слой объектов, по которому будет проходить атака
     [SerializeField] protected EventReference attackSound;

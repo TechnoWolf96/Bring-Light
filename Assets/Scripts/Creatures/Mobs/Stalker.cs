@@ -5,58 +5,75 @@ using UnityEngine.AI;
 // Класс "Преследователь"
 public class Stalker : Creature
 {
-    [Header("Stalker:")]
-    public float distanceDetection; // Дистанция обнаружения объекта для преследования
-    public LayerMask detectionableLayer; // Слой, который отслеживает преследователь (Слой игроков)
+    [Header("Stalker")]
+    [SerializeField] protected float distanceDetection;
+    [SerializeField] protected LayerMask detectionableLayer;
 
-    [HideInInspector] public Creature follow; // Текущий объект для преследования
-    [HideInInspector] public NavMeshAgent navAgent; // Агент NawMesh, закрепленный на данном объекте
+    protected const float updateTimeCicle = 0.3f;
+    protected float timeUntilUpdate;
+    public Transform followBodyCenter { get; protected set; }
+
+    public Transform follow { get; private set; }
+    public NavMeshAgent navAgent { get; protected set; }
+    public override float speed 
+    { 
+        get => base.speed;
+        set
+        {
+            base.speed = value;
+            navAgent.speed = value;
+        }
+    }
+    public void SetFollow(Transform target)
+    {
+        follow = target;
+        followBodyCenter = target.GetComponent<Creature>().bodyCenter;
+    }
 
     protected override void Start()
     {
         base.Start();
         navAgent = GetComponent<NavMeshAgent>();
-        navAgent.speed = speed; // Скорость в NawMesh равна скорости существа
         navAgent.updateRotation = false;
         navAgent.updateUpAxis = false;
+        timeUntilUpdate = updateTimeCicle;
     }
 
-    protected override void Update()
+    protected virtual void FixedUpdate() => timeUntilUpdate -= Time.deltaTime;
+    private void Update()
     {
-        base.Update();
-        CheckStalk(); // Поиск объекта для преследования
-        if (follow != null)
+        if (timeUntilUpdate < 0)
         {
-            Stalk(); // Если объект не оглушен и есть за кем бежать, то начинает преследование
-            LookAt(follow.transform.position);
+            StateUpdate();
+            timeUntilUpdate = updateTimeCicle;
         }
     }
 
-    protected void CheckStalk() // Проверка, есть ли в зоне обнаружения объекты нужного слоя
+    protected virtual void StateUpdate()
     {
-        if (follow == null) // Если не за кем бежать, то ищем объект для преследования
+        if (follow == null) FindNewTarget();
+        else
         {
-            Creature newFollow = Physics2D.OverlapCircle(transform.position, distanceDetection, detectionableLayer)?.GetComponent<Creature>();
-            if (newFollow != null) SetFollow(newFollow);
-            else follow = null;
+            Stalk();
+            LookAt(follow.position);
         }
+    }
+
+    protected void FindNewTarget()
+    {
+        Collider2D newFollow = Physics2D.OverlapCircle(transform.position, distanceDetection, detectionableLayer);
+        if (newFollow != null) SetFollow(newFollow.transform);
             
     }
-    protected void SetFollow(Creature newTarget)
-    {
-        follow = newTarget;
-    }
 
-    protected virtual void Stalk() // Объект получает точку назначения и начинает преследование
+    protected virtual void Stalk()
     {
-        // Т.к скорость в NavAgent и в velocity накладываются друг на друга, то velocity нужно занулить
-        //if (rb.velocity != Vector2.zero) rb.velocity = Vector2.zero;
         anim.SetBool("Walk", true);
         navAgent.isStopped = false;
-        navAgent.SetDestination(follow.transform.position);
+        navAgent.SetDestination(follow.position);
     }
 
-    protected virtual void OnDrawGizmosSelected() // Рисует область обнаружения
+    protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, distanceDetection);
@@ -65,8 +82,7 @@ public class Stalker : Creature
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
         base.GetDamage(attack, attacking, bullet);
-        if (attacking.position != transform.position)   // Если атакующий не он сам, то:
-            SetFollow(attacking.GetComponent<Creature>()); // При получении урона преследователь бежит за нападающим
+        SetFollow(attacking); // При получении урона преследователь бежит за нападающим
     }
 
 

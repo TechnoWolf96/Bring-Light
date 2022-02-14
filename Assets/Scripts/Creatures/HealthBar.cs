@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    public Transform valueSlider;
-    public Animator animSlider;
+    [SerializeField] private Transform valueSlider;
+    private Animator animSlider;
     private Creature creature;
 
 
     private void Start()
     {
-        creature = GetComponent<Creature>();
+        animSlider = GetComponent<Animator>();
+        creature = GetComponentInParent<Creature>();
+        //creature.onHealthChanged += ShowBar;
     }
 
 

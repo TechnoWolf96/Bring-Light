@@ -3,43 +3,36 @@ using UnityEngine;
 public class CloseAttack : Stalker, IAttackWithWeapon
 {
     [Header("Close Attack:")]
-    public float radiusTriggerAttack;
-    protected Weapon weapon;
+    [SerializeField] protected float radiusTriggerAttack;
+    protected Weapon currentWeapon;
 
     protected override void Start()
     {
         base.Start();
-        weapon = GetComponentInChildren<Weapon>();
-        anim.runtimeAnimatorController = weapon.animController;
+        currentWeapon = GetComponentInChildren<Weapon>();
+        anim.runtimeAnimatorController = currentWeapon.animController;
     }
 
-
-    protected override void Update()
+    protected override void StateUpdate()
     {
-        base.Update();
-        if (CheckAttack() && weapon.IsRecharged())
+        base.StateUpdate();
+        if (CheckAttack() && currentWeapon.IsRecharged())
         {
-            weapon.BeginAttack();
+            currentWeapon.BeginAttack();
             anim.SetTrigger("Attack");
         }
-            
     }
-
-
 
     protected virtual bool CheckAttack()
     {
         if (follow == null) return false;
         Collider2D coll = Physics2D.OverlapCircle(transform.position, radiusTriggerAttack, detectionableLayer);
-        if (coll != null) return true;
-        return false;
+        return coll != null;
     }
 
-
-
-    public virtual void Attack()
+    public virtual void AttackMoment()
     {
-        weapon.Attack();
+        currentWeapon.Attack();
     }
 
     protected override void OnDrawGizmosSelected()

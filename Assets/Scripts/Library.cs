@@ -53,4 +53,5 @@ public static class Library
         if (!forEquipment && icon.equipped) icon.PutOff();
     }
 
+   
 }

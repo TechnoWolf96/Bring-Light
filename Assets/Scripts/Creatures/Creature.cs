@@ -4,56 +4,59 @@ using UnityEngine;
 // Универсальный класс - "Существо", является предком любого живого объекта на сцене
 public abstract class Creature : MonoBehaviour, IDestructable
 {
-    [Header("Creature:")]
-    public float speed;                 // Скорость существа
+    public delegate void Event();
+    public event Event onHealthChanged;
+    public event Event onDeath;
 
+    [SerializeField] protected float _speed;
     [SerializeField] protected int _maxHealth;
     [SerializeField] protected int _health;
+    [SerializeField] protected ProtectParameters _protect;
+
+    public virtual float speed { get; set; }
+    public virtual int maxHealth
+    {
+        get => _maxHealth;
+        set
+        {
+            _maxHealth = value;
+            if (health > _maxHealth) health = _maxHealth;
+            if (healthBar != null) healthBar.ShowBar();
+        }
+    }
     public virtual int health
     {
-        get { return _health; }
+        get => _health;
         set 
         {
             if (0 <= value && value <= maxHealth) _health = value;
             if (value > maxHealth) _health = maxHealth;
             if (value < 0) _health = 0;
-            
+            if (healthBar != null) healthBar.ShowBar();
         }
     }
-    public virtual int maxHealth { 
-        get { return _maxHealth; } 
-        set 
-        {
-            _maxHealth = value;
-            if (health > _maxHealth) health = _maxHealth;
-        }
-    }
+    public virtual ProtectParameters protect { get => _protect; set => _protect = value; }
 
-    public ProtectParameters protect;   // Параметры защиты
-
-    protected Animator anim;            // Анимация существа
-    protected Rigidbody2D rb;           // Агент RigitBody существа
-    protected HealthBar healthBar;      // Полоска здоровья существа
-    public Transform bodyCenter { get; protected set; }   // Центр тела существа (необходимо для верного расчета отталкивания при получении урона)
-    [SerializeField] protected GameObject physicalSupport;       // Физическая опора существа
-
-    public Transform GetBodyCenter() { return bodyCenter; }
+    protected Animator anim;      
+    protected Rigidbody2D rb;     
+    protected GameObject physicalSupport;
+    protected HealthBar healthBar;
+    public Transform bodyCenter { get; protected set; }
 
 
 
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        healthBar ??= GetComponent<HealthBar>();
         anim = GetComponent<Animator>();
         bodyCenter = gameObject.transform.Find("BodyCenter");
+        physicalSupport = gameObject.transform.Find("PhysicalSupport").gameObject;
+        try { healthBar = gameObject.transform.Find("HealthBar").GetComponent<HealthBar>(); } catch {}
     }
 
-    protected virtual void Update() {}
 
 
-
-    // Отталкивание и оглушение при получении урона от позиции толкающего объекта
+    // Отталкивание при получении урона от позиции толкающего объекта
     public void PushBack(float force, Transform pusher) 
     {
         Vector2 pushDirection = new Vector2(bodyCenter.position.x - pusher.position.x, bodyCenter.position.y - pusher.position.y).normalized;
@@ -61,24 +64,13 @@ public abstract class Creature : MonoBehaviour, IDestructable
         LookAt(pusher.position);
     }
 
-    // Получение урона с силой отталкивания от позиции атакующего и оглушением, возвращает был ли крит
     public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
-        health -= GetRealDamage(attack); // Подсчет реального урона
+        health -= CalculateRealDamage(attack);
         if (bullet != null) PushBack(attack.pushForce, bullet); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking);             // Если рукопашный урон - толчок от атакующего
-        
-
-        if (health <= 0)   // Здоровье ниже или равно 0 - существо умирает
-        {
-            health = 0;
-            healthBar?.ShowBar();
-            Death();
-            return;
-        }
-        healthBar?.ShowBar();
-        anim.SetTrigger("GetDamage");
-        
+        if (health <= 0) Death();
+        else { anim.SetTrigger("GetDamage"); print("damage"); }
     }
 
 
@@ -87,13 +79,24 @@ public abstract class Creature : MonoBehaviour, IDestructable
         physicalSupport.SetActive(false);
         gameObject.layer = LayerMask.NameToLayer("Corpses");
         anim.SetTrigger("Death");
+        //onDeath.Invoke();
         Destroy(this);
             
     }
 
-    protected int GetRealDamage(AttackParameters attack) // Расчет получения реального урона существом с учетом его защиты и крита атаки
+    public void LookAt(Vector2 target)
+    {
+        Vector2 directionMovement = Library.ToAxisAndNormalize(target - (Vector2)transform.position);
+        anim.SetFloat("HorizontalMovement", directionMovement.x);
+        anim.SetFloat("VerticalMovement", directionMovement.y);
+    }
+
+
+    // Расчет получения реального урона существом с учетом его защиты
+    protected int CalculateRealDamage(AttackParameters attack)
     {
         int result = 0;
+        if (protect == null) print("ouuu");
         foreach (var item in attack.damages)
         {
             int preDamage = item.Damaged();
@@ -123,55 +126,5 @@ public abstract class Creature : MonoBehaviour, IDestructable
         return result;
     }
 
-    public void LookAt(Vector2 target)
-    {
-        Vector2 directionMovement = VectorFunction.ToAxisAndNormalize(target - (Vector2)transform.position);
-        anim.SetFloat("HorizontalMovement", directionMovement.x);
-        anim.SetFloat("VerticalMovement", directionMovement.y);
-    }
 
-    public void LookAway(Transform target)
-    {
-        Vector2 directionMovement = VectorFunction.ToAxisAndNormalize(target.position - transform.position);
-        anim.SetFloat("HorizontalMovement", -directionMovement.x);
-        anim.SetFloat("VerticalMovement", -directionMovement.y);
-    }
-
-
-}
-
-
-// Полезные функции для 2D векторов
-public class VectorFunction
-{
-    // Перевести вектор в одно подходящее направление по оси
-    public static Vector2 ToAxisAndNormalize(Vector2 vector)
-    {
-        vector.Normalize();
-        // Первый квадрант
-        if (vector.x > 0 && vector.y > 0)
-        {
-            if (vector.x >= vector.y) return Vector2.right;
-            else return Vector2.up;
-        }
-        // Второй квадрант
-        if (vector.x < 0 && vector.y > 0)
-        {
-            if (Mathf.Abs(vector.x) >= vector.y) return Vector2.left;
-            else return Vector2.up;
-        }
-        // Третий квадрант
-        if (vector.x < 0 && vector.y < 0)
-        {
-            if (Mathf.Abs(vector.x) >= Mathf.Abs(vector.y)) return Vector2.left;
-            else return Vector2.down;
-        }
-        // Четвертый квадрант
-        if (vector.x > 0 && vector.y < 0)
-        {
-            if (vector.x >= Mathf.Abs(vector.y)) return Vector2.right;
-            else return Vector2.down;
-        }
-        return Vector2.zero;
-    }
 }

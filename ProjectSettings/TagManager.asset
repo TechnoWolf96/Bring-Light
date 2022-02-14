@@ -11,11 +11,12 @@ TagManager:
   - VirtualCamera
   - IgnoreCollisionBullet
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Hidden
+  - SortingBulletChanger
   - Water
   - UI
   - Enemies

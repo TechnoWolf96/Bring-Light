@@ -4,21 +4,16 @@ using UnityEngine;
 
 
 
-public class Spellcaster : SmartRangedAttackPosition
+public class Spellcaster : AbleToSeekRangedAttackPosition
 {
     [Header("Spellcaster")]
-    public List<NPCSpell> spells;
+    [SerializeField] protected List<NPCSpell> spells;
     protected NPCSpell selectedSpell;
-    protected bool canCastSpell = true;
+    public bool canCastSpell { get; protected set; }
 
-    public void CanCastSpell()
+    protected override void StateUpdate()
     {
-        canCastSpell = true;
-    }
-
-    protected override void Update()
-    {
-        base.Update();
+        base.StateUpdate();
         if (selectedSpell == null && canCastSpell)
             TryCastSpell();
     }
@@ -69,7 +64,7 @@ public class Spellcaster : SmartRangedAttackPosition
     public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
     {
         EndSpellcasting();  // Заклинание прерывается
-        canCastSpell = false;   // Воспроизводится анимация получения урона
+        canCastSpell = false;
         base.GetDamage(attack, attacking, bullet);
     }
 

@@ -359,7 +359,7 @@ MonoBehaviour:
       Data3: 557067172
       Data4: -1650646905
     Path: event:/SlashRapier
-  timeOriginalAttackAnimation: 0
+  timeOriginalAttackAnimation: 1
   attack:
     damages:
     - typeDamage: 0
@@ -377,10 +377,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7066068728849598348}
+  - component: {fileID: 7066068728849598345}
   - component: {fileID: 7066068728849598349}
   - component: {fileID: 7066068728849598346}
   - component: {fileID: 7066068728849598344}
-  - component: {fileID: 7066068728849598345}
   - component: {fileID: 7066068728849598347}
   - component: {fileID: 7066068728849598350}
   - component: {fileID: 7336424836373742666}
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 1431135314381751606}
   m_Layer: 6
   m_Name: Skeleton
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -412,6 +412,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7066068728849598345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066068728849598342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda0a42b36a10354cb76ad598cb2d7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  _maxHealth: 100
+  _health: 100
+  _protect:
+    physical: 0
+    holy: 0
+    fiery: 0
+    cold: 0
+    dark: 0
+    poison: 0
+  distanceDetection: 4
+  detectionableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  radiusTriggerAttack: 1.2
 --- !u!50 &7066068728849598349
 Rigidbody2D:
   serializedVersion: 4
@@ -468,36 +495,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7066068728849598345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7066068728849598342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bda0a42b36a10354cb76ad598cb2d7f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  maxHealth: 150
-  health: 150
-  protect:
-    physical: 0
-    holy: 0
-    fiery: 0
-    cold: 0
-    dark: 0
-    poison: 0
-  physicalSupport: {fileID: 5087124431796381790}
-  distanceDetection: 4
-  detectionableLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  follow: {fileID: 0}
-  navAgent: {fileID: 0}
-  radiusTriggerAttack: 1.2
 --- !u!195 &7066068728849598347
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -532,8 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361f19975c9c9dd4b835637b46c27ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valueSlider: {fileID: 173652692012567433}
-  animSlider: {fileID: 1691311592739248162}
+  valueSlider: {fileID: 0}
 --- !u!114 &7336424836373742666
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,37 +1,29 @@
 
-
-public class RangedAttack : SmartRangedAttackPosition, IAttackWithWeapon
+public class RangedAttack : AbleToSeekRangedAttackPosition, IAttackWithWeapon
 {
-    protected Weapon weapon;
+    protected Weapon currentWeapon;
 
     protected override void Start()
     {
         base.Start();
-        weapon = GetComponentInChildren<Weapon>();
-        anim.runtimeAnimatorController = weapon.animController;
+        currentWeapon = GetComponentInChildren<Weapon>();
+        anim.runtimeAnimatorController = currentWeapon.animController;
     }
-
-    protected override void Update()
+    protected override void StateUpdate()
     {
-        base.Update();
-        if (CheckAttack() && weapon.IsRecharged())
+        base.StateUpdate();
+        // Цель видна? Да - атакуем
+        if (targetIsVisible && currentWeapon.IsRecharged())
         {
-            weapon.BeginAttack();
+            currentWeapon.BeginAttack();
             anim.SetTrigger("Attack");
         }
-
     }
 
-    protected virtual bool CheckAttack()
-    {
-        if (follow == null) return false;
-        if (TargetIsVisible) return true;
-        return false;
-    }
 
-    public virtual void Attack()
+    public virtual void AttackMoment()
     {
-        weapon.Attack();
+        currentWeapon.Attack();
     }
 
 }

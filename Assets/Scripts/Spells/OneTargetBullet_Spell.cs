@@ -11,12 +11,12 @@ public class OneTargetBullet_Spell : NPCSpell
     [SerializeField] protected EventReference sound;
 
 
-    protected SmartRangedAttackPosition stalker;
+    protected AbleToSeekRangedAttackPosition stalker;
 
     protected override void Start()
     {
         base.Start();
-        stalker = GetComponentInParent<SmartRangedAttackPosition>();
+        stalker = GetComponentInParent<AbleToSeekRangedAttackPosition>();
     }
 
 
@@ -33,7 +33,7 @@ public class OneTargetBullet_Spell : NPCSpell
 
     public override void CalculatePriority()
     {
-        if (stalker.TargetIsVisible && stalker.follow != null) priority = priorityIfTargetIsVisible;
+        if (stalker.targetIsVisible && stalker.follow != null) priority = priorityIfTargetIsVisible;
         else priority = 0;
     }
 
