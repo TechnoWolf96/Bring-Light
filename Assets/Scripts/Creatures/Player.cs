@@ -5,6 +5,7 @@ public class Player : Creature, IAttackWithWeapon
     public event Event onPlayerDeath;
     private static Player _singleton;
     public static Player singleton { get => _singleton; }
+    [HideInInspector] public bool controled = true;
 
     protected Weapon currentWeapon;
     protected Transform weaponSlot;
@@ -31,6 +32,7 @@ public class Player : Creature, IAttackWithWeapon
 
     protected void Update()
     {
+        if (!controled) return;
         Move();
         AttackInput();
         
@@ -70,8 +72,7 @@ public class Player : Creature, IAttackWithWeapon
                 activeMeleeWeapon = false;
             }
             anim.SetTrigger("Attack");
-            float calculateSpeed = currentWeapon.GetTimeOriginalAttackAnimation() / currentWeapon.rechargeTime;
-            anim.SetFloat("SpeedAttack", calculateSpeed);
+            anim.SetFloat("SpeedAttack", 2f);
             currentWeapon.BeginAttack();
         }
         // œ Ã - ”‰‡
@@ -83,8 +84,7 @@ public class Player : Creature, IAttackWithWeapon
                 activeMeleeWeapon = true;
             }
             anim.SetTrigger("Attack");
-            float calculateSpeed = currentWeapon.GetTimeOriginalAttackAnimation() / currentWeapon.rechargeTime;
-            anim.SetFloat("SpeedAttack", calculateSpeed);
+            anim.SetFloat("SpeedAttack", 2f);
             currentWeapon.BeginAttack();
         }
     }

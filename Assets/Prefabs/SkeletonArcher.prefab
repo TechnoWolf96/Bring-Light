@@ -476,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5501698893729734175}
-  - component: {fileID: 5501698893729734144}
+  - component: {fileID: 1724939821}
   m_Layer: 6
   m_Name: 'Weapon: Bow'
   m_TagString: Untagged
@@ -498,7 +498,7 @@ Transform:
   m_Father: {fileID: 8046291081452238633}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5501698893729734144
+--- !u!114 &1724939821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -507,14 +507,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5501698893729734174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcf923c3f00253b45bf2b49047031899, type: 3}
+  m_Script: {fileID: 11500000, guid: ab854168dc4d79a44af154df3470d991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rechargeTime: 2
-  animController: {fileID: 9100000, guid: 5941b802d8795584eb73a58f699e24a2, type: 2}
+  _animController: {fileID: 9100000, guid: 5941b802d8795584eb73a58f699e24a2, type: 2}
   layer:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 128
   attackSound:
     Guid:
       Data1: -795420481
@@ -522,16 +522,6 @@ MonoBehaviour:
       Data3: -345395817
       Data4: -2119061263
     Path: event:/StrechingBow
-  timeOriginalAttackAnimation: 0.66
-  bulletParameters:
-    speed: 15
-    attack:
-      damages:
-      - typeDamage: 0
-        minDamage: 20
-        maxDamage: 25
-      pushForce: 3
-      critChance: 0
   bullet: {fileID: 4070809926872651012, guid: fb4b00762257cd9468616ace7d3403fa, type: 3}
 --- !u!1001 &5690999155217377391
 PrefabInstance:

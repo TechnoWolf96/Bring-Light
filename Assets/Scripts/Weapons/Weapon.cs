@@ -12,29 +12,29 @@ public abstract class Weapon : MonoBehaviour
 {
     
     [Header("Weapon:")]
-    public float rechargeTime;
-    public RuntimeAnimatorController animController;
-    public LayerMask layer;         // Слой объектов, по которому будет проходить атака
+    [SerializeField] protected float rechargeTime;
+    [SerializeField] protected RuntimeAnimatorController _animController;
+    public RuntimeAnimatorController animController { get => _animController; }
+    [SerializeField] protected LayerMask layer;
     [SerializeField] protected EventReference attackSound;
-    [SerializeField] protected float timeOriginalAttackAnimation;   // Время оригинальной анимации атаки (Выставляется вручную)
 
-    public float GetTimeOriginalAttackAnimation() {return timeOriginalAttackAnimation;}
+    protected const float timeOriginalAttackAnimation = 2f;
 
-    protected Creature creature;            // Скрипт существа игрока, держащего оружие
-    protected float currentRechargeTime;           // Текущее время до перезарядки
+    protected Creature owner;
+    protected float currentRechargeTime;
 
     public abstract void Attack(); // Атака
 
     public void BeginAttack()
     { 
-        Library.Play3DSound(attackSound, creature.transform);
+        Library.Play3DSound(attackSound, owner.transform);
         RechargeAgain();
     }
 
     protected virtual void Start()
     {
         currentRechargeTime = rechargeTime;
-        creature = GetComponentInParent<Creature>();
+        owner = GetComponentInParent<Creature>();
     }
 
     protected virtual void FixedUpdate() // Уменьшение текущего времени до перезарядки

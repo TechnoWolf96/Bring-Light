@@ -22,6 +22,7 @@ public abstract class Creature : MonoBehaviour, IDestructable
             _maxHealth = value;
             if (health > _maxHealth) health = _maxHealth;
             if (healthBar != null) healthBar.ShowBar();
+            onHealthChanged?.Invoke();
         }
     }
     public virtual int health
@@ -33,6 +34,7 @@ public abstract class Creature : MonoBehaviour, IDestructable
             if (value > maxHealth) _health = maxHealth;
             if (value < 0) _health = 0;
             if (healthBar != null) healthBar.ShowBar();
+            onHealthChanged?.Invoke();
         }
     }
     public virtual ProtectParameters protect { get => _protect; set => _protect = value; }
@@ -70,7 +72,7 @@ public abstract class Creature : MonoBehaviour, IDestructable
         if (bullet != null) PushBack(attack.pushForce, bullet); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking);             // Если рукопашный урон - толчок от атакующего
         if (health <= 0) Death();
-        else { anim.SetTrigger("GetDamage"); print("damage"); }
+        else { anim.SetTrigger("GetDamage"); }
     }
 
 

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class LightFlicker : MonoBehaviour
 {
-    //public float maxIntensity;
     public float minIntensity;
     public float startIntensity = 0;
     public float speedChanging;
@@ -20,7 +19,7 @@ public class LightFlicker : MonoBehaviour
         if (startWithRandomIntensity) light.color.a = Random.Range(minIntensity, maxIntensity);
         else light.color.a = startIntensity;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (increase)
         {

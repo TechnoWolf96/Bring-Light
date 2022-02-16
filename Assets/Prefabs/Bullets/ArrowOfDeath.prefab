@@ -118,8 +118,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1846568080611197476}
-  - component: {fileID: 1846568080611197499}
   - component: {fileID: 8542221752068307113}
+  - component: {fileID: 1846568080611197499}
   - component: {fileID: 5868237553595648010}
   - component: {fileID: 7771583725941902395}
   - component: {fileID: 2623559320511633045}
@@ -147,6 +147,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8542221752068307113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846568080611197498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2020b1495ab01054183d3f79bb42679f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 7
+  deathEffect: {fileID: 7022658796610372179, guid: 142afc0008cb8e146a86ba43245fb809, type: 3}
+  offset: 1
+  bulletParameters:
+    attack:
+      damages: []
+      pushForce: 0
+      critChance: 0
 --- !u!95 &1846568080611197499
 Animator:
   serializedVersion: 3
@@ -166,21 +186,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8542221752068307113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846568080611197498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2020b1495ab01054183d3f79bb42679f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathEffect: {fileID: 7022658796610372179, guid: 142afc0008cb8e146a86ba43245fb809, type: 3}
-  critDeathEffect: {fileID: 0}
-  offset: 1
 --- !u!50 &5868237553595648010
 Rigidbody2D:
   serializedVersion: 4

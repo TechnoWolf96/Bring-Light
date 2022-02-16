@@ -6,7 +6,7 @@ public class OneTargetBullet_Spell : NPCSpell
     [Header("One bullet spell:")]
     public int priorityIfTargetIsVisible;
 
-    [SerializeField] protected OneTargetBullet_Parameters bulletParameters;
+    //[SerializeField] protected OneTargetBullet_Parameters bulletParameters;
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected EventReference sound;
 
@@ -28,7 +28,7 @@ public class OneTargetBullet_Spell : NPCSpell
         instance.start();
         if (stalker.follow == null) return;
         Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Bullet>().
-            InstBullet(bulletParameters, transform, stalker.follow.transform);
+            InstBullet(transform, stalker.followBodyCenter.position);
     }
 
     public override void CalculatePriority()

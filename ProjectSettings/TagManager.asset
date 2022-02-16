@@ -12,6 +12,7 @@ TagManager:
   - IgnoreCollisionBullet
   - Bullet
   - Enemy
+  - Sprite
   layers:
   - Default
   - TransparentFX

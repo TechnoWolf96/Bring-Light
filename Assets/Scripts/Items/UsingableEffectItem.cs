@@ -14,9 +14,12 @@ public class UsingableEffectItem : UsingableItem
     {
         base.Use();
         EffectIconPanel.sigleton.AddEffect(effectIcon, duration);
-        var mainParticle = particles.GetComponent<ParticleSystem>().main;
-        mainParticle.duration = duration;
-        Instantiate(particles, Player.singleton.transform);
+        if (particles != null)
+        {
+            var mainParticle = particles.GetComponent<ParticleSystem>().main;
+            mainParticle.duration = duration;
+            Instantiate(particles, Player.singleton.transform);
+        }
         currentCreatureEffect = Instantiate(creatureEffect, Player.singleton.transform);
         Effect_Timer timer = currentCreatureEffect.GetComponent<Effect_Timer>();
         timer.duration = duration;

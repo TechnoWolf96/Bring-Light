@@ -4,8 +4,8 @@ using UnityEngine;
 public class MeleeWeapon : Weapon
 {
     [Header("Melee Weapon:")]
-    public AttackParameters attack; // Параметры атаки
-    public float radiusAttack;
+    [SerializeField] protected AttackParameters attack; // Параметры атаки
+    [SerializeField] protected float radiusAttack;
     
     
 
@@ -15,7 +15,7 @@ public class MeleeWeapon : Weapon
         bool crit = attack.CalculateCrit();
         foreach (var item in enemy_col)
         {
-            item.GetComponent<IDestructable>()?.GetDamage(attack, creature.transform);
+            item.GetComponent<IDestructable>()?.GetDamage(attack, owner.transform);
         }
     }
 

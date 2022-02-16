@@ -12,6 +12,7 @@ public class OpenCloseInventory : MonoBehaviour
     {
         backpack = GameObject.Find("Canvas/Inventory/BackpackPanel");
         equipment = GameObject.Find("Canvas/Inventory/Equipment");
+        if (backpack.activeInHierarchy) Player.singleton.controled = false;
          
     }
 
@@ -27,12 +28,14 @@ public class OpenCloseInventory : MonoBehaviour
 
     private void Open()
     {
+        Player.singleton.controled = false;
         backpack.SetActive(true);
         equipment.SetActive(true);
     }
 
     private void Close()
     {
+        Player.singleton.controled = true;
         backpack.SetActive(false);
         equipment.SetActive(false);
     }

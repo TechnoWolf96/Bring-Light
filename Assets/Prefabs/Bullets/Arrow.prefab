@@ -4982,9 +4982,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4070809926872651011}
+  - component: {fileID: 2361016303749213639}
   - component: {fileID: 7800329266894493018}
   - component: {fileID: 7525185940543677036}
-  - component: {fileID: 2361016303749213639}
   - component: {fileID: 5994078602063475287}
   - component: {fileID: 4433178796111443412}
   m_Layer: 10
@@ -5010,6 +5010,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2361016303749213639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4070809926872651012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2020b1495ab01054183d3f79bb42679f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 20
+  deathEffect: {fileID: 8359110183907629608, guid: 979b836681a9dff4b80c7c403c71c0ab, type: 3}
+  offset: 1
+  bulletParameters:
+    attack:
+      damages:
+      - typeDamage: 0
+        minDamage: 10
+        maxDamage: 15
+      pushForce: 1500
+      critChance: 0
 --- !u!50 &7800329266894493018
 Rigidbody2D:
   serializedVersion: 4
@@ -5042,21 +5065,6 @@ SortingGroup:
   m_SortingLayerID: 1845381279
   m_SortingLayer: 2
   m_SortingOrder: 0
---- !u!114 &2361016303749213639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4070809926872651012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2020b1495ab01054183d3f79bb42679f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathEffect: {fileID: 8359110183907629608, guid: 979b836681a9dff4b80c7c403c71c0ab, type: 3}
-  critDeathEffect: {fileID: 0}
-  offset: 1
 --- !u!114 &5994078602063475287
 MonoBehaviour:
   m_ObjectHideFlags: 0
