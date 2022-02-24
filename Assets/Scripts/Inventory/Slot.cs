@@ -20,9 +20,10 @@ public class Slot : MonoBehaviour
                 CheckCompatibility(newIcon.beforePosition.GetComponent<Slot>(),transform.GetChild(0).GetComponent<Icon>()))
             {
                 // Проверка успешна
+                Library.SetSlotPosition(newIcon, transform, slotForEquipment);
                 Library.SetSlotPosition(transform.GetChild(0).GetComponent<Icon>(),
                     newIcon.beforePosition, newIcon.beforePosition.GetComponent<Slot>().slotForEquipment);
-                Library.SetSlotPosition(newIcon, transform, slotForEquipment);
+                
             }
             else
             {

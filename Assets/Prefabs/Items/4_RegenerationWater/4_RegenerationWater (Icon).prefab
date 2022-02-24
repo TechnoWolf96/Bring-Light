@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9445f4a2980df4984c0ea5900186b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rechargeTime: 0.3
+  rechargeTime: 5
   usingSoundEffect:
     Guid:
       Data1: 987480257

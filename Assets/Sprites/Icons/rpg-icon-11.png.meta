@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: 2090756594211326414
     second: rpg-icon-11_1
+  - first:
+      213: 2880690717004901331
+    second: rpg-icon-11_2
+  - first:
+      213: -1701753280195233565
+    second: rpg-icon-11_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -126,7 +132,7 @@ TextureImporter:
         width: 110
         height: 110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,6 +140,48 @@ TextureImporter:
       bones: []
       spriteID: ec985cd8b0cd30d10800000000000000
       internalID: 2090756594211326414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rpg-icon-11_2
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 966
+        width: 110
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dba7dec1f44af720800000000000000
+      internalID: 2880690717004901331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rpg-icon-11_3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 966
+        width: 110
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e87b9e68682268e0800000000000000
+      internalID: -1701753280195233565
       vertices: []
       indices: 
       edges: []

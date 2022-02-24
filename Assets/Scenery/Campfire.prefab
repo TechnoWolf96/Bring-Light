@@ -5130,6 +5130,7 @@ GameObject:
   - component: {fileID: 2722938001298183828}
   - component: {fileID: 2722938001298183834}
   - component: {fileID: 2722938001298183833}
+  - component: {fileID: 6363308974054158136}
   m_Layer: 12
   m_Name: Campfire
   m_TagString: Untagged
@@ -5200,3 +5201,33 @@ CapsuleCollider2D:
   m_Offset: {x: 0.03062599, y: -0.10208829}
   m_Size: {x: 0.6937371, y: 0.25135475}
   m_Direction: 1
+--- !u!114 &6363308974054158136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2722938001298183829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -593055123
+      Data2: 1144785809
+      Data3: 1212789140
+      Data4: 1388343063
+    Path: event:/Campfire
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

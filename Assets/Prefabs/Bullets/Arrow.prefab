@@ -5022,17 +5022,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2020b1495ab01054183d3f79bb42679f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attack:
+    damages:
+    - typeDamage: 0
+      minDamage: 10
+      maxDamage: 15
+    pushForce: 0
+    critChance: 0
   _speed: 20
   deathEffect: {fileID: 8359110183907629608, guid: 979b836681a9dff4b80c7c403c71c0ab, type: 3}
   offset: 1
-  bulletParameters:
-    attack:
-      damages:
-      - typeDamage: 0
-        minDamage: 10
-        maxDamage: 15
-      pushForce: 1500
-      critChance: 0
 --- !u!50 &7800329266894493018
 Rigidbody2D:
   serializedVersion: 4

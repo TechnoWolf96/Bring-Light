@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5039367632838523159}
-  - component: {fileID: -217471825552855900}
+  - component: {fileID: 7246205667663874448}
   m_Layer: 7
   m_Name: Bow (Orofer)
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-217471825552855900
+--- !u!114 &7246205667663874448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,14 +40,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5039367632838523144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bb440b59bcc42e4f9d03df21cefadeb, type: 3}
+  m_Script: {fileID: 11500000, guid: be8bb4c0685cfa7419759a7fefe0b82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rechargeTime: 0.5
-  animController: {fileID: 9100000, guid: b0888adbbb0ed7f4a965bb8f53c63aa0, type: 2}
+  rechargeTime: 0.3
+  _animController: {fileID: 9100000, guid: b0888adbbb0ed7f4a965bb8f53c63aa0, type: 2}
   layer:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 192
   attackSound:
     Guid:
       Data1: -795420481
@@ -55,14 +55,4 @@ MonoBehaviour:
       Data3: -345395817
       Data4: -2119061263
     Path: event:/StrechingBow
-  timeOriginalAttackAnimation: 0.66
-  bulletParameters:
-    speed: 20
-    attack:
-      damages:
-      - typeDamage: 0
-        minDamage: 30
-        maxDamage: 40
-      pushForce: 1500
-      critChance: 0
-  bullet: {fileID: 4070809926872651012, guid: fb4b00762257cd9468616ace7d3403fa, type: 3}
+  _bullet: {fileID: 0}

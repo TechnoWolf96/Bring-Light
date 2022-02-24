@@ -4937,21 +4937,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33676701f8993ba4da3c979fa0e48490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attack:
+    damages:
+    - typeDamage: 0
+      minDamage: 50
+      maxDamage: 70
+    pushForce: 2000
+    critChance: 0
   _speed: 20
   deathEffect: {fileID: 1919774305575961887, guid: df45724a874b7e241a137b6e2ae48fca, type: 3}
   offset: 1
-  _bulletParameters:
-    attack:
-      damages:
-      - typeDamage: 0
-        minDamage: 20
-        maxDamage: 30
-      pushForce: 2000
-      critChance: 0
-    explotionRadius: 1
-    damagableLayers:
-      serializedVersion: 2
-      m_Bits: 192
+  _explotionRadius: 1
+  _damagableLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!50 &4140230801389290931
 Rigidbody2D:
   serializedVersion: 4

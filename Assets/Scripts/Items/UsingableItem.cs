@@ -16,14 +16,21 @@ public abstract class UsingableItem : MonoBehaviour, IUsingable
 
     public virtual void Use()
     {
-        currentRechargeTime = rechargeTime;
         Library.Play2DSound(usingSoundEffect);
+        InventoryInfoSlot.singleton.RechargeItemsWithId(GetComponent<Icon>().id);
+    }
+
+    private void RechargeItem(int id)
+    {
+        if (id == GetComponent<Icon>().id)
+            currentRechargeTime = rechargeTime;
     }
 
     protected virtual void Start()
     {
         darkFill = transform.Find("DarkFill").GetComponent<Image>();
         currentRechargeTime = 0f;
+        InventoryInfoSlot.singleton.onUseItem += RechargeItem;
     }
 
     protected virtual void Update()
@@ -34,6 +41,10 @@ public abstract class UsingableItem : MonoBehaviour, IUsingable
     protected virtual void FixedUpdate()
     {
         currentRechargeTime -= Time.deltaTime;
+    }
+    protected virtual void OnDestroy()
+    {
+        InventoryInfoSlot.singleton.onUseItem -= RechargeItem;
     }
 
 }

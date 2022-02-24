@@ -28,6 +28,7 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             Weight.singleton.totalWeight += weight;
             if (numbered)
                 quantityText.text = _quantity.ToString();
+            if (_quantity == 0) Destroy(gameObject);
         } 
     }
     [SerializeField] protected int _price;

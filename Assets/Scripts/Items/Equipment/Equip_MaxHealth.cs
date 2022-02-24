@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+
 
 public class Equip_MaxHealth : EquipmentItem
 {
@@ -8,11 +6,11 @@ public class Equip_MaxHealth : EquipmentItem
 
     public override void PutOff()
     {
-        player.maxHealth -= bonusMaxHealth;
+        Player.singleton.maxHealth -= bonusMaxHealth;
     }
 
     public override void PutOn()
     {
-        player.maxHealth += bonusMaxHealth;
+        Player.singleton.maxHealth += bonusMaxHealth;
     }
 }

@@ -39,7 +39,7 @@ public abstract class Creature : MonoBehaviour, IDestructable
     }
     public virtual ProtectParameters protect { get => _protect; set => _protect = value; }
 
-    protected Animator anim;      
+    public Animator anim { get; set; }     
     protected Rigidbody2D rb;     
     protected GameObject physicalSupport;
     protected HealthBar healthBar;

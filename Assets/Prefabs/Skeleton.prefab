@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rechargeTime: 1
-  animController: {fileID: 9100000, guid: cb619412c6e06f142aac1cc3de91c776, type: 2}
+  _animController: {fileID: 9100000, guid: cb619412c6e06f142aac1cc3de91c776, type: 2}
   layer:
     serializedVersion: 2
     m_Bits: 128
@@ -359,7 +359,6 @@ MonoBehaviour:
       Data3: 557067172
       Data4: -1650646905
     Path: event:/SlashRapier
-  timeOriginalAttackAnimation: 1
   attack:
     damages:
     - typeDamage: 0

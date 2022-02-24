@@ -33,7 +33,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Start()
     {
-        currentRechargeTime = rechargeTime;
+        currentRechargeTime = 0f;
         owner = GetComponentInParent<Creature>();
     }
 

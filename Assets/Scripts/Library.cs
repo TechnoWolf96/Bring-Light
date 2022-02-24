@@ -51,6 +51,8 @@ public static class Library
         icon.transform.position = newPosition.position;
         if (forEquipment && !icon.equipped) icon.PutOn();
         if (!forEquipment && icon.equipped) icon.PutOff();
+        if (forEquipment && icon.equipped) { icon.PutOff(); icon.PutOn(); }
+
     }
 
    
