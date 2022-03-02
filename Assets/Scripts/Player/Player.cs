@@ -6,7 +6,6 @@ public class Player : Creature, IAttackWithWeapon
     private static Player _singleton;
     public static Player singleton { get => _singleton; }
     [HideInInspector] public bool controled = true;
-
     public Weapon currentWeapon { get; set; }
     public Transform weaponSlot { get; protected set; }
 
@@ -29,7 +28,6 @@ public class Player : Creature, IAttackWithWeapon
     protected override void Start()
     {
         base.Start();
-        
         currentCoolDownTime = coolDownTime;
     }
 

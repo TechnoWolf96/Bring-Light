@@ -55,6 +55,7 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     protected virtual void Start()
     {
+        equipped = false;
         TryGetComponent(out equipmentEffect);
         TryGetComponent(out usingEffect);
         if (transform.parent.GetComponent<Slot>().slotForEquipment) PutOn();

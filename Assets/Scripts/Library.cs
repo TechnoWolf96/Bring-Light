@@ -49,8 +49,8 @@ public static class Library
     {
         icon.transform.SetParent(newPosition);
         icon.transform.position = newPosition.position;
-        if (forEquipment && !icon.equipped) icon.PutOn();
-        if (!forEquipment && icon.equipped) icon.PutOff();
+        if (forEquipment && !icon.equipped) {icon.PutOn(); return;}
+        if (!forEquipment && icon.equipped) {icon.PutOff(); return;}
         if (forEquipment && icon.equipped) { icon.PutOff(); icon.PutOn(); }
 
     }

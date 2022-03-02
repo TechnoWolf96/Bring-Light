@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    private static PlayerStatus _singleton;
+    public static PlayerStatus singleton { get => _singleton; }
+
     public string _name;
     public int level;
     public int currentExperience;
@@ -18,7 +21,10 @@ public class PlayerStatus : MonoBehaviour
     protected Text experienceText;
     protected Image experienceFiller;
 
-
+    private void Awake()
+    {
+        _singleton = this;
+    }
 
 
 

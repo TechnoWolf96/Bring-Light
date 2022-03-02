@@ -52,7 +52,6 @@ public class InventoryInfoSlot : MonoBehaviour
             result += _meleeWeaponSlot.transform.GetChild(0).GetComponent<Icon>().weight;
         if (_rangedWeaponSlot.transform.childCount != 0)
             result += _rangedWeaponSlot.transform.GetChild(0).GetComponent<Icon>().weight;
-        /*
         if (_backpackSlot.transform.childCount != 0)
             result += _backpackSlot.transform.GetChild(0).GetComponent<Icon>().weight;
         /*
