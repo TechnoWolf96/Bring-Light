@@ -4,7 +4,6 @@ using FMODUnity;
 
 public class SoundSettings : MonoBehaviour
 {
-    //FMOD.Studio.Bus master;
     FMOD.Studio.Bus SFX;
     FMOD.Studio.Bus music;
 

@@ -44,19 +44,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rechargeTime: 1
-  animController: {fileID: 9100000, guid: 460f78f2c295ff1449d9362638e7d9b3, type: 2}
+  _animController: {fileID: 0}
   layer:
     serializedVersion: 2
     m_Bits: 128
+  attackSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   attack:
     damages:
     - typeDamage: 0
       minDamage: 1
       maxDamage: 2
     pushForce: 8
-    timeStunning: 0.15
     critChance: 0
-    critGainPercentage: 0
   radiusAttack: 1
 --- !u!1 &1182674020939907348
 GameObject:
@@ -150,24 +155,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda0a42b36a10354cb76ad598cb2d7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  maxHealth: 50
-  health: 50
-  protect:
+  _speed: 0
+  _maxHealth: 0
+  _health: 0
+  _protect:
     physical: 0
     holy: 0
     fiery: 0
     cold: 0
     dark: 0
     poison: 0
-  xPushMass: 1
-  physicalSupport: {fileID: 0}
   distanceDetection: 3
   detectionableLayer:
     serializedVersion: 2
     m_Bits: 128
-  follow: {fileID: 0}
-  navAgent: {fileID: 0}
   radiusTriggerAttack: 1
 --- !u!195 &1182674020939907355
 NavMeshAgent:
@@ -241,7 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   valueSlider: {fileID: 9003593211050241687}
-  animSlider: {fileID: 7630081317531467068}
 --- !u!210 &328565973
 SortingGroup:
   m_ObjectHideFlags: 0
