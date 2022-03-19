@@ -84,11 +84,4 @@ public class Stalker : Creature
         base.GetDamage(attack, attacking, bullet);
         SetFollow(attacking); // При получении урона преследователь бежит за нападающим
     }
-
-
-    public override void Death()
-    {
-        navAgent.enabled = false;
-        base.Death();
-    }
 }

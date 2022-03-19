@@ -7,8 +7,8 @@ using UnityEngine;
 public class Spellcaster : AbleToSeekRangedAttackPosition
 {
     [Header("Spellcaster")]
-    [SerializeField] protected List<NPCSpell> spells;
-    protected NPCSpell selectedSpell;
+    [SerializeField] protected List<SpellNPC> spells;
+    protected SpellNPC selectedSpell;
     public bool canCastSpell { get; protected set; }
 
     protected override void StateUpdate()
@@ -27,13 +27,13 @@ public class Spellcaster : AbleToSeekRangedAttackPosition
         SelectRandomSpell();
         if (selectedSpell == null) return; // Если у всех имеющихся заклинаний приоритет 0 - ничего не делаем
         selectedSpell.BeginCast();
-        anim.SetFloat("SpeedCast", selectedSpell.speedCast);
+        //anim.SetFloat("SpeedCast", selectedSpell.speedCast);
         anim.SetTrigger("Spellcast");
     }
 
     public void EndSpellcasting()
     {
-        selectedSpell?.StopCast();
+        //selectedSpell?.StopCast();
         selectedSpell = null;
     }
 

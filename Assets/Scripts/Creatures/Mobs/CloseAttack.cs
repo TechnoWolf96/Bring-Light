@@ -16,9 +16,8 @@ public class CloseAttack : Stalker, IAttackWithWeapon
     protected override void StateUpdate()
     {
         base.StateUpdate();
-        if (CheckAttack() && currentWeapon.IsRecharged())
+        if (CheckAttack())
         {
-            currentWeapon.BeginAttack();
             anim.SetTrigger("Attack");
         }
     }

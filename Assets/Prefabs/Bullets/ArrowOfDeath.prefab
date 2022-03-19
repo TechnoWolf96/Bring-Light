@@ -159,14 +159,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2020b1495ab01054183d3f79bb42679f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attack:
+    damages:
+    - typeDamage: 4
+      minDamage: 20
+      maxDamage: 30
+    pushForce: 0
+    critChance: 0
   _speed: 7
   deathEffect: {fileID: 7022658796610372179, guid: 142afc0008cb8e146a86ba43245fb809, type: 3}
   offset: 1
-  bulletParameters:
-    attack:
-      damages: []
-      pushForce: 0
-      critChance: 0
 --- !u!95 &1846568080611197499
 Animator:
   serializedVersion: 3
@@ -220,9 +222,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.003491938, y: 0.00819033}
+  m_Offset: {x: -0.00037988648, y: 0.008190319}
   serializedVersion: 2
-  m_Radius: 0.12634975
+  m_Radius: 0.027618144
 --- !u!210 &2623559320511633045
 SortingGroup:
   m_ObjectHideFlags: 0

@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public interface IDestructable
+{
+    public void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null);
+    public void Death();
+}
+
 
 // Универсальный класс - "Существо", является предком любого живого объекта на сцене
 public abstract class Creature : MonoBehaviour, IDestructable
@@ -12,8 +18,10 @@ public abstract class Creature : MonoBehaviour, IDestructable
     [SerializeField] protected int _maxHealth;
     [SerializeField] protected int _health;
     [SerializeField] protected ProtectParameters _protect;
+    protected const float updateStateTimeCicle = 0.3f;
+    protected float timeUntilUpdateState;
 
-    public virtual float speed { get; set; }
+    public virtual float speed { get => _speed; set => _speed = value; }
     public virtual int maxHealth
     {
         get => _maxHealth;
@@ -40,15 +48,25 @@ public abstract class Creature : MonoBehaviour, IDestructable
     public virtual ProtectParameters protect { get => _protect; set => _protect = value; }
 
     public Animator anim { get; set; }     
-    protected Rigidbody2D rb;     
-    protected GameObject physicalSupport;
+    protected Rigidbody2D rb;
+    public GameObject physicalSupport { get; protected set; }
     protected HealthBar healthBar;
     public Transform bodyCenter { get; protected set; }
 
-
+    protected void Update() 
+    {
+        timeUntilUpdateState -= Time.deltaTime;
+        if (timeUntilUpdateState < 0)
+        {
+            UpdateState();
+            timeUntilUpdateState = updateStateTimeCicle;
+        }
+    }
+    protected virtual void UpdateState() {}
 
     protected virtual void Start()
     {
+        timeUntilUpdateState = updateStateTimeCicle;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         bodyCenter = gameObject.transform.Find("BodyCenter");
@@ -72,7 +90,7 @@ public abstract class Creature : MonoBehaviour, IDestructable
         if (bullet != null) PushBack(attack.pushForce, bullet); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking);             // Если рукопашный урон - толчок от атакующего
         if (health <= 0) Death();
-        else { anim.SetTrigger("GetDamage"); }
+        else anim.SetTrigger("GetDamage");
     }
 
 
@@ -98,7 +116,6 @@ public abstract class Creature : MonoBehaviour, IDestructable
     protected int CalculateRealDamage(AttackParameters attack)
     {
         int result = 0;
-        if (protect == null) print("ouuu");
         foreach (var item in attack.damages)
         {
             int preDamage = item.Damaged();

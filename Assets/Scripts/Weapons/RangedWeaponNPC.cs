@@ -3,17 +3,17 @@ using UnityEngine;
 public class RangedWeaponNPC : Weapon
 {
     [SerializeField] protected GameObject bullet;
-    protected Stalker stalker;
+    protected RangedAttackFSM shooter;
 
     protected override void Start()
     {
         base.Start();
-        stalker = GetComponentInParent<Stalker>();
+        shooter = GetComponentInParent<RangedAttackFSM>();
     }
 
     public override void Attack()
     {
         Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Bullet>().
-            InstBullet(transform.parent, stalker.followBodyCenter.position);
+            InstBullet(transform.parent, shooter.followBodyCenter.position);
     }
 }

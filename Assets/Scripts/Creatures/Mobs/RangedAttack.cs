@@ -13,9 +13,8 @@ public class RangedAttack : AbleToSeekRangedAttackPosition, IAttackWithWeapon
     {
         base.StateUpdate();
         // Цель видна? Да - атакуем
-        if (targetIsVisible && currentWeapon.IsRecharged())
+        if (targetIsVisible)
         {
-            currentWeapon.BeginAttack();
             anim.SetTrigger("Attack");
         }
     }

@@ -57,7 +57,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0.8
+    scalar: 0
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -4878,7 +4878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minIntensity: 0
   startIntensity: 0
-  speedChanging: 0.6
+  speedChanging: 0.85
   startWithRandomIntensity: 0
 --- !u!114 &8122991811332797256
 MonoBehaviour:

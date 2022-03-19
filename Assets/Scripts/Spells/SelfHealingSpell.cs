@@ -1,40 +1,35 @@
 using UnityEngine;
 
-public class SelfHealingSpell : NPCSpell
+public class SelfHealingSpell : SpellNPC
 {
-    [Header("Self healing:")]
-    public int heal;
-    public GameObject particles;
-    public int maxPriority;
-    protected HealthBar HealthBar;
+    [SerializeField] int heal;
+    [SerializeField] int maxPriority;
+    [SerializeField] GameObject particles;
 
+    protected Creature spellcaster;
     protected ParticleSystem instParticles;
+    protected HealthBar HealthBar;
 
     public override void BeginCast()
     {
         instParticles = Instantiate(particles, transform).GetComponent<ParticleSystem>();
+        spellcaster.anim.SetFloat("SpeedCast", speedCast);
     }
-    public override void StopCast()
-    {
-        //instParticles?.Stop();
-    }
+        
 
-    protected override void Start()
+
+    private void Start()
     {
-        base.Start();
         HealthBar = GetComponentInParent<HealthBar>();
+        spellcaster = GetComponentInParent<Creature>();  
     }
 
-    public override void Activate()
-    {
-        creature.health += heal;
-        if (creature.health > creature.maxHealth)
-            creature.health = creature.maxHealth;
-        HealthBar.ShowBar();
-    }
+    public override void Activate() => spellcaster.health += heal;
 
     public override void CalculatePriority()
     {
-        priority = maxPriority - (creature.health * maxPriority / creature.maxHealth);
+        priority = maxPriority - (spellcaster.health * maxPriority / spellcaster.maxHealth);
     }
+
+    public override void BreakCast() => instParticles.Stop();
 }

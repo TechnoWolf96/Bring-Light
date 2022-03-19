@@ -81,15 +81,11 @@ public class Player : Creature, IAttackWithWeapon
             {
                 PlayerWeaponChanger.singleton.SelectWeapon(CurrentWeaponType.Ranged);
             }
-            if (currentWeapon.IsRecharged())
-            {
-                
-                if (ArrowCounter.singleton.count == 0) return;
+            if (ArrowCounter.singleton.count == 0) return;
 
-                anim.SetTrigger("Attack");
-                anim.SetFloat("SpeedAttack", 2f);
-                currentWeapon.BeginAttack();
-            }
+            anim.SetTrigger("Attack");
+            anim.SetFloat("SpeedAttack", 2f);
+            
             return;
         }
         // œ Ã - ”‰‡
@@ -100,21 +96,10 @@ public class Player : Creature, IAttackWithWeapon
             {
                 PlayerWeaponChanger.singleton.SelectWeapon(CurrentWeaponType.Melee);
             }
-            if (currentWeapon.IsRecharged())
-            {
-                anim.SetTrigger("Attack");
-                anim.SetFloat("SpeedAttack", 2f);
-                currentWeapon.BeginAttack();
-            }
+            anim.SetTrigger("Attack");
+            anim.SetFloat("SpeedAttack", 2f);
             return;
         }
-        
-    }
-
-    public override void Death()
-    {
-        base.Death();
-        onPlayerDeath.Invoke();
     }
 
 

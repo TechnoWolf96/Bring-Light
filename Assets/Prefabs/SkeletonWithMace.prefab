@@ -347,7 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d67ed41bdb8049b127124a5684ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rechargeTime: 1
   _animController: {fileID: 9100000, guid: cb619412c6e06f142aac1cc3de91c776, type: 2}
   layer:
     serializedVersion: 2
@@ -376,7 +375,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7066068728849598348}
-  - component: {fileID: 7066068728849598345}
   - component: {fileID: 7066068728849598349}
   - component: {fileID: 7066068728849598346}
   - component: {fileID: 7066068728849598344}
@@ -385,8 +383,9 @@ GameObject:
   - component: {fileID: 7336424836373742666}
   - component: {fileID: 5984011938623055064}
   - component: {fileID: 1431135314381751606}
+  - component: {fileID: 2141154017987354560}
   m_Layer: 6
-  m_Name: Skeleton
+  m_Name: SkeletonWithMace
   m_TagString: Enemy
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -400,7 +399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7066068728849598342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 57.870785, y: 5.7792935, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7066068729696698516}
@@ -411,33 +410,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7066068728849598345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7066068728849598342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bda0a42b36a10354cb76ad598cb2d7f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5
-  _maxHealth: 100
-  _health: 100
-  _protect:
-    physical: 0
-    holy: 0
-    fiery: 0
-    cold: 0
-    dark: 0
-    poison: 0
-  distanceDetection: 4
-  detectionableLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  radiusTriggerAttack: 1.2
 --- !u!50 &7066068728849598349
 Rigidbody2D:
   serializedVersion: 4
@@ -505,7 +477,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -577,6 +549,32 @@ MonoBehaviour:
       Data3: 586512517
       Data4: 124789838
     Path: event:/SkeletonFootsteps
+--- !u!114 &2141154017987354560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066068728849598342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4061115ba619ab64498a81c1ea04245f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  _maxHealth: 100
+  _health: 100
+  _protect:
+    physical: 0
+    holy: 0
+    fiery: 0
+    cold: 0
+    dark: 0
+    poison: 0
+  distanceDetection: 5
+  detectionableLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &7066068729696698517
 GameObject:
   m_ObjectHideFlags: 0
