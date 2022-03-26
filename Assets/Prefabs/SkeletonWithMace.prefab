@@ -347,23 +347,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d67ed41bdb8049b127124a5684ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animController: {fileID: 9100000, guid: cb619412c6e06f142aac1cc3de91c776, type: 2}
-  layer:
+  layerAttack:
     serializedVersion: 2
     m_Bits: 128
-  attackSound:
-    Guid:
-      Data1: -1599129012
-      Data2: 1077786795
-      Data3: 557067172
-      Data4: -1650646905
-    Path: event:/SlashRapier
   attack:
     damages:
     - typeDamage: 0
       minDamage: 25
       maxDamage: 35
-    pushForce: 8
+    pushForce: 1000
     critChance: 0
   radiusAttack: 0.7
 --- !u!1 &7066068728849598342
@@ -561,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4061115ba619ab64498a81c1ea04245f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 3
   _maxHealth: 100
   _health: 100
   _protect:
@@ -575,6 +567,7 @@ MonoBehaviour:
   detectionableLayer:
     serializedVersion: 2
     m_Bits: 128
+  lossDistance: 15
 --- !u!1 &7066068729696698517
 GameObject:
   m_ObjectHideFlags: 0

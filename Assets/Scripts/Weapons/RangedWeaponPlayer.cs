@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RangedWeaponPlayer : Weapon
+public class RangedWeaponPlayer : PlayerWeapon
 {
     [HideInInspector] public GameObject bullet;
 

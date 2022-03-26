@@ -164,9 +164,9 @@ MonoBehaviour:
     - typeDamage: 4
       minDamage: 20
       maxDamage: 30
-    pushForce: 0
+    pushForce: 2000
     critChance: 0
-  _speed: 7
+  _speed: 12
   deathEffect: {fileID: 7022658796610372179, guid: 142afc0008cb8e146a86ba43245fb809, type: 3}
   offset: 1
 --- !u!95 &1846568080611197499

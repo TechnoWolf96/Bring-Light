@@ -6,11 +6,9 @@ public class Player : Creature, IAttackWithWeapon
     private static Player _singleton;
     public static Player singleton { get => _singleton; }
     [HideInInspector] public bool controled = true;
-    public Weapon currentWeapon { get; set; }
+    public PlayerWeapon currentWeapon { get; set; }
     public Transform weaponSlot { get; protected set; }
 
-    private const float coolDownTime = 0.1f;
-    private float currentCoolDownTime;
 
 
     private void Awake()
@@ -20,29 +18,16 @@ public class Player : Creature, IAttackWithWeapon
         weaponSlot = gameObject.transform.Find("Weapon");
     }
 
-    private void FixedUpdate()
-    {
-        currentCoolDownTime -= Time.deltaTime;
-    }
 
-    protected override void Start()
+    protected override void Update()
     {
-        base.Start();
-        currentCoolDownTime = coolDownTime;
-    }
-
-    protected void Update()
-    {
-        if (!controled) return;
+        base.Update();
         Move();
         AttackInput();
-        
     }
 
     public void AttackMoment()
     {
-       
-       
         if (PlayerWeaponChanger.singleton.currentWeaponType == CurrentWeaponType.Ranged)
         {
             RangedWeaponPlayer rangedWeapon = (RangedWeaponPlayer)currentWeapon;
@@ -53,26 +38,13 @@ public class Player : Creature, IAttackWithWeapon
 
     private void Move()
     {
-        Vector2 moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        
-        if (moveDirection.x == 0 && moveDirection.y == 0)
-        {
-            anim.SetBool("Walk", false);
-            rb.velocity = Vector2.zero;
-        }
-        else
-        {
-            rb.velocity = moveDirection.normalized * _speed;
-            anim.SetBool("Walk", true);
-        }
-        LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0
+            && controled) anim.SetBool("Move", true);
+        else anim.SetBool("Move", false);
     }
 
     private void AttackInput()
     {
-        // TODO: Разобраться с длительностью анимации у оружия
-        if (currentCoolDownTime > 0) return;
-        else currentCoolDownTime = coolDownTime;
         // ЛКМ - Выстрел
         if (Input.GetMouseButton(0))
         {
@@ -82,10 +54,7 @@ public class Player : Creature, IAttackWithWeapon
                 PlayerWeaponChanger.singleton.SelectWeapon(CurrentWeaponType.Ranged);
             }
             if (ArrowCounter.singleton.count == 0) return;
-
             anim.SetTrigger("Attack");
-            anim.SetFloat("SpeedAttack", 2f);
-            
             return;
         }
         // ПКМ - Удар
@@ -97,12 +66,11 @@ public class Player : Creature, IAttackWithWeapon
                 PlayerWeaponChanger.singleton.SelectWeapon(CurrentWeaponType.Melee);
             }
             anim.SetTrigger("Attack");
-            anim.SetFloat("SpeedAttack", 2f);
             return;
         }
     }
 
-
+    public void PlaySoundAttack() => currentWeapon.PlaySound();
 
 
 

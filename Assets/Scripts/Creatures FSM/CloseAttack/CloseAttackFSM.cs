@@ -28,15 +28,11 @@ public class CloseAttackFSM : Creature
     protected override void Start()
     {
         base.Start();
-        if (currentWeapon != null)
-        {
-            currentWeapon = GetComponentInChildren<Weapon>();
-            anim.runtimeAnimatorController = currentWeapon.animController;
-        }
+        currentWeapon ??= GetComponentInChildren<Weapon>();
         navAgent = GetComponent<NavMeshAgent>();
         navAgent.updateRotation = false;
         navAgent.updateUpAxis = false;
-        speed = speed;
+        navAgent.speed = speed;
         spawnPosition = transform.position;
     }
 
@@ -47,7 +43,6 @@ public class CloseAttackFSM : Creature
         if (follow != null && Vector2.Distance(transform.position, follow.position) < lossDistance)
         {
             anim.SetFloat("DistanceToTarget", Vector2.Distance(transform.position, follow.position));
-            LookAt(follow.position);
         }
         else
         {

@@ -21,6 +21,7 @@ public abstract class Creature : MonoBehaviour, IDestructable
     protected const float updateStateTimeCicle = 0.3f;
     protected float timeUntilUpdateState;
 
+    public bool isDeath { get; protected set; }
     public virtual float speed { get => _speed; set => _speed = value; }
     public virtual int maxHealth
     {
@@ -48,12 +49,12 @@ public abstract class Creature : MonoBehaviour, IDestructable
     public virtual ProtectParameters protect { get => _protect; set => _protect = value; }
 
     public Animator anim { get; set; }     
-    protected Rigidbody2D rb;
+    public Rigidbody2D rb { get; protected set; }
     public GameObject physicalSupport { get; protected set; }
     protected HealthBar healthBar;
     public Transform bodyCenter { get; protected set; }
 
-    protected void Update() 
+    protected virtual void Update() 
     {
         timeUntilUpdateState -= Time.deltaTime;
         if (timeUntilUpdateState < 0)
@@ -66,6 +67,7 @@ public abstract class Creature : MonoBehaviour, IDestructable
 
     protected virtual void Start()
     {
+        isDeath = true;
         timeUntilUpdateState = updateStateTimeCicle;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -79,7 +81,18 @@ public abstract class Creature : MonoBehaviour, IDestructable
     // Отталкивание при получении урона от позиции толкающего объекта
     public void PushBack(float force, Transform pusher) 
     {
-        Vector2 pushDirection = new Vector2(bodyCenter.position.x - pusher.position.x, bodyCenter.position.y - pusher.position.y).normalized;
+        Vector2 pushDirection;
+        if (pusher.TryGetComponent(out Creature creature))
+        {
+            pushDirection = new Vector2(bodyCenter.position.x - creature.bodyCenter.position.x,
+                bodyCenter.position.y - creature.bodyCenter.position.y).normalized;
+        }
+        else
+        {
+            pushDirection = new Vector2(bodyCenter.position.x - pusher.position.x,
+                bodyCenter.position.y - pusher.position.y).normalized;
+        }
+        
         rb.AddForce(pushDirection * force);
         LookAt(pusher.position);
     }
@@ -99,9 +112,10 @@ public abstract class Creature : MonoBehaviour, IDestructable
         physicalSupport.SetActive(false);
         gameObject.layer = LayerMask.NameToLayer("Corpses");
         anim.SetTrigger("Death");
-        //onDeath.Invoke();
-        Destroy(this);
-            
+        isDeath = true;
+        onDeath?.Invoke();
+
+
     }
 
     public void LookAt(Vector2 target)

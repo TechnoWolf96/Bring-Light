@@ -6,7 +6,8 @@ public class RangedAttack_BaseFSM : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent = animator.gameObject.GetComponent<RangedAttackFSM>();
+        if (agent == null)
+            agent = animator.gameObject.GetComponent<RangedAttackFSM>();
     }
 
 }

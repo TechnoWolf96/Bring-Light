@@ -757,11 +757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab854168dc4d79a44af154df3470d991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animController: {fileID: 9100000, guid: 5941b802d8795584eb73a58f699e24a2, type: 2}
-  layer:
+  layerAttack:
     serializedVersion: 2
     m_Bits: 128
-  bullet: {fileID: 8959952505765291967, guid: bf971203d0d3c00439a7d98f15a208aa, type: 3}
+  bullet: {fileID: 4070809926872651012, guid: fb4b00762257cd9468616ace7d3403fa, type: 3}
 --- !u!1 &8124873621795770974
 GameObject:
   m_ObjectHideFlags: 0

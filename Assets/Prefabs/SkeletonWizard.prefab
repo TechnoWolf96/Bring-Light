@@ -1,5 +1,90 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &310775984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 310775985}
+  - component: {fileID: 310775986}
+  m_Layer: 6
+  m_Name: Dagger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &310775985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310775984}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1803070244}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &310775986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310775984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6d67ed41bdb8049b127124a5684ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerAttack:
+    serializedVersion: 2
+    m_Bits: 128
+  attack:
+    damages:
+    - typeDamage: 0
+      minDamage: 8
+      maxDamage: 12
+    pushForce: 700
+    critChance: 0
+  radiusAttack: 0.5
+--- !u!1 &1803070243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803070244}
+  m_Layer: 6
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1803070244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803070243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.099, y: 0.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 310775985}
+  m_Father: {fileID: 2944152205274575993}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1249377585115345769
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,8 +337,8 @@ GameObject:
   - component: {fileID: 2944152205274575995}
   - component: {fileID: 3387891377288804287}
   - component: {fileID: 1864342780324845357}
-  - component: {fileID: 2944152205274575984}
   - component: {fileID: 1503519012816702954}
+  - component: {fileID: 4867688414802918912}
   m_Layer: 6
   m_Name: SkeletonWizard
   m_TagString: Enemy
@@ -269,7 +354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2944152205274575987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 58.22118, y: 8.740222, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2944152204158710625}
@@ -278,6 +363,7 @@ Transform:
   - {fileID: 2571874727365013115}
   - {fileID: 3109019243701620894}
   - {fileID: 8426403298947303955}
+  - {fileID: 1803070244}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -372,7 +458,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   valueSlider: {fileID: 5241331190907172988}
-  animSlider: {fileID: 6749976821577051095}
 --- !u!114 &3387891377288804287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,45 +487,6 @@ SortingGroup:
   m_SortingLayerID: 1845381279
   m_SortingLayer: 2
   m_SortingOrder: 0
---- !u!114 &2944152205274575984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2944152205274575987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7339028d6f52c4e9f880af42fe35f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3.5
-  _maxHealth: 100
-  _health: 100
-  protect:
-    physical: 0
-    holy: 0
-    fiery: 0
-    cold: 0
-    dark: 0
-    poison: 0
-  physicalSupport: {fileID: 2792481416819703690}
-  distanceDetection: 7
-  detectionableLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  follow: {fileID: 0}
-  navAgent: {fileID: 0}
-  maxStopDistance: 7
-  minStopDistance: 4
-  runFromDistance: 3
-  obstacleBulletLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  rayThickness: 0.001
-  spells:
-  - {fileID: 5391937706957075139}
-  - {fileID: 8196056806167179759}
 --- !u!114 &1503519012816702954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +506,48 @@ MonoBehaviour:
       Data3: 586512517
       Data4: 124789838
     Path: event:/SkeletonFootsteps
+  - Guid:
+      Data1: -1540885268
+      Data2: 1112722488
+      Data3: 1837063341
+      Data4: -965614679
+    Path: event:/SlashDagger
+--- !u!114 &4867688414802918912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2944152205274575987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a429dac88819a4f860ce0fa0db0187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _maxHealth: 100
+  _health: 100
+  _protect:
+    physical: 0
+    holy: 0
+    fiery: 0
+    cold: 0
+    dark: 0
+    poison: 0
+  distanceDetection: 5
+  detectionableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  lossDistance: 10
+  maxStopDistance: 8
+  minStopDistance: 5
+  tooCloseDistance: 4
+  obstacleBulletLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _spells:
+  - {fileID: 5391937706957075139}
+  - {fileID: 8196056806167179759}
 --- !u!1 &5391937706957075141
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,11 +591,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529d6c84764dc644ead03f06b594a952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 1
   speedCast: 0.5
+  rechargeTime: 4
   heal: 30
-  particles: {fileID: 8889867131755650115, guid: 217dd3f607b2dd24b8dd62f43782d3ac, type: 3}
   maxPriority: 6
+  particles: {fileID: 8889867131755650115, guid: 217dd3f607b2dd24b8dd62f43782d3ac, type: 3}
 --- !u!1 &5393579063181510377
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5702300942936189157}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.368, z: 0}
+  m_LocalPosition: {x: 0, y: 0.585, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2944152205274575993}
@@ -638,26 +726,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df67d7253dd43df4c9e0cb7abcd0ebe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 3
   speedCast: 0.7
+  rechargeTime: 0
   priorityIfTargetIsVisible: 3
-  bulletParameters:
-    speed: 10
-    attack:
-      damages:
-      - typeDamage: 0
-        minDamage: 25
-        maxDamage: 40
-      pushForce: 5
-      critChance: 0
   bullet: {fileID: 1846568080611197498, guid: 38698d3823675c048a33ba0217aa8269, type: 3}
-  sound:
-    Guid:
-      Data1: -1797572123
-      Data2: 1118365808
-      Data3: -1877671522
-      Data4: 1753422403
-    Path: event:/ArrowOfDeath (Creating)
+  particles: {fileID: 0}
 --- !u!1 &6359654414960432589
 GameObject:
   m_ObjectHideFlags: 0

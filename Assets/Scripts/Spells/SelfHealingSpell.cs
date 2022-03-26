@@ -14,6 +14,7 @@ public class SelfHealingSpell : SpellNPC
     {
         instParticles = Instantiate(particles, transform).GetComponent<ParticleSystem>();
         spellcaster.anim.SetFloat("SpeedCast", speedCast);
+        currentRechargeTime = rechargeTime;
     }
         
 
@@ -28,6 +29,7 @@ public class SelfHealingSpell : SpellNPC
 
     public override void CalculatePriority()
     {
+        if (currentRechargeTime > 0) { priority = 0; return; }
         priority = maxPriority - (spellcaster.health * maxPriority / spellcaster.maxHealth);
     }
 

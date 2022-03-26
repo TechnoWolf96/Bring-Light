@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7246205667663874448}
   m_Layer: 7
   m_Name: Bow (Orofer)
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,16 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8bb4c0685cfa7419759a7fefe0b82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rechargeTime: 0.3
-  _animController: {fileID: 9100000, guid: b0888adbbb0ed7f4a965bb8f53c63aa0, type: 2}
-  layer:
+  layerAttack:
     serializedVersion: 2
-    m_Bits: 192
-  attackSound:
+    m_Bits: 64
+  _animController: {fileID: 9100000, guid: b0888adbbb0ed7f4a965bb8f53c63aa0, type: 2}
+  soundAttack:
     Guid:
       Data1: -795420481
       Data2: 1245177149
       Data3: -345395817
       Data4: -2119061263
     Path: event:/StrechingBow
-  _bullet: {fileID: 0}
+  bullet: {fileID: 0}

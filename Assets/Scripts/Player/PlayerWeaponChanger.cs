@@ -17,10 +17,8 @@ public class PlayerWeaponChanger : MonoBehaviour
         }
     }
 
-    private static PlayerWeaponChanger _singleton;
-    public static PlayerWeaponChanger singleton { get => _singleton; }
-    private CurrentWeaponType _currentWeaponType;
-    public CurrentWeaponType currentWeaponType { get => _currentWeaponType; }
+    public static PlayerWeaponChanger singleton { get; protected set; }
+    public CurrentWeaponType currentWeaponType { get; protected set; }
 
     [SerializeField] private RuntimeAnimatorController _withoutWeaponAnimController;
     public RuntimeAnimatorController withoutWeaponAnimController { get => _withoutWeaponAnimController; }
@@ -34,7 +32,7 @@ public class PlayerWeaponChanger : MonoBehaviour
 
     private void Awake()
     {
-        _singleton = this;
+        singleton = this;
     }
 
     private void Start()
@@ -56,16 +54,16 @@ public class PlayerWeaponChanger : MonoBehaviour
             case CurrentWeaponType.Ranged:
                 ChangeWeapon
                     (InventoryInfoSlot.singleton.rangedWeaponSlot.transform.GetChild(0).GetComponent<WeaponItem>().weapon);
-                _currentWeaponType = CurrentWeaponType.Ranged;
+                currentWeaponType = CurrentWeaponType.Ranged;
                 break;
             case CurrentWeaponType.Melee:
                 ChangeWeapon
                     (InventoryInfoSlot.singleton.meleeWeaponSlot.transform.GetChild(0).GetComponent<WeaponItem>().weapon);
-                _currentWeaponType = CurrentWeaponType.Melee;
+                currentWeaponType = CurrentWeaponType.Melee;
                 break;
             case CurrentWeaponType.Without:
                 ChangeWeapon();
-                _currentWeaponType = CurrentWeaponType.Without;
+                currentWeaponType = CurrentWeaponType.Without;
                 break;
 
         }
@@ -80,7 +78,7 @@ public class PlayerWeaponChanger : MonoBehaviour
             Player.singleton.anim.runtimeAnimatorController = withoutWeaponAnimController;
             return;
         }
-        Player.singleton.currentWeapon = Instantiate(newWeapon, Player.singleton.weaponSlot).GetComponent<Weapon>();
+        Player.singleton.currentWeapon = Instantiate(newWeapon, Player.singleton.weaponSlot).GetComponent<PlayerWeapon>();
         Player.singleton.anim.runtimeAnimatorController = Player.singleton.currentWeapon.animController;
     }
 

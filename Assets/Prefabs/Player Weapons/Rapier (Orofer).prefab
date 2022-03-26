@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5752250757174201640}
-  - component: {fileID: 5752250757174201655}
+  - component: {fileID: 915735193976968366}
   m_Layer: 7
   m_Name: Rapier (Orofer)
   m_TagString: Weapon
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5752250757174201655
+--- !u!114 &915735193976968366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,15 +40,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5752250757174201641}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab6d67ed41bdb8049b127124a5684ce4, type: 3}
+  m_Script: {fileID: 11500000, guid: 576ec5625a18a5a43923a844c00197a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rechargeTime: 0.4
-  _animController: {fileID: 9100000, guid: 677dbe9cef7b8cc409ffd435a3b909a8, type: 2}
-  layer:
+  layerAttack:
     serializedVersion: 2
     m_Bits: 64
-  attackSound:
+  _animController: {fileID: 9100000, guid: 677dbe9cef7b8cc409ffd435a3b909a8, type: 2}
+  soundAttack:
     Guid:
       Data1: -1599129012
       Data2: 1077786795
@@ -58,8 +57,8 @@ MonoBehaviour:
   attack:
     damages:
     - typeDamage: 0
-      minDamage: 45
-      maxDamage: 60
+      minDamage: 20
+      maxDamage: 30
     pushForce: 1500
     critChance: 0
-  radiusAttack: 1.1
+  radiusAttack: 0.9
