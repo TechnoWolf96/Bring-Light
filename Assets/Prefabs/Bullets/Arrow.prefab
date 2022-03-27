@@ -5027,7 +5027,7 @@ MonoBehaviour:
     - typeDamage: 0
       minDamage: 10
       maxDamage: 15
-    pushForce: 0
+    pushForce: 1300
     critChance: 0
   _speed: 20
   deathEffect: {fileID: 8359110183907629608, guid: 979b836681a9dff4b80c7c403c71c0ab, type: 3}

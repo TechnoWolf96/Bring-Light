@@ -6,7 +6,7 @@ public class Player_BaseFSM : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent = animator.gameObject.GetComponent<Player>();
+        if (agent == null) agent = animator.gameObject.GetComponent<Player>();
     }
 
 

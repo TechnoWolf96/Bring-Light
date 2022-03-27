@@ -12,7 +12,8 @@ public class Retreat_RangedAttackFSM : RangedAttack_BaseFSM
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector2 newPosition = agent.transform.position + (agent.transform.position - agent.follow.position).normalized;
+        if (agent == null || agent.follow == null) return;
+        Vector2 newPosition = agent.transform.position + (agent.transform.position - agent.follow.transform.position).normalized;
         agent.navAgent.SetDestination(newPosition);
     }
 

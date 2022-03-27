@@ -10,7 +10,8 @@ public class Stalk_StateCloseAttackFSM : CloseAttack_BaseFSM
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.navAgent.SetDestination(agent.follow.position);
+        if (agent.follow == null || agent == null) return;
+        agent.navAgent.SetDestination(agent.follow.transform.position);
     }
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

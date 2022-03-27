@@ -20,7 +20,7 @@ public abstract class Bullet : MonoBehaviour
     [SerializeField] protected float offset = 1f;  // Регулировка размера эффекта взрыва
 
 
-    public virtual void InstBullet(Transform shotPoint, Vector3 target)
+    public virtual void InstBullet(Transform shotPoint, Vector3 target, Transform targetTransform = null)
     {
         bulletRB = GetComponent<Rigidbody2D>();
         this.shotPoint = shotPoint;
@@ -40,8 +40,8 @@ public abstract class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == shotPoint.GetComponentInParent<Transform>().gameObject.layer || other.CompareTag("IgnoreCollisionBullet"))
-            return;
+        if (other.gameObject.layer == shotPoint.GetComponentInParent<Transform>().gameObject.layer ||
+            other.CompareTag("IgnoreCollisionBullet")) return;
         Collision(other);
     }
 
@@ -49,7 +49,7 @@ public abstract class Bullet : MonoBehaviour
 
     protected void Crit()
     {
-        onCrit.Invoke();
+        onCrit?.Invoke();
     }
 
 }

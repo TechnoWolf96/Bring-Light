@@ -7,7 +7,7 @@ public class RangedAttackFSM : CloseAttackFSM
     [Min(0)] [SerializeField] protected float tooCloseDistance;
     [SerializeField] protected LayerMask obstacleBulletLayer;
 
-    protected float randomStopDistance;
+    public float randomStopDistance { get; protected set; }
 
     protected override void Start()
     {
@@ -31,8 +31,8 @@ public class RangedAttackFSM : CloseAttackFSM
     protected bool CheckTargetIsVisible()
     {
         if (follow == null) return false;
-        RaycastHit2D info = Physics2D.Raycast(bodyCenter.position, followBodyCenter.position - bodyCenter.position,
-            Vector2.Distance(followBodyCenter.position, bodyCenter.position), obstacleBulletLayer);
+        RaycastHit2D info = Physics2D.Raycast(bodyCenter.position, follow.bodyCenter.position - bodyCenter.position,
+            Vector2.Distance(follow.bodyCenter.position, bodyCenter.position), obstacleBulletLayer);
         if (info.collider == null) return true;
         else return false;
     }

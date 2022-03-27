@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class CompanionFSM : CloseAttackFSM
+public class CompanionCloseAttackFSM : CloseAttackFSM
 {
+
     [SerializeField] protected Transform _player;
     public Transform player { get => _player; }
 

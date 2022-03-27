@@ -5034,10 +5034,7 @@ MonoBehaviour:
   deathEffect: {fileID: 5461322605780461543, guid: 9cbf3c6cd0133fe44acfaea229740629, type: 3}
   offset: 1
   lifeTime: 30
-  thrustedBulletSprites:
-  - {fileID: -7551472007145125143, guid: f453b7d39c8bc774eb29f9c7b9e43fca, type: 3}
-  - {fileID: 1728030341446182244, guid: f453b7d39c8bc774eb29f9c7b9e43fca, type: 3}
-  - {fileID: -1221530199137637143, guid: f453b7d39c8bc774eb29f9c7b9e43fca, type: 3}
+  thrustedBulletSprite: {fileID: -7551472007145125143, guid: f453b7d39c8bc774eb29f9c7b9e43fca, type: 3}
   thrustSound:
     Guid:
       Data1: 984958202

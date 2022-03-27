@@ -6,21 +6,13 @@ public class CloseAttackFSM : Creature
     [SerializeField] protected float distanceDetection;
     [SerializeField] protected LayerMask detectionableLayer;
     [SerializeField] protected float lossDistance;
-    public Transform followBodyCenter { get; protected set; }
-    public Transform follow
-    {
-        get => _follow;
-        set 
-        {
-            if (value != null) { _follow = value; followBodyCenter = value.transform.Find("BodyCenter"); }
-            else { _follow = null; followBodyCenter = null; }
-        }
-    }
+
+    public Creature follow { get; set; }
     public override float speed { get => base.speed; set { _speed = value; navAgent.speed = _speed; } }
 
     public NavMeshAgent navAgent { get; protected set; }
     public Weapon currentWeapon { get; protected set; }
-    protected Transform _follow;
+    
     public Vector2 spawnPosition { get; protected set; }
 
 
@@ -40,9 +32,11 @@ public class CloseAttackFSM : Creature
     protected override void UpdateState()
     {
         if (follow == null) FindNewTarget();
-        if (follow != null && Vector2.Distance(transform.position, follow.position) < lossDistance)
+        else anim.SetBool("SeeTarget", true);
+
+        if (follow != null && Vector2.Distance(transform.position, follow.transform.position) < lossDistance)
         {
-            anim.SetFloat("DistanceToTarget", Vector2.Distance(transform.position, follow.position));
+            anim.SetFloat("DistanceToTarget", Vector2.Distance(transform.position, follow.transform.position));
         }
         else
         {
@@ -59,11 +53,35 @@ public class CloseAttackFSM : Creature
         Collider2D newFollow = Physics2D.OverlapCircle(transform.position, distanceDetection, detectionableLayer);
         if (newFollow != null)
         {
-            follow = newFollow.transform;
+            follow = newFollow.transform.GetComponent<Creature>();
             anim.SetBool("SeeTarget", true);
         }
 
     }
     public void AttackMoment() => currentWeapon.Attack();
+
+
+    public override void Death()
+    {
+        navAgent.isStopped = true;
+        base.Death();
+    }
+
+    public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
+    {
+        base.GetDamage(attack, attacking, bullet);
+        if (follow == null)
+        {
+            follow = attacking.GetComponent<Creature>();
+            anim.SetBool("SeeTarget", true);
+        }
+        else if (Vector2.Distance(transform.position, attacking.position) <
+            Vector2.Distance(transform.position, follow.transform.position))
+        {
+            follow = attacking.GetComponent<Creature>();
+            anim.SetBool("SeeTarget", true);
+        }
+            
+    }
 
 }

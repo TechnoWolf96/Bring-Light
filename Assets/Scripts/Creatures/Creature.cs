@@ -20,8 +20,6 @@ public abstract class Creature : MonoBehaviour, IDestructable
     [SerializeField] protected ProtectParameters _protect;
     protected const float updateStateTimeCicle = 0.3f;
     protected float timeUntilUpdateState;
-
-    public bool isDeath { get; protected set; }
     public virtual float speed { get => _speed; set => _speed = value; }
     public virtual int maxHealth
     {
@@ -67,7 +65,6 @@ public abstract class Creature : MonoBehaviour, IDestructable
 
     protected virtual void Start()
     {
-        isDeath = true;
         timeUntilUpdateState = updateStateTimeCicle;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -112,9 +109,8 @@ public abstract class Creature : MonoBehaviour, IDestructable
         physicalSupport.SetActive(false);
         gameObject.layer = LayerMask.NameToLayer("Corpses");
         anim.SetTrigger("Death");
-        isDeath = true;
         onDeath?.Invoke();
-
+        Destroy(this);
 
     }
 

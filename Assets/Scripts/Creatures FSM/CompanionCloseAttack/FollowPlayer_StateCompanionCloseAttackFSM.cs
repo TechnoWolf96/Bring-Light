@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FollowPlayer_StateCompanionFSM : Companion_BaseFSM
+public class FollowPlayer_StateCompanionCloseAttackFSM : CompanionCloseAttack_BaseFSM
 {
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

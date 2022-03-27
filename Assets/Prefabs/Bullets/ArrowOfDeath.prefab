@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 5868237553595648010}
   - component: {fileID: 7771583725941902395}
   - component: {fileID: 2623559320511633045}
+  - component: {fileID: 5614828310755015105}
   m_Layer: 10
   m_Name: ArrowOfDeath
   m_TagString: Bullet
@@ -236,6 +237,36 @@ SortingGroup:
   m_SortingLayerID: 1845381279
   m_SortingLayer: 2
   m_SortingOrder: 0
+--- !u!114 &5614828310755015105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846568080611197498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1797572123
+      Data2: 1118365808
+      Data3: -1877671522
+      Data4: 1753422403
+    Path: event:/ArrowOfDeath (Creating)
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1846568080969519517
 GameObject:
   m_ObjectHideFlags: 0

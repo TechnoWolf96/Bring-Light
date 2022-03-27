@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellcasterFSM : RangedAttackFSM
+public class RangedSpellcasterFSM : RangedAttackFSM
 {
     [SerializeField] protected List<SpellNPC> _spells;
     public List<SpellNPC> spells { get => _spells; }

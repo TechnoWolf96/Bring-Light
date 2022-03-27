@@ -14,6 +14,6 @@ public class RangedWeaponNPC : Weapon
     public override void Attack()
     {
         Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Bullet>().
-            InstBullet(transform.parent, shooter.followBodyCenter.position);
+            InstBullet(transform.parent, shooter.follow.bodyCenter.position);
     }
 }

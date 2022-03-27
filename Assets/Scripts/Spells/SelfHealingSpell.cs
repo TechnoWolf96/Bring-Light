@@ -4,25 +4,12 @@ public class SelfHealingSpell : SpellNPC
 {
     [SerializeField] int heal;
     [SerializeField] int maxPriority;
-    [SerializeField] GameObject particles;
-
-    protected Creature spellcaster;
-    protected ParticleSystem instParticles;
     protected HealthBar HealthBar;
 
-    public override void BeginCast()
+    protected override void Start()
     {
-        instParticles = Instantiate(particles, transform).GetComponent<ParticleSystem>();
-        spellcaster.anim.SetFloat("SpeedCast", speedCast);
-        currentRechargeTime = rechargeTime;
-    }
-        
-
-
-    private void Start()
-    {
-        HealthBar = GetComponentInParent<HealthBar>();
-        spellcaster = GetComponentInParent<Creature>();  
+        base.Start();
+        HealthBar = GetComponentInParent<HealthBar>(); 
     }
 
     public override void Activate() => spellcaster.health += heal;
@@ -32,6 +19,4 @@ public class SelfHealingSpell : SpellNPC
         if (currentRechargeTime > 0) { priority = 0; return; }
         priority = maxPriority - (spellcaster.health * maxPriority / spellcaster.maxHealth);
     }
-
-    public override void BreakCast() => instParticles.Stop();
 }
