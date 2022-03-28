@@ -19,7 +19,8 @@ public abstract class HomingBullet : Bullet
 
     protected virtual void Update()
     {
-        agent.SetDestination(target.position);
+        if (agent == null) Destroy(gameObject);
+        else agent.SetDestination(target.position);
     }
 
 

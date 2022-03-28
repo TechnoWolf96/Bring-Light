@@ -40,6 +40,7 @@ public class RangedSpellcasterFSM : RangedAttackFSM
     public void ActivateSpell() => currentSpell.Activate();
     public void BeginCast()
     {
+        if (currentSpell == null) return;
         currentSpell = SelectRandomSpell(spells);
         currentSpell.BeginCast();
     }

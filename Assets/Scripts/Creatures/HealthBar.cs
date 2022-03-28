@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private Transform valueSlider;
+    private Transform valueSlider;
     private Animator animSlider;
     private Creature creature;
 
 
     private void Start()
     {
+        valueSlider = transform.Find("Value");
         animSlider = GetComponent<Animator>();
         creature = GetComponentInParent<Creature>();
-        //creature.onHealthChanged += ShowBar;
+        creature.onHealthChanged += ShowBar;
     }
 
 

@@ -10,9 +10,9 @@ public interface IDestructable
 // Универсальный класс - "Существо", является предком любого живого объекта на сцене
 public abstract class Creature : MonoBehaviour, IDestructable
 {
-    public delegate void Event();
-    public event Event onHealthChanged;
-    public event Event onDeath;
+    public delegate void CreatureEvent();
+    public event CreatureEvent onHealthChanged;
+    public event CreatureEvent onDeath;
 
     [SerializeField] protected float _speed;
     [SerializeField] protected int _maxHealth;
@@ -28,7 +28,6 @@ public abstract class Creature : MonoBehaviour, IDestructable
         {
             _maxHealth = value;
             if (health > _maxHealth) health = _maxHealth;
-            if (healthBar != null) healthBar.ShowBar();
             onHealthChanged?.Invoke();
         }
     }
@@ -40,7 +39,6 @@ public abstract class Creature : MonoBehaviour, IDestructable
             if (0 <= value && value <= maxHealth) _health = value;
             if (value > maxHealth) _health = maxHealth;
             if (value < 0) _health = 0;
-            if (healthBar != null) healthBar.ShowBar();
             onHealthChanged?.Invoke();
         }
     }
@@ -49,7 +47,6 @@ public abstract class Creature : MonoBehaviour, IDestructable
     public Animator anim { get; set; }     
     public Rigidbody2D rb { get; protected set; }
     public GameObject physicalSupport { get; protected set; }
-    protected HealthBar healthBar;
     public Transform bodyCenter { get; protected set; }
 
     protected virtual void Update() 
@@ -70,7 +67,6 @@ public abstract class Creature : MonoBehaviour, IDestructable
         anim = GetComponent<Animator>();
         bodyCenter = gameObject.transform.Find("BodyCenter");
         physicalSupport = gameObject.transform.Find("PhysicalSupport").gameObject;
-        try { healthBar = gameObject.transform.Find("HealthBar").GetComponent<HealthBar>(); } catch {}
     }
 
 

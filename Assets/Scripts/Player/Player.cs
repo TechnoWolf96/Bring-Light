@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : Creature, IAttackWithWeapon
 {
-    public event Event onPlayerDeath;
+    public event CreatureEvent onPlayerDeath;
     private static Player _singleton;
     public static Player singleton { get => _singleton; }
     [HideInInspector] public bool controled = true;

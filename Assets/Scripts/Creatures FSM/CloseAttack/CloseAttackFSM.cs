@@ -33,6 +33,7 @@ public class CloseAttackFSM : Creature
     {
         if (follow == null) FindNewTarget();
         else anim.SetBool("SeeTarget", true);
+        ChangeTargetWhileProvocation();
 
         if (follow != null && Vector2.Distance(transform.position, follow.transform.position) < lossDistance)
         {
@@ -58,6 +59,20 @@ public class CloseAttackFSM : Creature
         }
 
     }
+
+    protected void ChangeTargetWhileProvocation()
+    {
+        if (follow == null) return;
+        Vector2 direction = bodyCenter.position - follow.bodyCenter.position;
+        RaycastHit2D hit = Physics2D.Raycast(bodyCenter.position, direction, direction.magnitude, detectionableLayer);
+        if (hit.collider != null)
+        {
+            follow = hit.transform.GetComponent<Creature>();
+        }
+    }
+
+
+
     public void AttackMoment() => currentWeapon.Attack();
 
 
