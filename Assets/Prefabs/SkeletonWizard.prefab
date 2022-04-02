@@ -398,11 +398,11 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005421877, y: 0.62041473}
-  m_Size: {x: 0.70063925, y: 1.5108337}
+  m_Offset: {x: -0.009654254, y: 0.668517}
+  m_Size: {x: 0.531074, y: 1.28706}
   m_Direction: 0
 --- !u!95 &2944152205274575997
 Animator:

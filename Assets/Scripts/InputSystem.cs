@@ -1,12 +1,21 @@
 using UnityEngine;
 
-public class Controller : MonoBehaviour
+public class InputSystem : MonoBehaviour
 {
-    [SerializeField] private KeyCode ChangeArrows;
-    [SerializeField] private KeyCode SaveGame;
-    [SerializeField] private KeyCode LoadGame;
+    public static InputSystem singleton { get; protected set; }
+
+    public KeyCode Up;
+    public KeyCode ChangeArrows;
+    public KeyCode SaveGame;
+    public KeyCode LoadGame;
 
 
+
+    private void Awake()
+    {
+        singleton = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Update()
     {

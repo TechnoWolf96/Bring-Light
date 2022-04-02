@@ -454,13 +454,13 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3764117293483374685}
-    m_Position: {x: 410, y: 20, z: 0}
+    m_Position: {x: 440, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2069163744824710478}
     m_Position: {x: 0, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 62091598854621995}
-    m_Position: {x: 250, y: -70, z: 0}
+    m_Position: {x: 240, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4247746556636404974}
     m_Position: {x: -390, y: 40, z: 0}
@@ -732,6 +732,12 @@ AnimatorController:
   m_Name: Mark
   serializedVersion: 5
   m_AnimatorParameters:
+  - m_Name: DistanceToSpawn
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: DistanceToPlayer
     m_Type: 1
     m_DefaultFloat: 0
@@ -787,12 +793,6 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: HorizontalMovement
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: DistanceToSpawn
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
