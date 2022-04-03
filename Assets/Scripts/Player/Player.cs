@@ -23,7 +23,6 @@ public class Player : Creature, IAttackWithWeapon
     {
         base.Update();
         Move();
-        AttackInput();
     }
 
     public void AttackMoment()
@@ -43,31 +42,25 @@ public class Player : Creature, IAttackWithWeapon
         else anim.SetBool("Move", false);
     }
 
-    private void AttackInput()
+    public void RangedAttack()
     {
-        // ЛКМ - Выстрел
-        if (Input.GetMouseButton(0))
+        if (InventoryInfoSlot.singleton.rangedWeaponSlot.transform.childCount == 0) return; // Нет в слоте оружия - ничего не делаем
+        if (PlayerWeaponChanger.singleton.currentWeaponType != CurrentWeaponType.Ranged)
         {
-            if (InventoryInfoSlot.singleton.rangedWeaponSlot.transform.childCount == 0) return; // Нет в слоте оружия - ничего не делаем
-            if (PlayerWeaponChanger.singleton.currentWeaponType != CurrentWeaponType.Ranged)
-            {
-                PlayerWeaponChanger.singleton.SelectWeapon(CurrentWeaponType.Ranged);
-            }
-            if (ArrowCounter.singleton.count == 0) return;
-            anim.SetTrigger("Attack");
-            return;
+            PlayerWeaponChanger.singleton.SelectWeapon(CurrentWeaponType.Ranged);
         }
-        // ПКМ - Удар
-        if (Input.GetMouseButton(1))
+        if (ArrowCounter.singleton.count == 0) return;
+        anim.SetTrigger("Attack");
+    }
+
+    public void CloseAttack()
+    {
+        if (InventoryInfoSlot.singleton.meleeWeaponSlot.transform.childCount == 0) return; // Нет в слоте оружия - ничего не делаем
+        if (PlayerWeaponChanger.singleton.currentWeaponType != CurrentWeaponType.Melee)
         {
-            if (InventoryInfoSlot.singleton.meleeWeaponSlot.transform.childCount == 0) return; // Нет в слоте оружия - ничего не делаем
-            if (PlayerWeaponChanger.singleton.currentWeaponType != CurrentWeaponType.Melee)
-            {
-                PlayerWeaponChanger.singleton.SelectWeapon(CurrentWeaponType.Melee);
-            }
-            anim.SetTrigger("Attack");
-            return;
+            PlayerWeaponChanger.singleton.SelectWeapon(CurrentWeaponType.Melee);
         }
+        anim.SetTrigger("Attack");
     }
 
     public void PlaySoundAttack() => currentWeapon.PlaySound();

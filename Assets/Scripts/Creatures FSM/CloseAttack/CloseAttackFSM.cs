@@ -63,12 +63,10 @@ public class CloseAttackFSM : Creature
     protected void ChangeTargetWhileProvocation()
     {
         if (follow == null) return;
-        Vector2 direction = bodyCenter.position - follow.bodyCenter.position;
+        Vector2 direction = follow.bodyCenter.position - bodyCenter.position;
         RaycastHit2D hit = Physics2D.Raycast(bodyCenter.position, direction, direction.magnitude, detectionableLayer);
-        if (hit.collider != null)
-        {
-            follow = hit.transform.GetComponent<Creature>();
-        }
+
+        if (hit.collider != null) follow = hit.transform.GetComponent<Creature>();
     }
 
 

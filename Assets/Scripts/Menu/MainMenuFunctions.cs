@@ -17,7 +17,7 @@ public class MainMenuFunctions : MonoBehaviour
         var confirm = ConfirmationPanel.singleton;
         confirm.Open();
         confirm.text = "Выйти из игры?";
-        confirm.pressedYes += Quit;
+        confirm.pressedYes += ExitGame;
         confirm.pressedNo += CancelConfirm;
         
     }
@@ -47,9 +47,8 @@ public class MainMenuFunctions : MonoBehaviour
 
 
 
-    private void Quit()
+    private void ExitGame()
     {
-        //Confirmation.singleton.pressedYes -= Quit;
         Fader fader = Fader.singleton;
         fader.onFadeAction += Application.Quit;
         fader.Fade();
@@ -60,7 +59,6 @@ public class MainMenuFunctions : MonoBehaviour
 
     private void BeginNewGame()
     {
-        //Confirmation.singleton.pressedYes -= BeginNewGame;
         Fader fader = Fader.singleton;
         fader.runSceneNumber = 1;
         fader.onFadeAction += SceneManager.LoadScene;
@@ -71,7 +69,6 @@ public class MainMenuFunctions : MonoBehaviour
 
     private void CancelConfirm()
     {
-        //Confirmation.singleton.pressedNo -= CancelConfirm;
         ConfirmationPanel.singleton.Close();
     }
 

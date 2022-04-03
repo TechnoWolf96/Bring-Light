@@ -37,11 +37,16 @@ public class CompanionSpellcasterFSM : CompanionCloseAttackFSM
         return spellList[spellNumbers[Random.Range(0, spellNumbers.Count)]];
     }
 
-    public void ActivateSpell() => currentSpell.Activate();
+    public void ActivateSpell()
+    {
+        if (currentSpell != null) currentSpell.Activate();
+    }
+
+
     public void BeginCast()
     {
         currentSpell = SelectRandomSpell(spells);
-        currentSpell.BeginCast();
+        if (currentSpell != null) currentSpell.BeginCast();
     }
 
 }
