@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Creature, IAttackWithWeapon
 {
@@ -8,6 +9,9 @@ public class Player : Creature, IAttackWithWeapon
     [HideInInspector] public bool controled = true;
     public PlayerWeapon currentWeapon { get; set; }
     public Transform weaponSlot { get; protected set; }
+
+    public const float takeItemRadius = 0.85f;
+    [HideInInspector] public bool pause = false;
 
 
 
@@ -66,5 +70,30 @@ public class Player : Creature, IAttackWithWeapon
     public void PlaySoundAttack() => currentWeapon.PlaySound();
 
 
+    public void TakeItem()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, takeItemRadius);
+        foreach (var item in colliders)
+        {
+            if (item.TryGetComponent(out DroppedItem dropItem))
+            {
+                dropItem.Take();
+                return;
+            }
+        }
+        
+    }
+
+    public override void Death()
+    {
+        base.Death();
+        SceneManager.LoadScene(0);
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, takeItemRadius);
+    }
 
 }

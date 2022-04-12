@@ -333,8 +333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 3
   _itemType: 4
-  _weight: 1
   _quantity: 0
+  _price: 0
   _droppedItem: {fileID: 182112743616469851, guid: 7da6eb77c80c7d24aa58af81f27402e8, type: 3}
   questItem: 0
   takeUpSound:
@@ -365,5 +365,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healPerCicle: 1
-  cicleTime: 0.3
+  cicleTime: 0.33
   creatureEffect: {fileID: 1594542336059621691, guid: c656499caa469ef46891b4772e844e61, type: 3}

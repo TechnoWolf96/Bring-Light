@@ -331,12 +331,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156372eb98c19574fb68ce0a58a9d3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 3
+  _id: 10
   _itemType: 4
-  _weight: 2
-  _quantity: 0
+  _quantity: 1
   _price: 0
-  _droppedItem: {fileID: 182112743616469851, guid: 7da6eb77c80c7d24aa58af81f27402e8, type: 3}
+  _droppedItem: {fileID: 8457040018145169933, guid: 65343f0d8811de94f8cccfa25b7812fe, type: 3}
   questItem: 0
   takeUpSound:
     Guid:
@@ -352,7 +351,7 @@ MonoBehaviour:
       Data3: 421268364
       Data4: -1166524449
     Path: event:/PutIcon
-  descriptionPanel: {fileID: 6009969860086720355, guid: fe6dcc0ba65744a49be7a7cccd27affd, type: 3}
+  descriptionPanel: {fileID: 1563588601504391619, guid: 2ea356bb41df25d49ad904654f08e32a, type: 3}
 --- !u!114 &4664938216065659710
 MonoBehaviour:
   m_ObjectHideFlags: 0

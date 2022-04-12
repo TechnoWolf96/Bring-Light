@@ -57,8 +57,8 @@ MonoBehaviour:
   attack:
     damages:
     - typeDamage: 0
-      minDamage: 20
-      maxDamage: 30
+      minDamage: 50
+      maxDamage: 100
     pushForce: 1500
     critChance: 0
   radiusAttack: 0.9

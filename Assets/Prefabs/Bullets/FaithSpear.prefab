@@ -5123,8 +5123,8 @@ MonoBehaviour:
   _attack:
     damages:
     - typeDamage: 1
-      minDamage: 50
-      maxDamage: 70
+      minDamage: 150
+      maxDamage: 200
     pushForce: 1300
     critChance: 0
   _speed: 11

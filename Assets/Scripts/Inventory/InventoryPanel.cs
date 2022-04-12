@@ -3,9 +3,7 @@ using UnityEngine;
 public class InventoryPanel : MonoBehaviour
 {
     public static InventoryPanel singleton { get; private set; }
-    private GameObject backpack;
-    private GameObject equipment;
-
+    public Animator anim { get; private set; }
 
     private void Awake()
     {
@@ -14,31 +12,26 @@ public class InventoryPanel : MonoBehaviour
 
     private void Start()
     {
-        backpack = GameObject.Find("Canvas/Inventory/BackpackPanel");
-        equipment = GameObject.Find("Canvas/Inventory/Equipment");
-        if (backpack.activeInHierarchy) Control.singleton.playerControlActive = false;
-         
+        anim = GetComponent<Animator>();
     }
 
 
     public void OpenOrClose()
     {
-        if (backpack.activeInHierarchy) Close();
+        if (anim.GetBool("Open")) Close();
         else Open();
     }
 
     private void Open()
     {
         Control.singleton.playerControlActive = false;
-        backpack.SetActive(true);
-        equipment.SetActive(true);
+        anim.SetBool("Open", true);
     }
 
     private void Close()
     {
         Control.singleton.playerControlActive = true;
-        backpack.SetActive(false);
-        equipment.SetActive(false);
+        anim.SetBool("Open", false);
     }
 
 

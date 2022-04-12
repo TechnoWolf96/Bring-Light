@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 2257023429935528441}
   - component: {fileID: -4406018328533419538}
   - component: {fileID: 692770857592234139}
+  - component: {fileID: -253669030635173026}
   m_Layer: 6
   m_Name: SkeletonArcher
   m_TagString: Enemy
@@ -244,17 +245,42 @@ MonoBehaviour:
     cold: 0
     dark: 0
     poison: 0
-  distanceDetection: 10
+  distanceDetection: 1000
   detectionableLayer:
     serializedVersion: 2
     m_Bits: 128
-  lossDistance: 20
+  lossDistance: 1000
   maxStopDistance: 8
   minStopDistance: 5
   tooCloseDistance: 3
   obstacleBulletLayer:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &-253669030635173026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3338941852430310055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2787bac2f32ae79429987208303d77e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems:
+  - id: 8
+    minQuantity: 10
+    maxQuantity: 15
+    probability: 50
+  - id: 5
+    minQuantity: 3
+    maxQuantity: 6
+    probability: 10
+  - id: 12
+    minQuantity: 3
+    maxQuantity: 6
+    probability: 10
 --- !u!1 &3338941853277478324
 GameObject:
   m_ObjectHideFlags: 0

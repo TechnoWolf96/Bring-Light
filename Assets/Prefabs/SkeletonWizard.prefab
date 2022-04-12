@@ -49,8 +49,8 @@ MonoBehaviour:
   attack:
     damages:
     - typeDamage: 0
-      minDamage: 8
-      maxDamage: 12
+      minDamage: 30
+      maxDamage: 50
     pushForce: 700
     critChance: 0
   radiusAttack: 0.5
@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 1864342780324845357}
   - component: {fileID: 1503519012816702954}
   - component: {fileID: 4867688414802918912}
+  - component: {fileID: -5230103090939486331}
   m_Layer: 6
   m_Name: SkeletonWizard
   m_TagString: Enemy
@@ -512,8 +513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _maxHealth: 100
-  _health: 100
+  _maxHealth: 200
+  _health: 200
   _protect:
     physical: 0
     holy: 0
@@ -521,11 +522,11 @@ MonoBehaviour:
     cold: 0
     dark: 0
     poison: 0
-  distanceDetection: 10
+  distanceDetection: 1000
   detectionableLayer:
     serializedVersion: 2
     m_Bits: 128
-  lossDistance: 20
+  lossDistance: 1000
   maxStopDistance: 8
   minStopDistance: 5
   tooCloseDistance: 4
@@ -535,6 +536,43 @@ MonoBehaviour:
   _spells:
   - {fileID: 5391937706957075139}
   - {fileID: 1634696817217656387}
+--- !u!114 &-5230103090939486331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2944152205274575987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2787bac2f32ae79429987208303d77e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems:
+  - id: 1
+    minQuantity: 1
+    maxQuantity: 1
+    probability: 20
+  - id: 5
+    minQuantity: 5
+    maxQuantity: 10
+    probability: 25
+  - id: 12
+    minQuantity: 5
+    maxQuantity: 10
+    probability: 30
+  - id: 2
+    minQuantity: 1
+    maxQuantity: 1
+    probability: 5
+  - id: 3
+    minQuantity: 1
+    maxQuantity: 1
+    probability: 5
+  - id: 10
+    minQuantity: 1
+    maxQuantity: 1
+    probability: 5
 --- !u!1 &5391937706957075141
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +619,7 @@ MonoBehaviour:
   speedCast: 0.5
   rechargeTime: 4
   startParticles: {fileID: 8889867131755650115, guid: 217dd3f607b2dd24b8dd62f43782d3ac, type: 3}
-  heal: 30
+  heal: 100
   maxPriority: 6
 --- !u!1 &5393579063181510377
 GameObject:

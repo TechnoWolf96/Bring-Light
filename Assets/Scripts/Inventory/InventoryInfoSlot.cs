@@ -7,6 +7,16 @@ public class InventoryInfoSlot : MonoBehaviour
     public static InventoryInfoSlot singleton { get => _singleton; }
     public delegate void OnUseItem(int id);
     public event OnUseItem onUseItem;
+    [SerializeField] private int _unlockedSlots;
+    public int unlockedSlots
+    {
+        get => _unlockedSlots;
+        set
+        {
+            _unlockedSlots = value;
+            UpdateSlots();
+        }
+    }
 
     [SerializeField] private List<Slot> _backpackSlots; public List<Slot> backpackSlots { get => _backpackSlots; }
     [SerializeField] private List<Slot> _consumableSlots; public List<Slot> consumableSlots { get => _consumableSlots; }
@@ -21,53 +31,30 @@ public class InventoryInfoSlot : MonoBehaviour
     {
         _singleton = this;
     }
-
-
-    public float GetTotalWeight()
+    private void Start()
     {
-        float result = 0f;
-        
-        foreach (var item in _backpackSlots)
+        UpdateSlots();
+    }
+
+    public void UpdateSlots()
+    {
+        foreach (var slot in backpackSlots)
         {
-            if (item.transform.childCount != 0)
-                result += item.transform.GetChild(0).GetComponent<Icon>().weight;
+            slot.uncloked = false;
         }
-        foreach (var item in _consumableSlots)
+
+        for (int i = 0; i < unlockedSlots; i++)
         {
-            if (item.transform.childCount != 0)
-                result += item.transform.GetChild(0).GetComponent<Icon>().weight;
+            backpackSlots[i].uncloked = true;
         }
-        foreach (var item in _artefactSlot)
-        {
-            if (item.transform.childCount != 0)
-                result += item.transform.GetChild(0).GetComponent<Icon>().weight;
-        }
-        foreach (var item in _arrowSlots)
-        {
-            if (item.transform.childCount != 0)
-                result += item.transform.GetChild(0).GetComponent<Icon>().weight;
-        }
-        
-        if (_meleeWeaponSlot.transform.childCount != 0)
-            result += _meleeWeaponSlot.transform.GetChild(0).GetComponent<Icon>().weight;
-        if (_rangedWeaponSlot.transform.childCount != 0)
-            result += _rangedWeaponSlot.transform.GetChild(0).GetComponent<Icon>().weight;
-        if (_backpackSlot.transform.childCount != 0)
-            result += _backpackSlot.transform.GetChild(0).GetComponent<Icon>().weight;
-        /*
-        if (_petSlot.transform.childCount != 0)
-            result += _petSlot.transform.GetChild(0).GetComponent<Icon>().weight;
-        */
-        return result;
+
     }
 
     public Slot GetEmptySlot()
     {
-        foreach (var item in _backpackSlots)
-        {
-            if (item.transform.childCount == 0)
-                return item;
-        }
+        for (int i = 0; i < unlockedSlots; i++)
+            if (_backpackSlots[i].transform.childCount == 0) return _backpackSlots[i];
+
         return null;
     }
 

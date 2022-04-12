@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 9801fa79405cda344bdafbd06da354e6
   - enabled: 1
-    path: Assets/Scenes/ThanksForGaming.unity
-    guid: 1bb241e7b3790d145bdf8a5ea7487442
-  - enabled: 1
     path: Assets/Scenes/DevelopScene.unity
     guid: e2de90aa733a0704ea24de1ef866fe59
+  - enabled: 1
+    path: Assets/Scenes/Arena.unity
+    guid: 9826ccddd23f1564babbca9ae7640314
   m_configObjects: {}

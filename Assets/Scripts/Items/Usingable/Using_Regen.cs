@@ -9,7 +9,7 @@ public class Using_Regen : UsingableEffectItem
     public override void Use()
     {
         base.Use();
-        Effect_Regeneration effect = currentCreatureEffect.GetComponent<Effect_Regeneration>();
+        Regeneration_Effect effect = currentCreatureEffect.GetComponent<Regeneration_Effect>();
         effect.healPerCicle = healPerCicle;
         effect.cicleTime = cicleTime;
 

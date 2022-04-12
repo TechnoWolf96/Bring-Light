@@ -457,7 +457,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 273.2724, y: 289.4}
+  m_SizeDelta: {x: 273.2724, y: 286.5164}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2696843370044224408
 CanvasRenderer:
@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 2696843371350683971}
   - component: {fileID: 2696843371350683968}
   m_Layer: 5
-  m_Name: MaxHealth
+  m_Name: Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -881,7 +881,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: "\u041C\u0433\u043D\u043E\u0432. \u043B\u0435\u0447\u0435\u043D\u0438\u0435\n+250"
+  m_Text: "\u041C\u0433\u043D\u043E\u0432. \u043B\u0435\u0447\u0435\u043D\u0438\u0435\n+100
+    HP"
 --- !u!1 &2696843371403185316
 GameObject:
   m_ObjectHideFlags: 0

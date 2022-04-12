@@ -26,21 +26,26 @@ public class Control : MonoBehaviour
 
     private void Awake()
     {
-        singleton = this;
+        if (singleton == null) singleton = this;
     }
 
     private void Start()
     {
+        if (this != singleton) Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(ChangeArrows) && playerControlActive)
+        if (Input.GetKeyDown(ChangeArrows))
             PlayerWeaponChanger.singleton.SelectArrows((PlayerWeaponChanger.singleton.activeArrow + 1)%2);
 
         if (Input.GetKeyDown(OpenInventory) && playerInterfaceActive) 
             InventoryPanel.singleton.OpenOrClose();
+
+        if (Input.GetKeyDown(TakeItem) && playerControlActive)
+            Player.singleton.TakeItem();
 
 
 
@@ -53,7 +58,15 @@ public class Control : MonoBehaviour
         if (Input.GetKey(CloseAttack) && playerControlActive)
             Player.singleton.CloseAttack();
 
-        if(Input.GetKey(RangedAttack) && playerControlActive)
+        if (Input.GetKey(RangedAttack) && playerControlActive)
             Player.singleton.RangedAttack();
+
+        if (Input.GetKeyDown(KeyCode.Escape) && GameMenuPanel.singleton != null)
+        {
+            if (GameMenuPanel.singleton.pause) GameMenuPanel.singleton.Continue();
+            else GameMenuPanel.singleton.Pause();
+        }
+            
+
     }
 }

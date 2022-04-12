@@ -4940,8 +4940,8 @@ MonoBehaviour:
   _attack:
     damages:
     - typeDamage: 0
-      minDamage: 50
-      maxDamage: 70
+      minDamage: 80
+      maxDamage: 110
     pushForce: 2000
     critChance: 0
   _speed: 20

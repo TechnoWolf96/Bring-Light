@@ -15,17 +15,12 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     [SerializeField] protected ItemType _itemType; 
     public ItemType itemType { get => _itemType;  }
 
-    [SerializeField] protected float _weight; 
-    public float weight { get => _weight * quantity;}
-
     [SerializeField] protected int _quantity;
     public int quantity { 
         get => _quantity; 
         set 
         {
-            Weight.singleton.totalWeight -= weight;
             _quantity = value;
-            Weight.singleton.totalWeight += weight;
             if (numbered)
                 quantityText.text = _quantity.ToString();
             if (_quantity == 0) Destroy(gameObject);

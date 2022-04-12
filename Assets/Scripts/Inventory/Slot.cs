@@ -1,18 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
 
     [SerializeField] private ItemType _itemType;
     [SerializeField] private bool _slotForEquipment;
+
+    private Image image;
     public ItemType itemType { get { return _itemType; } }
     public bool slotForEquipment { get { return _slotForEquipment; } }
+
+    [SerializeField] private bool _unlocked;
+    public bool uncloked
+    {
+        get => _unlocked;
+        set
+        {
+            _unlocked = value; 
+            if (_unlocked) image.color = new Color(0.73f, 0.69f, 0.6f, 0.75f);
+            else image.color = new Color(0.3f, 0.28f, 0.24f, 0.75f);
+
+        }
+    }
+
+    private void Awake()
+    {
+        image = GetComponentInParent<Image>();
+    }
 
 
     public void Put(Icon newIcon)
     {
+        // Если слот заблокирован - проверка провалена
+        if (!uncloked)
+        {
+            Library.SetSlotPosition(newIcon, newIcon.beforePosition,
+                     newIcon.beforePosition.GetComponent<Slot>().slotForEquipment);
+            return;
+        }
+
         if (transform.childCount != 0)
         {
             // Если слот уже занят, то проверка на совместимость идет для обоих иконок

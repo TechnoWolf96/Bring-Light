@@ -51,7 +51,7 @@ MonoBehaviour:
   occlusionLayer: 0
   translucentLayer: 0
   translucentPresetId: 0
-  color: {r: 0.05490196, g: 1, b: 0, a: 0.7}
+  color: {r: 0.9901198, g: 1, b: 0, a: 0.7}
   size: 0.5
   spotAngleInner: 0
   spotAngleOuter: 360
@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 182112743245247758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0017051697, y: -0.019, z: 0}
-  m_LocalScale: {x: 1.6690984, y: 1.6690984, z: 1.6690984}
+  m_LocalScale: {x: 1.2944548, y: 1.2944548, z: 1.2944548}
   m_Children: []
   m_Father: {fileID: 182112743616469829}
   m_RootOrder: 0
@@ -180,8 +180,8 @@ SpriteRenderer:
   m_SortingLayerID: 1845381279
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6281173559678341316, guid: 93372df0ce9ace045b9182f8f9d218c9, type: 3}
-  m_Color: {r: 0.68707263, g: 0.9150943, b: 0.67682445, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 79af8c588e2f1cd419c63d57c44e147f, type: 3}
+  m_Color: {r: 0.9137255, g: 0.90253454, b: 0.6784314, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -190,10 +190,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedCast: 1
-  rechargeTime: 7
+  rechargeTime: 6
   startParticles: {fileID: 0}
   bullet: {fileID: 8239273537027239367, guid: 97cd9b441b619844a9e0c38b0d7cd95a, type: 3}
-  heal: 50
+  heal: 100
   maxPriority: 5
   checkHealRadius: 10
   healLayer:
@@ -863,8 +863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4.5
-  _maxHealth: 800
-  _health: 800
+  _maxHealth: 1300
+  _health: 1300
   _protect:
     physical: 0
     holy: 0

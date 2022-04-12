@@ -304,8 +304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _maxHealth: 700
-  _health: 500
+  _maxHealth: 300
+  _health: 300
   _protect:
     physical: 0
     holy: 0
@@ -314,6 +314,7 @@ MonoBehaviour:
     dark: 0
     poison: 0
   controled: 1
+  pause: 0
 --- !u!50 &7246205668743798494
 Rigidbody2D:
   serializedVersion: 4

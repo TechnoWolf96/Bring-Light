@@ -353,8 +353,8 @@ MonoBehaviour:
   attack:
     damages:
     - typeDamage: 0
-      minDamage: 25
-      maxDamage: 35
+      minDamage: 30
+      maxDamage: 50
     pushForce: 1000
     critChance: 0
   radiusAttack: 0.7
@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 5984011938623055064}
   - component: {fileID: 1431135314381751606}
   - component: {fileID: 2141154017987354560}
+  - component: {fileID: 6761636989501673236}
   m_Layer: 6
   m_Name: SkeletonWithMace
   m_TagString: Enemy
@@ -547,8 +548,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _maxHealth: 100
-  _health: 100
+  _maxHealth: 150
+  _health: 150
   _protect:
     physical: 0
     holy: 0
@@ -556,11 +557,32 @@ MonoBehaviour:
     cold: 0
     dark: 0
     poison: 0
-  distanceDetection: 10
+  distanceDetection: 1000
   detectionableLayer:
     serializedVersion: 2
     m_Bits: 128
-  lossDistance: 20
+  lossDistance: 1000
+--- !u!114 &6761636989501673236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066068728849598342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2787bac2f32ae79429987208303d77e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems:
+  - id: 1
+    minQuantity: 1
+    maxQuantity: 1
+    probability: 5
+  - id: 4
+    minQuantity: 1
+    maxQuantity: 1
+    probability: 15
 --- !u!1 &7066068729696698517
 GameObject:
   m_ObjectHideFlags: 0

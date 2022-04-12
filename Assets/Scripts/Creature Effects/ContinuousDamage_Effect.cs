@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class Effect_Regeneration : MonoBehaviour
+public class ContinuousDamage_Effect : MonoBehaviour
 {
     private Creature _creature;
-    public int healPerCicle { get; set; }
-    public float cicleTime { get; set; }
+    public int damagePerCicle;
+    public float cicleTime;
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class Effect_Regeneration : MonoBehaviour
     {
         while (true)
         {
-            _creature.health += healPerCicle;
+            _creature.health -= damagePerCicle;
             yield return new WaitForSeconds(cicleTime);
         }
     }

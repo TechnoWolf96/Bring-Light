@@ -18,7 +18,7 @@ public class Equip_Regeneration : EquipmentItem
     public override void PutOn()
     {
         currentCreatureEffect = Instantiate(creatureEffect, Player.singleton.transform);
-        Effect_Regeneration regeneration = currentCreatureEffect.GetComponent<Effect_Regeneration>();
+        Regeneration_Effect regeneration = currentCreatureEffect.GetComponent<Regeneration_Effect>();
         regeneration.cicleTime = cicleTime;
         regeneration.healPerCicle = healPerCicle;
     }

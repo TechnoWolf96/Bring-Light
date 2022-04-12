@@ -32,6 +32,8 @@ public class CloseAttackFSM : Creature
     protected override void UpdateState()
     {
         if (follow == null) FindNewTarget();
+
+
         else anim.SetBool("SeeTarget", true);
         ChangeTargetWhileProvocation();
 
@@ -52,6 +54,7 @@ public class CloseAttackFSM : Creature
     protected void FindNewTarget()
     {
         Collider2D newFollow = Physics2D.OverlapCircle(transform.position, distanceDetection, detectionableLayer);
+
         if (newFollow != null)
         {
             follow = newFollow.transform.GetComponent<Creature>();

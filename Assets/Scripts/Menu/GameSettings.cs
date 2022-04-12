@@ -38,8 +38,8 @@ public class GameSettings : MonoBehaviour
     const KeyCode defaultConsumable5 = KeyCode.Alpha5;
     const KeyCode defaultRangedAttack = KeyCode.Mouse0;
     const KeyCode defaultCloseAttack = KeyCode.Mouse1;
-    const KeyCode defaultOpenInventory = KeyCode.I;
-    const KeyCode defaultTakeItem = KeyCode.E;
+    const KeyCode defaultOpenInventory = KeyCode.E;
+    const KeyCode defaultTakeItem = KeyCode.F;
     const KeyCode defaultChangeArrows = KeyCode.Q;
 
 
