@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IDestructable
 {
-    public void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null);
+    public void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null, bool isEffectDamage = false);
     public void Death();
 }
 
@@ -91,9 +91,10 @@ public abstract class Creature : MonoBehaviour, IDestructable
         LookAt(pusher.position);
     }
 
-    public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
+    public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null, bool isEffectDamage = false)
     {
         health -= CalculateRealDamage(attack);
+        if (isEffectDamage) return;
         if (bullet != null) PushBack(attack.pushForce, bullet); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking);             // Если рукопашный урон - толчок от атакующего
         if (health > 0) anim.SetTrigger("GetDamage");
@@ -119,7 +120,7 @@ public abstract class Creature : MonoBehaviour, IDestructable
 
 
     // Расчет получения реального урона существом с учетом его защиты
-    protected int CalculateRealDamage(AttackParameters attack)
+    public int CalculateRealDamage(AttackParameters attack)
     {
         int result = 0;
         foreach (var item in attack.damages)

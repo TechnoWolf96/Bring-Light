@@ -140,7 +140,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 4
   _itemType: 2
-  _weight: 0.5
   _quantity: 0
   _price: 0
   _droppedItem: {fileID: 7600689308710386, guid: c6da2c87480660149bb0a8cb7003a455, type: 3}
@@ -181,9 +180,8 @@ MonoBehaviour:
       Data4: -281992920
     Path: event:/HealPotion
   duration: 10
-  particles: {fileID: 493879486226381760, guid: 638a68a4c8e7888469c712f9d4532fd2, type: 3}
   effectIcon: {fileID: 7879558344689482082, guid: 2629e6f80d1baf246998d04fe1e2822a, type: 3}
-  creatureEffect: {fileID: 5061848560069464288, guid: 3c7ea8c1704a0484c89b2b1136bdc230, type: 3}
+  passiveEffect: {fileID: 493879486226381760, guid: 638a68a4c8e7888469c712f9d4532fd2, type: 3}
   healPerCicle: 1
   cicleTime: 0.1
 --- !u!1 &5197861437389479914

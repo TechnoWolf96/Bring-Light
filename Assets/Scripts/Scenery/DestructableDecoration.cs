@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DestructableDecoration : MonoBehaviour, IDestructable
@@ -13,7 +11,7 @@ public class DestructableDecoration : MonoBehaviour, IDestructable
     {
         anim = GetComponent<Animator>();
     }
-    public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
+    public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null, bool isEffectDamage = false)
     {
         int realDamage = GetRealDamage(attack);
         if (realDamage == 0) return;

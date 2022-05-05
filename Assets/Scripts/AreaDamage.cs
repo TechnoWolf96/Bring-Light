@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AreaDamage : MonoBehaviour
 {
-    [SerializeField] private int damagePerCicle;
+    [SerializeField] private AttackParameters damagePerCicle;
     [SerializeField] private float cicleTime;
     [SerializeField] private GameObject effect;
 
@@ -11,7 +11,7 @@ public class AreaDamage : MonoBehaviour
     {
         if (collision.transform.parent.TryGetComponent(out Creature creature))
         {
-            var damageEffect = Instantiate(effect, creature.transform).GetComponent<ContinuousDamage_Effect>();
+            var damageEffect = Instantiate(effect, creature.transform).GetComponent<ContinuousDamage_PassiveEffect>();
             damageEffect.damagePerCicle = damagePerCicle;
             damageEffect.cicleTime = cicleTime;
         }

@@ -83,9 +83,10 @@ public class CloseAttackFSM : Creature
         base.Death();
     }
 
-    public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null)
+    public override void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null, bool isEffectDamage = false)
     {
         base.GetDamage(attack, attacking, bullet);
+        if (isEffectDamage) return;
         if (follow == null)
         {
             follow = attacking.GetComponent<Creature>();

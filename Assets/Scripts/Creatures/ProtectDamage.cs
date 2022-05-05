@@ -50,7 +50,7 @@ public struct Damage
     public TypeDamage typeDamage;                   // Тип урона
     [SerializeField] private int minDamage;         // Минимальный урон
     [SerializeField] private int maxDamage;         // Максимальный урон
-    public int Damaged()     // Возвращает был ли крит и присваивает урон
+    public int Damaged()     
     {
         return Random.Range(minDamage, maxDamage + 1);
     }
@@ -65,8 +65,6 @@ public struct AttackParameters
     [Range(0, 100)] public int critChance;           // Вероятность в процентах нанесения критического урона
     private bool isCrit;            // Есть ли крит у текущей атаки
 
-
-    public bool GetCrit() { return isCrit; }
 
     // Возвращает и устанавливает на текущую атаку был ли крит. Важно всегда вызывать метод перед атакой, чтобы обновить поле isCrit
     public bool CalculateCrit()      

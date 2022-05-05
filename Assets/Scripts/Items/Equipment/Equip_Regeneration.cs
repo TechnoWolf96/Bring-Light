@@ -1,24 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Equip_Regeneration : EquipmentItem
 {
     [SerializeField] protected int healPerCicle;
     [SerializeField] protected float cicleTime;
-    [SerializeField] protected GameObject creatureEffect;
+    [SerializeField] protected GameObject passiveEffect;
 
-    protected GameObject currentCreatureEffect;
+    protected GameObject currentPassiveEffect;
 
     public override void PutOff()
     {
-        Destroy(currentCreatureEffect);
+        Destroy(currentPassiveEffect);
     }
 
     public override void PutOn()
     {
-        currentCreatureEffect = Instantiate(creatureEffect, Player.singleton.transform);
-        Regeneration_Effect regeneration = currentCreatureEffect.GetComponent<Regeneration_Effect>();
+        currentPassiveEffect = Instantiate(passiveEffect, Player.singleton.transform);
+        Regeneration_PassiveEffect regeneration = currentPassiveEffect.GetComponent<Regeneration_PassiveEffect>();
         regeneration.cicleTime = cicleTime;
         regeneration.healPerCicle = healPerCicle;
     }
