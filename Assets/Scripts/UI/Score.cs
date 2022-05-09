@@ -10,7 +10,7 @@ public class Score : MonoBehaviour
 
     public static Score singleton { get; private set; }
 
-    [SerializeField] private BestScore _bestScoreSave;
+    //[SerializeField] private BestScore _bestScoreSave;
 
     [SerializeField] private Text _scoreText;
     [SerializeField] private Text _bestScoreText;
@@ -44,7 +44,7 @@ public class Score : MonoBehaviour
             _scoreText.text = value.ToString();
             _score = value;
             if (_score >= _goNextWaveScore[currentWave]) currentWave++;
-            if (_score > bestScore) { bestScore = _score; _bestScoreSave.bestScore = bestScore; }
+            if (_score > bestScore) { bestScore = _score; PlayerPrefs.SetInt("Score", bestScore); }
         }
     }
 
@@ -66,7 +66,7 @@ public class Score : MonoBehaviour
     {
         currentWave = 1;
         score = 0;
-        bestScore = _bestScoreSave.bestScore;
+        bestScore = PlayerPrefs.GetInt("Score", 0);
 
 
     }

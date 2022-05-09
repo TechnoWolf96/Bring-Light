@@ -167,7 +167,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   priorityIfTargetIsVisible: 3
-  bullet: {fileID: 0}
+  bullet: {fileID: 3356445775243824579, guid: 581aa16190e27f042bfe12a30dfa1141, type: 3}
 --- !u!1 &2099585670268421410
 GameObject:
   m_ObjectHideFlags: 0
