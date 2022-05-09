@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Regeneration_PassiveEffect : PassiveEffect
 {
-    public int healPerCicle { get; set; }
-    public float cicleTime { get; set; }
+    [HideInInspector] public int healPerCicle;
+    [HideInInspector] public float cicleTime;
 
     private void Start()
     {

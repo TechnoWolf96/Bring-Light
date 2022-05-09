@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 7246205667844893274}
   m_Layer: 13
   m_Name: PhysicalSupport
-  m_TagString: Untagged
+  m_TagString: PlayerPhysicalSupport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -264,8 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 1
   _itemType: 2
-  _weight: 0.5
   _quantity: 0
+  _price: 0
   _droppedItem: {fileID: 1663577860135246374, guid: da5bd0c740cd0ce4c85744da8c2b4b3d, type: 3}
   questItem: 0
   takeUpSound:
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5794b74b85eba40bb1a4fbc339fe7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rechargeTime: 2
+  rechargeTime: 8
   usingSoundEffect:
     Guid:
       Data1: 987480257
@@ -303,7 +303,7 @@ MonoBehaviour:
       Data3: 1870314423
       Data4: -281992920
     Path: event:/HealPotion
-  heal: 100
+  heal: 150
   particles: {fileID: 8735166841951315160, guid: d02f8932f5c994340b75c4bf323842e8, type: 3}
 --- !u!1 &1737032154539823353
 GameObject:

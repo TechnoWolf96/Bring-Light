@@ -41,7 +41,7 @@ public class Player : Creature, IAttackWithWeapon
 
     private void Move()
     {
-        if (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0
+        if ((Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
             && controled) anim.SetBool("Move", true);
         else anim.SetBool("Move", false);
     }

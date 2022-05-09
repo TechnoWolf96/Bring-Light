@@ -199,7 +199,7 @@ MonoBehaviour:
   translucentLayer: 0
   translucentPresetId: 0
   color: {r: 0.6792453, g: 0.3487311, b: 0.041011, a: 1}
-  size: 8.5
+  size: 12
   spotAngleInner: 360
   spotAngleOuter: 360
   coreSize: 0.5

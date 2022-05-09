@@ -7,8 +7,7 @@ public abstract class Bullet : MonoBehaviour
     public delegate void OnCrit();
     public event OnCrit onCrit; // Можно добавить крит, добавив скрипт с критом в инспекторе
 
-    [SerializeField] protected AttackParameters _attack;
-    public AttackParameters attack { get=> _attack; set=> _attack = value;}
+    public AttackParameters attack;
 
     protected Rigidbody2D bulletRB;
     protected Transform shotPoint;
@@ -16,6 +15,7 @@ public abstract class Bullet : MonoBehaviour
     [SerializeField] protected float _speed;
     public float speed { get =>_speed; set => _speed = value; }
 
+    [SerializeField] protected LayerMask collisionLayer;
     [SerializeField] protected GameObject deathEffect;    
     [SerializeField] protected float offset = 1f;  // Регулировка размера эффекта взрыва
 
@@ -38,11 +38,9 @@ public abstract class Bullet : MonoBehaviour
     }
 
 
-    protected virtual void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == shotPoint.GetComponentInParent<Transform>().gameObject.layer ||
-            other.CompareTag("IgnoreCollisionBullet")) return;
-        Collision(other);
+        if (Library.CompareLayer(other.gameObject.layer, collisionLayer)) Collision(other);
     }
 
     protected abstract void Collision(Collider2D other);

@@ -37,7 +37,7 @@ public class Icon : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     [SerializeField] protected EventReference takeDownSound;
     [SerializeField] protected GameObject descriptionPanel;
     public Transform beforePosition { get; protected set; }
-    protected EquipmentItem equipmentEffect;
+    protected EquipmentEffect equipmentEffect;
     protected UsingableItem usingEffect;
     protected Text quantityText;
     protected GameObject currentDescriptionPanel;

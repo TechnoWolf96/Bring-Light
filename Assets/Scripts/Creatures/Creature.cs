@@ -86,9 +86,8 @@ public abstract class Creature : MonoBehaviour, IDestructable
             pushDirection = new Vector2(bodyCenter.position.x - pusher.position.x,
                 bodyCenter.position.y - pusher.position.y).normalized;
         }
-        
         rb.AddForce(pushDirection * force);
-        LookAt(pusher.position);
+        LookAt(pusher.position - bodyCenter.position, true);
     }
 
     public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null, bool isEffectDamage = false)
@@ -111,9 +110,11 @@ public abstract class Creature : MonoBehaviour, IDestructable
 
     }
 
-    public void LookAt(Vector2 target)
+    public void LookAt(Vector2 target, bool isDirection = false)
     {
-        Vector2 directionMovement = Library.ToAxisAndNormalize(target - (Vector2)transform.position);
+        Vector2 directionMovement;
+        if (isDirection) directionMovement = target;
+        else directionMovement = Library.ToAxisAndNormalize(target - (Vector2)transform.position);
         anim.SetFloat("HorizontalMovement", directionMovement.x);
         anim.SetFloat("VerticalMovement", directionMovement.y);
     }

@@ -258,8 +258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 2
   _itemType: 4
-  _weight: 1
   _quantity: 0
+  _price: 0
   _droppedItem: {fileID: 4678474993954836061, guid: eca8d7df62650884ca106836f3c4ae91, type: 3}
   questItem: 0
   takeUpSound:
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11748e12a639e342807df875a1bf2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusMaxHealth: 250
+  bonusMaxHealth: 200
 --- !u!1 &5959626023433473028
 GameObject:
   m_ObjectHideFlags: 0

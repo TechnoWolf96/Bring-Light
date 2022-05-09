@@ -13,7 +13,9 @@ TagManager:
   - Bullet
   - Enemy
   - Sprite
-  - Effect
+  - Lava-Effect
+  - Healing-Effect
+  - PlayerPhysicalSupport
   layers:
   - Default
   - TransparentFX

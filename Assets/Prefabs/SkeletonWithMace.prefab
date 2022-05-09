@@ -376,6 +376,7 @@ GameObject:
   - component: {fileID: 1431135314381751606}
   - component: {fileID: 2141154017987354560}
   - component: {fileID: 6761636989501673236}
+  - component: {fileID: 377302810122556600}
   m_Layer: 6
   m_Name: SkeletonWithMace
   m_TagString: Enemy
@@ -583,6 +584,19 @@ MonoBehaviour:
     minQuantity: 1
     maxQuantity: 1
     probability: 15
+--- !u!114 &377302810122556600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066068728849598342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e18f2e8e3a572041b93cfe9c479aa43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _score: 20
 --- !u!1 &7066068729696698517
 GameObject:
   m_ObjectHideFlags: 0

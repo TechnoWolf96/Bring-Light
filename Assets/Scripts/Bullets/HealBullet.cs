@@ -5,11 +5,6 @@ public class HealBullet : HomingBullet
     [HideInInspector] public int heal;
 
 
-    protected override void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == shotPoint.GetComponentInParent<Transform>().gameObject.layer)
-            Collision(other);
-    }
 
     protected override void Collision(Collider2D other)
     {

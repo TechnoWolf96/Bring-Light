@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArrowItem : EquipmentItem
+public class ArrowItem : EquipmentEffect
 {
     [SerializeField] private GameObject _arrow;
     public GameObject arrow { get => _arrow; }

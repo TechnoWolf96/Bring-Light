@@ -18,8 +18,8 @@ public class InventoryPanel : MonoBehaviour
 
     public void OpenOrClose()
     {
-        if (anim.GetBool("Open")) Close();
-        else Open();
+        if (anim.GetBool("Open")) { Close(); Time.timeScale = 1f; Player.singleton.pause = false; }
+        else { Open(); Time.timeScale = 0f; Player.singleton.pause = true; }
     }
 
     private void Open()

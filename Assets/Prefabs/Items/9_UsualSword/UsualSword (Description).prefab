@@ -108,7 +108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -203.4, y: 0}
+  m_AnchoredPosition: {x: -213, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &653244294943662620
@@ -227,7 +227,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: "\u0424\u0438\u0437. \u0443\u0440\u043E\u043D\n25-35 HP."
+  m_Text: "\u0424\u0438\u0437. \u0443\u0440\u043E\u043D\n75-90 HP."
 --- !u!1 &2470025971206761830
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 27.9, y: -8.8}
+  m_AnchoredPosition: {x: 32.2, y: -8.8}
   m_SizeDelta: {x: 498.16, y: 130.2129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9207530413071839712
@@ -848,7 +848,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: "\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430\n0,5
+  m_Text: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0443\u0434\u0430\u0440\u043E\u0432\n0,5
     \u0441\u0435\u043A."
 --- !u!1 &6096005171807114029
 GameObject:

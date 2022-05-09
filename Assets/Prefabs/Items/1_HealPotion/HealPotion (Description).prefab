@@ -881,7 +881,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: "\u041C\u0433\u043D\u043E\u0432. \u043B\u0435\u0447\u0435\u043D\u0438\u0435\n+100
+  m_Text: "\u041C\u0433\u043D\u043E\u0432. \u043B\u0435\u0447\u0435\u043D\u0438\u0435\n+150
     HP"
 --- !u!1 &2696843371403185316
 GameObject:

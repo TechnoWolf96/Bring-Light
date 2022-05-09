@@ -1,8 +1,14 @@
 using FMODUnity;
+using System;
 using UnityEngine;
 
 public static class Library
 {
+    public static bool CompareLayer(int layer, LayerMask layerMask)
+    {
+        return (layerMask.value & (1 << layer)) != 0;
+    }
+
     public static void Play3DSound(EventReference sound, Transform transform)
     {
         FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance(sound);
@@ -17,6 +23,17 @@ public static class Library
 
     public static Vector2 ToAxisAndNormalize(Vector2 vector)
     {
+        Vector2 normVector = vector.normalized;
+        Vector2 vectorX = new Vector2(normVector.x, 0f);
+        Vector2 vectorY = new Vector2(0f, normVector.y);
+        if (vectorX.magnitude >= vectorY.magnitude) return vectorX.normalized;
+        return vectorY.normalized;
+
+
+
+
+        /*
+
         vector.Normalize();
         // Первый квадрант
         if (vector.x > 0 && vector.y >= 0)
@@ -43,6 +60,11 @@ public static class Library
             else return Vector2.down;
         }
         return Vector2.zero;
+
+        */
+
+
+
     }
 
     public static void SetSlotPosition(Icon icon, Transform newPosition, bool forEquipment)

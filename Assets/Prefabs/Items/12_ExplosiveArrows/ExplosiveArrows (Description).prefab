@@ -505,7 +505,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: "\u0424\u0438\u0437. \u0443\u0440\u043E\u043D\n80-110 HP."
+  m_Text: "\u0423\u0440\u043E\u043D \u043E\u0433\u043D\u0435\u043C\n80-130 HP."
 --- !u!1 &3426924005437379543
 GameObject:
   m_ObjectHideFlags: 0

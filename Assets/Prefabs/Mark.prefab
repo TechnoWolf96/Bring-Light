@@ -863,8 +863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4.5
-  _maxHealth: 1300
-  _health: 1300
+  _maxHealth: 1500
+  _health: 1500
   _protect:
     physical: 0
     holy: 0
@@ -930,8 +930,8 @@ MonoBehaviour:
   attack:
     damages:
     - typeDamage: 0
-      minDamage: 25
-      maxDamage: 35
+      minDamage: 60
+      maxDamage: 80
     pushForce: 1500
     critChance: 0
   radiusAttack: 0.7
