@@ -32,8 +32,6 @@ public class CloseAttackFSM : Creature
     protected override void UpdateState()
     {
         if (follow == null) FindNewTarget();
-
-
         else anim.SetBool("SeeTarget", true);
         ChangeTargetWhileProvocation();
 

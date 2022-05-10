@@ -93,7 +93,7 @@ public abstract class Creature : MonoBehaviour, IDestructable
     public virtual void GetDamage(AttackParameters attack, Transform attacking, Transform bullet = null, bool isEffectDamage = false)
     {
         health -= CalculateRealDamage(attack);
-        if (isEffectDamage) return;
+        if (isEffectDamage) return;  // Если урон нанесен эффектом - анимация получения урона не воспроизводится
         if (bullet != null) PushBack(attack.pushForce, bullet); // Если урон от снаряда - толчок от снаряда
         else PushBack(attack.pushForce, attacking);             // Если рукопашный урон - толчок от атакующего
         if (health > 0) anim.SetTrigger("GetDamage");
